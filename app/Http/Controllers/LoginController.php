@@ -10,14 +10,25 @@ class LoginController extends Controller
     //
     public function index() 
     {
-        if ($users = Auth::user()) {
-            if ($users->level == '') {
-                return redirect()->intended('1');
-            } elseif ($users->level == '2') {
-                return redirect()->intended('2');
-            }
-        }
-
         return view('login.index');
     }
+
+    public function login_proses(Request $request) {
+        $request->validate([
+            'email'     => 'required',
+            'password'  => 'required',
+        ]);
+
+        $data = [
+            'email'     => $request->email,
+            'password'  => $request->password
+        ];
+
+        if(Auth::attempt($data)) {
+            return redirect()->route('dashboard-management-kelas');
+        }else {
+            return redirect()->route('');
+        };
+    }
+
 }

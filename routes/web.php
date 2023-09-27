@@ -17,6 +17,9 @@ use App\Http\Controllers\KelasController;
 */
 
 Route::get('/', [LoginController::class, 'index'])->name('login');
+Route::post('/login-proses', [LoginController::class, 'login_proses'])->name('login-proses');
+
+
 Route::get('/dashboard-management', [ManagementController::class, 'index'])->name('dashboard-management');
 Route::get('/dashboard-management-kelas', [KelasController::class, 'index'])->name('dashboard-management-kelas');
 Route::get('/dashboard-management-tambah-kelas', [KelasController::class, 'create'])->name('dashboard-management-tambah-kelas');

@@ -30,21 +30,22 @@
           <div class="col-md-7">
             <h3>Selamat datang di <strong>Siakad Prestasi Prima</strong></h3>
             <p class="mb-4">Silahkan Login Terlebih dahulu</p>
-            <form action="{{url('login/proses')}}" method="post">
+            <form action="{{ route('login-proses') }}" method="post">
+              @csrf
               <div class="form-group first">
                 <label for="email">Email</label>
-                <input type="text" class="form-control" placeholder="Email" id="email">
+                <input type="text" name="email" class="form-control" placeholder="Email" id="email">
               </div>
               <div class="form-group last mb-3">
                 <label for="password">Password</label>
-                <input type="password" class="form-control" placeholder="Password" id="password">
+                <input type="password" name="password" class="form-control" placeholder="Password" id="password">
               </div>
               
               <div class="d-flex mb-5 align-items-center">
                 <span class="ml-auto"><a href="#" class="forgot-pass">Login Sebagai Guest</a></span> 
               </div>
 
-              <input type="submit" value="Log In" class="btn btn-block btn-primary">
+              <input type="submit" value="login" class="btn btn-block btn-primary">
 
             </form>
           </div>
