@@ -12,7 +12,8 @@ class KelasController extends Controller
      */
     public function index()
     {
-        //
+        
+        return view('pages.management.dashboard-kelas');
     }
 
     /**

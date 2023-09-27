@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ManagementController;
+use App\Http\Controllers\KelasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,4 +17,5 @@ use App\Http\Controllers\ManagementController;
 */
 
 Route::get('/', [LoginController::class, 'index'])->name('login');
-Route::get('/dashboard-managemen', [ManagementController::class, 'index'])->name('dashboard-managemen');
+Route::get('/dashboard-management', [ManagementController::class, 'index'])->name('dashboard-management');
+Route::get('/dashboard-management-kelas', [KelasController::class, 'index'])->name('dashboard-management-kelas');
