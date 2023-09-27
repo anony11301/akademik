@@ -10,7 +10,16 @@
                 </tr>
             </thead>
             <tbody>
-                <tr></tr>
+                @php
+                    $no = 1;
+                @endphp
+                @foreach ($kelas as $item)
+                    <tr>
+                        <td>{{ $no++ }}</td>
+                        <td>{{ $item->nama_kelas }}</td>
+                        <td>{{ $item->jurusan }}</td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
