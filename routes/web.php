@@ -22,11 +22,4 @@ Route::get('/dashboard-management-kelas', [KelasController::class, 'index'])->na
 Route::get('/dashboard-management-tambah-kelas', [KelasController::class, 'create'])->name('dashboard-management-tambah-kelas');
 Route::post('/simpan-data', [KelasController::class, 'store'])->name('kelas.store');
 
-Route::group(['middleware' => ['auth']], function () {
-    Route::group(['middleware' =>['ceLogin:1']], function () {
-        Route::resource('1', ManagementController::class);
-    });
-    Route::group(['middleware' =>['cekUserLogin:2']], function () {
-        Route::resource('2', Siswa::class);
-    });
-});
+
