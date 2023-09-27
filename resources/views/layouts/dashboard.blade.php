@@ -23,7 +23,10 @@
 </head>
 
 <body id="page-top">
-    @yield('page-content')
+    <div id="wrapper">
+        @include('includes.sidebar')
+        @yield('page-content')
+    </div>
     <script src="/bootstrap/vendor/jquery/jquery.min.js"></script>
     <script src="/bootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
