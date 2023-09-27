@@ -23,7 +23,7 @@ class KelasController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.management.dashboard-tambah-kelas');
     }
 
     /**
@@ -31,7 +31,22 @@ class KelasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        {
+            
+            $tingkat = $request->input('tingkat');
+            $jurusan = $request->input('jurusan');
+            $rombel = $request->input('rombel');
+    
+            
+            $result = $tingkat . ' ' . $jurusan . ' ' . $rombel;
+    
+            Kelas::create([
+                'nama_kelas' => $result,
+            ]);
+    
+            // Redirect atau berikan respons sesuai kebutuhan Anda
+            return redirect("pages.management.dashboard-kelas");
+        }
     }
 
     /**
