@@ -16,7 +16,7 @@
     <!-- Style -->
     <link rel="stylesheet" href="css/style.css">
 
-    <title>Siakad Prestasi tes123</title>
+    <title>Siakad Prestasi Prima</title>
   </head>
   <body>
   
