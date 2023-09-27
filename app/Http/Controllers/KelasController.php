@@ -48,7 +48,7 @@ class KelasController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Kelas $kelas)
+    public function show(string $id)
     {
         //
     }
@@ -56,7 +56,7 @@ class KelasController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Kelas $kelas)
+    public function edit(string $id)
     {
         //
     }
@@ -64,7 +64,7 @@ class KelasController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Kelas $kelas)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -72,8 +72,9 @@ class KelasController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Kelas $kelas)
+    public function destroy(string $id)
     {
-        //
+        Kelas::destroy($id);
+        return redirect()->route('dashboard-management-kelas');
     }
 }

@@ -18,8 +18,13 @@
                     <tr>
                         <td>{{ $no++ }}</td>
                         <td>{{ $item->nama_kelas }}</td>
-                        <td class="w-25"><a href="" class="btn btn-sm btn-warning mx-2 w-25">Edit</a><a href=""
-                                class="btn btn-sm btn-danger mx-2 w-25">Hapus</a></td>
+                        <td class="w-25"><a href="" class="btn btn-sm btn-warning mx-2 w-25">Edit</a>
+                            <form action="{{ route('delete-kelas', $item->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-danger mx-2 w-25">Hapus</button>
+                            </form>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
