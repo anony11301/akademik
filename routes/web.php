@@ -20,6 +20,6 @@ Route::get('/', [LoginController::class, 'index'])->name('login');
 Route::get('/dashboard-management', [ManagementController::class, 'index'])->name('dashboard-management');
 Route::get('/dashboard-management-kelas', [KelasController::class, 'index'])->name('dashboard-management-kelas');
 Route::get('/dashboard-management-tambah-kelas', [KelasController::class, 'create'])->name('dashboard-management-tambah-kelas');
-Route::get('/simpan-data', [KelasController::class, 'store'])->name('kelas.store');
+Route::post('/simpan-data', [KelasController::class, 'store'])->name('kelas.store');
 
 
