@@ -16,4 +16,7 @@ use App\Http\Controllers\ManagementController;
 */
 
 Route::get('/', [LoginController::class, 'index'])->name('login');
+<<<<<<< HEAD
 Route::get('/dashboard-managemen', [ManagementController::class, 'index'])->name('dashboard-managemen');
+=======
+>>>>>>> b8ea9ba206b481136c033de05fae94b02d9fafc7
