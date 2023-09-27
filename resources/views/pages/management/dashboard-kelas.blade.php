@@ -7,7 +7,6 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Nama Kelas</th>
-                    <th scope="col">Jurusan</th>
                     <th scope="col">Aksi</th>
                 </tr>
             </thead>
@@ -19,9 +18,8 @@
                     <tr>
                         <td>{{ $no++ }}</td>
                         <td>{{ $item->nama_kelas }}</td>
-                        <td>{{ $item->jurusan }}</td>
-                        <td class="w-25"><a href="" class="btn btn-sm btn-warning mx-2 w-25">Edit</a><a
-                                href="" class="btn btn-sm btn-danger mx-2 w-25">Hapus</a></td>
+                        <td class="w-25"><a href="" class="btn btn-sm btn-warning mx-2 w-25">Edit</a><a href=""
+                                class="btn btn-sm btn-danger mx-2 w-25">Hapus</a></td>
                     </tr>
                 @endforeach
             </tbody>
