@@ -31,7 +31,7 @@
         </table>
     </div>
     <div class="flex card mx-4 px-4 py-4">
-        <a href="" class="btn btn-primary w-full">+ Tambah Data</a>
+        <a href="{{url('dashboard-management-tambah-kelas')}}" class="btn btn-primary w-full">+ Tambah Data</a>
         <a href="" class="btn btn-success w-full mt-4">Export Data</a>
     </div>
 @endsection
