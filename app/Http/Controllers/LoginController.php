@@ -12,9 +12,9 @@ class LoginController extends Controller
     {
         if ($users = Auth::user()) {
             if ($users->level == '') {
-                return redirect()->intended('guru');
-            } elseif ($users->level == 'tu') {
-                return redirect()->intended('tu');
+                return redirect()->intended('1');
+            } elseif ($users->level == '2') {
+                return redirect()->intended('2');
             }
         }
 

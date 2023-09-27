@@ -19,3 +19,12 @@ use App\Http\Controllers\KelasController;
 Route::get('/', [LoginController::class, 'index'])->name('login');
 Route::get('/dashboard-management', [ManagementController::class, 'index'])->name('dashboard-management');
 Route::get('/dashboard-management-kelas', [KelasController::class, 'index'])->name('dashboard-management-kelas');
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::group(['middleware' =>['ceLogin:1']], function () {
+        Route::resource('1', ManagementController::class);
+    });
+    Route::group(['middleware' =>['cekUserLogin:2']], function () {
+        Route::resource('2', Siswa::class);
+    });
+});

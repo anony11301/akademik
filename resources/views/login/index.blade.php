@@ -30,7 +30,7 @@
           <div class="col-md-7">
             <h3>Selamat datang di <strong>Siakad Prestasi Prima</strong></h3>
             <p class="mb-4">Silahkan Login Terlebih dahulu</p>
-            <form action="#" method="post">
+            <form action="{{url('login/proses')}}" method="post">
               <div class="form-group first">
                 <label for="email">Email</label>
                 <input type="text" class="form-control" placeholder="Email" id="email">
