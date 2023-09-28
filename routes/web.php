@@ -27,5 +27,4 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/dashboard-management-tambah-kelas', [KelasController::class, 'create'])->name('dashboard-management-tambah-kelas');
     Route::post('/simpan-data', [KelasController::class, 'store'])->name('kelas.store');
     Route::delete('/delete-kelas/{id}', [KelasController::class, 'destroy'])->name('delete-kelas');
-    Route::get('/dashboard-management', [ManagementController::class, 'index'])->name('dashboard-management');
 });
