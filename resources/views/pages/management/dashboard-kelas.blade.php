@@ -1,7 +1,12 @@
 @extends('layouts.dashboard')
 @section('page-content')
     <div class="flex card mx-4 px-4 py-4 my-5">
-        <h1 style="color: black">Data Kelas</h1>
+        <h1 style="color: black">Data Kelas
+        
+            <a href="{{ url('dashboard-management-tambah-kelas') }}" class="btn btn-sm btn-primary float-right">+ Tambah Data</a>
+            <a href="" class="btn btn-sm btn-success float-right mr-2">Export Data</a>
+        
+        </h1>
         <table class="table table-hover">
             <thead style="color: black">
                 <tr>
@@ -36,8 +41,5 @@
             </tbody>
         </table>
     </div>
-    <div class="flex card mx-4 px-4 py-4">
-        <a href="{{ url('dashboard-management-tambah-kelas') }}" class="btn btn-primary w-full">+ Tambah Data</a>
-        <a href="" class="btn btn-success w-full mt-4">Export Data</a>
-    </div>
+    
 @endsection
