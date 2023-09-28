@@ -21,7 +21,7 @@ Route::post('/login-proses', [LoginController::class, 'login_proses'])->name('lo
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 
-Route::group(['middleware' => ['auth']], function(){
+Route::group(['middleware' => ['isManagement']], function(){
     Route::get('/dashboard-management', [ManagementController::class, 'index'])->name('dashboard-management');
     Route::get('/dashboard-management-kelas', [KelasController::class, 'index'])->name('dashboard-management-kelas');
     Route::get('/dashboard-management-tambah-kelas', [KelasController::class, 'create'])->name('dashboard-management-tambah-kelas');

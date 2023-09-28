@@ -16,24 +16,20 @@ class CekLogin
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      *@return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next, $roles)
+    public function handle(Request $request, Closure $next)
     {
-        if (!Auth::check()) {
-            return redirect()->route('login');
-        }
-        $users = Auth::user();
+        // if (!Auth::check()) {
+        //     return redirect()->route('login');
+        // }
+        // $users = Auth::user();
 
-        if($users->id_level == $roles)
-        {
-            return $next($request);
-        }
-
-        return redirect()->route('login')->with('error',"kamu gak punya akses");
-
-        // if(Auth::user() && Auth::user()->id_level == 1)
+        // if($users->id_level == $roles)
         // {
         //     return $next($request);
-        // } 
+        // }
+
         // return redirect()->route('login')->with('error',"kamu gak punya akses");
+
+        
     }
 }

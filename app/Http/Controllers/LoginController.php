@@ -30,7 +30,7 @@ class LoginController extends Controller
         //     return redirect()->route('login');
         // };
         $credentials = $request->validate([
-            'username' => 'required',
+            'email' => 'required',
             'password' => 'required',
         ]);
 
@@ -40,10 +40,13 @@ class LoginController extends Controller
                 return redirect()->route('dashboard-management');
             }
         }
+        return redirect()->route('login');
     }
 
-    public function logout() {
+    public function logout(Request $request) {
         Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
         return redirect()->route('login');
     }
 
