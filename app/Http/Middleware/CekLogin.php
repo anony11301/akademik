@@ -24,9 +24,16 @@ class CekLogin
         $users = Auth::user();
 
         if($users->id_level == $roles)
+        {
             return $next($request);
-
+        }
 
         return redirect()->route('login')->with('error',"kamu gak punya akses");
+
+        // if(Auth::user() && Auth::user()->id_level == 1)
+        // {
+        //     return $next($request);
+        // } 
+        // return redirect()->route('login')->with('error',"kamu gak punya akses");
     }
 }
