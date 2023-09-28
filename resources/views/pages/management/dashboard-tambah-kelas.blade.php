@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 @section('page-content')
-    <form action="{{ route('kelas.store') }}" method="POST" id="kelas-form">
+    <form action="{{ route('management.kelas.store') }}" method="POST" id="kelas-form">
         @csrf
         <div class="container mt-5">
             <div class="row">

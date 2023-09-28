@@ -16,18 +16,17 @@ class CekLogin
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      *@return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next, $rules): Response
+    public function handle(Request $request, Closure $next, $roles)
     {
         if (!Auth::check()) {
-            return redirect('login.index');
+            return redirect('login');
         }
         $users = Auth::user();
-        if ($users->id_level == $rules) {
+
+        if($users->id_level == $roles)
             return $next($request);
-            return redirect('login.index')->withErrors([
-                'belumLogin' => "Anda Tidak Memiliki Akses",
-            ]);
-        }
-        return $next($request);
+
+
+        return redirect()->route('login')->with('error',"kamu gak punya akses");
     }
 }

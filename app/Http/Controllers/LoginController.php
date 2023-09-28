@@ -25,10 +25,15 @@ class LoginController extends Controller
         ];
 
         if(Auth::attempt($data)) {
-            return redirect()->route('dashboard-management-kelas');
+            return redirect()->route('management.dashboard-management-kelas');
         }else {
-            return redirect()->route('');
+            return redirect()->route('login');
         };
+    }
+
+    public function logout() {
+        Auth::logout();
+        return redirect()->route('login');
     }
 
 }
