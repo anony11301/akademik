@@ -321,4 +321,7 @@
                             Bootstrap framework, especially the utility classes.</p>
                     </div>
                 </div>
-            @endsection
+            </div>
+        </div>
+    </div>
+@endsection
