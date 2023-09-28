@@ -58,7 +58,11 @@ class KelasController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $item = Kelas::findOrFail($id);
+        $data = [
+            'kelas' => $item,
+        ];
+        return view('pages.management.dashboard-edit-kelas', $data);
     }
 
     /**
@@ -66,7 +70,18 @@ class KelasController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $item = Kelas::findOrFail($id);
+        $tingkat = $request->input('tingkat');
+        $jurusan = $request->input('jurusan');
+        $rombel = $request->input('rombel');
+
+        $result = $tingkat . ' ' . $jurusan . ' ' . $rombel;
+
+        $item->update([
+            'nama_kelas' => $result,
+        ]);
+
+        return redirect()->route('dashboard-management-kelas');
     }
 
     /**

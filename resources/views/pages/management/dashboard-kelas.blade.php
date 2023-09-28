@@ -18,12 +18,20 @@
                     <tr>
                         <td>{{ $no++ }}</td>
                         <td>{{ $item->nama_kelas }}</td>
-                        <td class="w-25"><a href="" class="btn btn-sm btn-warning mx-2 w-25">Edit</a>
-                            <form action="{{ route('delete-kelas', $item->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-danger mx-2 w-25">Hapus</button>
-                            </form>
+                        <td class="w-25">
+                            <div class="row w-full">
+                                <div class="w-25 mx-2">
+                                    <a href="{{ route('edit-kelas', $item->id) }}"
+                                        class="btn btn-sm btn-warning w-100">Edit</a>
+                                </div>
+                                <div class="w-25 mx-2">
+                                    <form action="{{ route('delete-kelas', $item->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-danger w-100">Hapus</button>
+                                    </form>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                 @endforeach
@@ -31,7 +39,7 @@
         </table>
     </div>
     <div class="flex card mx-4 px-4 py-4">
-        <a href="{{url('dashboard-management-tambah-kelas')}}" class="btn btn-primary w-full">+ Tambah Data</a>
+        <a href="{{ url('dashboard-management-tambah-kelas') }}" class="btn btn-primary w-full">+ Tambah Data</a>
         <a href="" class="btn btn-success w-full mt-4">Export Data</a>
     </div>
 @endsection

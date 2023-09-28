@@ -1,10 +1,13 @@
 @extends('layouts.dashboard')
 @section('page-content')
-    <form action="{{ route('kelas.store') }}" method="POST" id="kelas-form">
+    <form action="{{ route('update-kelas', $kelas->id) }}" method="POST" id="kelas-form">
         @csrf
         <div class="card px-5 py-5 container mt-5">
+            <p class="my-2"><b style="color: black">Kelas Yang Diedit : {{ $kelas->nama_kelas }}</b></p>
             <div class="row">
+
                 <div class="col-md-4">
+
                     <div class="form-group">
                         <label for="tingkat">Tingkat</label>
                         <select class="form-control" id="tingkat" name="tingkat">
@@ -37,7 +40,7 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-success w-full mt-5 mb-3" id="simpanButton">Simpan</button>
+            <button type="submit" class="btn btn-warning w-full mt-5 mb-3" id="simpanButton">Edit</button>
             <a href="{{ route('dashboard-management-kelas') }}" class="btn btn-primary w-full">Kembali</a>
 
         </div>
