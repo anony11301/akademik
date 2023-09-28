@@ -22,6 +22,7 @@ Route::post('/login-proses', [LoginController::class, 'login_proses'])->name('lo
 
 Route::get('/dashboard-management', [ManagementController::class, 'index'])->name('dashboard-management');
 Route::get('/dashboard-management-kelas', [KelasController::class, 'index'])->name('dashboard-management-kelas');
+Route::get('/search-kelas', [KelasController::class, 'search'])->name('search-kelas');
 Route::get('/dashboard-management-tambah-kelas', [KelasController::class, 'create'])->name('dashboard-management-tambah-kelas');
 Route::post('/simpan-data', [KelasController::class, 'store'])->name('kelas.store');
 Route::delete('/delete-kelas/{id}', [KelasController::class, 'destroy'])->name('delete-kelas');

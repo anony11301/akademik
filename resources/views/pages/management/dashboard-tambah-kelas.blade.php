@@ -18,10 +18,10 @@
                     <div class="form-group">
                         <label for="jurusan">Jurusan</label>
                         <select class="form-control" id="jurusan" name="jurusan">
-                            <option value="RPL">Rekaya Perangkat Lunak</option>
-                            <option value="MM">Multimedia</option>
-                            <option value="TKJ">Teknik Komputer Jaringan</option>
-                            <option value="BC">Broadcasting</option>
+                            <option value="RPL">Rekaya Perangkat Lunak (RPL)</option>
+                            <option value="MM">Multimedia (MM)</option>
+                            <option value="TKJ">Teknik Komputer Jaringan (TKJ)</option>
+                            <option value="BC">Broadcasting (BC)</option>
                         </select>
                     </div>
                 </div>
@@ -40,6 +40,7 @@
                 <div class="col-md-12">
                     <input type="hidden" name="keterangan" id="keterangan">
                     <button type="submit" class="btn btn-primary" id="simpanButton">Simpan</button>
+                    <a href="{{url('dashboard-management-kelas')}}" class="btn btn-danger">Batal</a>
                 </div>
             </div>
         </div>

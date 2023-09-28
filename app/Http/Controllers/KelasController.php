@@ -18,6 +18,19 @@ class KelasController extends Controller
         ]);
     }
 
+    public function search(Request $request)
+    {
+        if ($request->has('search')) {
+            $kelas = Kelas::where('nama_kelas','LIKE','%'.$request->search.'%')->get();
+        }
+        else {
+            $kelas = Kelas::all();
+        }
+        return view('pages.management.dashboard-kelas',[
+            'kelas' => $kelas,
+        ]);   
+    }
+
     /**
      * Show the form for creating a new resource.
      */
