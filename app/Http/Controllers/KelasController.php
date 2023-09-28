@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Kelas;
 use Illuminate\Http\Request;
+use Excel;
+use App\Exports\KelasExport;
 
 class KelasController extends Controller
 {
@@ -104,5 +106,11 @@ class KelasController extends Controller
     {
         Kelas::destroy($id);
         return redirect()->route('dashboard-management-kelas');
+    }
+
+    // Function Export
+    public function exportExcel()
+    {
+        return Excel::download(new KelasExport,'kelas-excel.xlsx');
     }
 }

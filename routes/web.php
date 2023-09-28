@@ -30,3 +30,6 @@ Route::group(['middleware' => ['isManagement']], function(){
     Route::post('/update-kelas/{id}', [KelasController::class, 'update'])->name('update-kelas');
     Route::delete('/delete-kelas/{id}', [KelasController::class, 'destroy'])->name('delete-kelas');
 });
+
+// Route Excel
+Route::get('excel-export',[KelasController::class, 'exportExcel']);

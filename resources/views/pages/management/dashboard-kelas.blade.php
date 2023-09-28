@@ -4,7 +4,7 @@
         <h1 style="color: black">Data Kelas
         
             <a href="{{ url('dashboard-management-tambah-kelas') }}" class="btn btn-sm btn-primary float-right">+ Tambah Data</a>
-            <a href="" class="btn btn-sm btn-success float-right mr-2">Export Data</a>
+            <a href="{{ url('excel-export') }}" class="btn btn-sm btn-success float-right mr-2">Export Data</a>
         
         </h1>
         <table class="table table-hover">
