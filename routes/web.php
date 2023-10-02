@@ -23,8 +23,9 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::group(['middleware' => ['isManagement']], function(){
     Route::get('/dashboard-management', [ManagementController::class, 'index'])->name('dashboard-management');
-    Route::get('/dashboard-management-kelas', [KelasController::class, 'index'])->name('dashboard-management-kelas');
-    Route::get('/dashboard-management-tambah-kelas', [KelasController::class, 'create'])->name('dashboard-management-tambah-kelas');
+    Route::get('/management-kelas', [KelasController::class, 'index'])->name('management-kelas');
+    Route::get('/management-siswa', [SiswaController::class, 'index'])->name('management-siswa');
+    Route::get('/management-tambah-kelas', [KelasController::class, 'create'])->name('management-tambah-kelas');
     Route::post('/simpan-data', [KelasController::class, 'store'])->name('kelas.store');
     Route::get('/edit-kelas/{id}', [KelasController::class, 'edit'])->name('edit-kelas');
     Route::post('/update-kelas/{id}', [KelasController::class, 'update'])->name('update-kelas');

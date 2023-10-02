@@ -2,33 +2,33 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Kelas;
+use App\Models\Siswa;
 use Illuminate\Http\Request;
 use Excel;
-use App\Exports\KelasExport;
+// use App\Exports\SiswaExport;
 
-class KelasController extends Controller
+class SiswaController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $kelas = Kelas::all();
+        $kelas = Siswa::all();
         return view('pages.management.dashboard-kelas',[
-            'kelas' => $kelas,
+            'siswa' => $kelas,
         ]);
     }
 
     public function search(Request $request)
     {
         if ($request->has('search')) {
-            $kelas = Kelas::where('nama_kelas','LIKE','%'.$request->search.'%')->get();
+            $kelas = Siswa::where('nama_kelas','LIKE','%'.$request->search.'%')->get();
         }
         else {
-            $kelas = Kelas::all();
+            $kelas = Siswa::all();
         }
-        return view('pages.management.dashboard-kelas',[
+        return view('pages.management.dashboard-siswa',[
             'kelas' => $kelas,
         ]);   
     }
@@ -38,7 +38,7 @@ class KelasController extends Controller
      */
     public function create()
     {
-        return view('pages.management.dashboard-tambah-kelas');
+        return view('pages.management.dashboard-tambah-siswa');
     }
 
     /**
@@ -46,18 +46,7 @@ class KelasController extends Controller
      */
     public function store(Request $request)
     {
-        $tingkat = $request->input('tingkat');
-        $jurusan = $request->input('jurusan');
-        $rombel = $request->input('rombel');
-
-        $result = $tingkat . ' ' . $jurusan . ' ' . $rombel;
-
-        Kelas::create([
-            'nama_kelas' => $result,
-        ]);
-
-        // Redirect or respond as needed
-        return redirect()->route('management-kelas');
+        
     }
 
     /**
@@ -73,11 +62,11 @@ class KelasController extends Controller
      */
     public function edit(string $id)
     {
-        $item = Kelas::findOrFail($id);
+        $item = siswa::findOrFail($id);
         $data = [
             'kelas' => $item,
         ];
-        return view('pages.management.dashboard-edit-kelas', $data);
+        return view('pages.management.dashboard-edit-siswa', $data);
     }
 
     /**
@@ -85,18 +74,6 @@ class KelasController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $item = Kelas::findOrFail($id);
-        $tingkat = $request->input('tingkat');
-        $jurusan = $request->input('jurusan');
-        $rombel = $request->input('rombel');
-
-        $result = $tingkat . ' ' . $jurusan . ' ' . $rombel;
-
-        $item->update([
-            'nama_kelas' => $result,
-        ]);
-
-        return redirect()->route('management-kelas');
     }
 
     /**
@@ -105,7 +82,7 @@ class KelasController extends Controller
     public function destroy(string $id)
     {
         Kelas::destroy($id);
-        return redirect()->route('management-kelas');
+        return redirect()->route('management-siswa');
     }
 
     // Function Export
