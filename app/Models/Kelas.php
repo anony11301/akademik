@@ -22,8 +22,14 @@ class Kelas extends Model
     //FUNCTION EXPORT
     public static function getAllkelas() {
         $result = DB::table('kelas')
-        ->select('id','nama_kelas')
-        ->get()->toArray();
+            ->select('nama_kelas')
+            ->get()
+            ->toArray();
+    
+        foreach ($result as $key => $row) {
+            $row->nomor_urut = $key + 1;
+        }
+    
         return $result;
-    }
+    }    
 }
