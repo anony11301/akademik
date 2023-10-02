@@ -31,7 +31,7 @@ class SiswaController extends Controller
         }
         return view('pages.management.dashboard-siswa',[
             'kelas' => $kelas,
-        ]);   
+        ]);     
     }
 
     /**
@@ -39,7 +39,8 @@ class SiswaController extends Controller
      */
     public function create()
     {
-        return view('pages.management.dashboard-tambah-siswa');
+        $kelas = Kelas::all(); // Mengambil semua data kelas
+        return view('pages.management.siswa.add', compact('kelas')); // Kirim data kelas ke view
     }
 
     /**
@@ -47,7 +48,20 @@ class SiswaController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $request->validate([
+            'nis' => 'required|unique:siswa,nis',
+            'nama' => 'required',
+            'id_kelas' => 'required',
+        ]);
+
+        $siswa = new Siswa;
+        $siswa->nis = $request->nis;
+        $siswa->nama = $request->nama;
+        $siswa->id_kelas = $request->id_kelas;
+
+        $siswa->save();
+
+        return redirect()->route('management-siswa')->with('success', 'Data siswa berhasil disimpan.');
     }
 
     /**
@@ -66,29 +80,67 @@ class SiswaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($NIS)
     {
-        $item = Siswa::findOrFail($id);
-        $data = [
-            'kelas' => $item,
-        ];
-        return view('pages.management.dashboard-edit-siswa', $data);
+        $siswa = Siswa::where('NIS', $NIS)->first();
+
+        if (!$siswa) {
+            return redirect()->route('management-siswa')->with('error', 'Siswa tidak ditemukan.');
+        }
+
+        $kelas = Kelas::all();
+
+        return view('pages.management.siswa.edit', [
+            'siswa' => $siswa,
+            'kelas' => $kelas,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $NIS)
     {
+        // Validasi data yang dikirimkan dari form edit
+        $request->validate([
+            'NIS' => 'required',
+            'nama' => 'required',
+            'kelas' => 'required',
+        ]);
+
+        // Cari siswa berdasarkan NIS
+        $siswa = Siswa::where('NIS', $NIS)->first();
+
+        if (!$siswa) {
+            return redirect()->route('management-siswa')->with('error', 'Siswa tidak ditemukan.');
+        }
+
+        // Update data siswa
+        $siswa->update([
+            'NIS' => $request->input('NIS'),
+            'nama' => $request->input('nama'),
+            'id_kelas' => $request->input('kelas'),
+        ]);
+
+        return redirect()->route('management-siswa')->with('success', 'Siswa berhasil diperbarui.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($NIS)
     {
-        Siswa::destroy($id);
-        return redirect()->route('management-siswa');
+        // Cari siswa berdasarkan NIS
+        $siswa = Siswa::where('NIS', $NIS)->first();
+
+        if (!$siswa) {
+            return redirect()->route('management-siswa')->with('error', 'Siswa tidak ditemukan.');
+        }
+
+        // Hapus siswa
+        $siswa->delete();
+
+        return redirect()->route('management-siswa')->with('success', 'Siswa berhasil dihapus.');
     }
 
     // Function Export
