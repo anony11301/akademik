@@ -12,117 +12,7 @@
         </div>
 
         <!-- Content Row -->
-        <div class="row">
 
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-warning shadow h-100 py-2">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                    </div>
-                                <div class="h5 mb-0 font-weight-bold text-warning">X RPL 1</div>
-                            </div>
-                            <div class="col-auto">
-                                <a href="#"><i class="fas fa-arrow-right fa-2x text-gray-300"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-warning shadow h-100 py-2">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                    </div>
-                                <div class="h5 mb-0 font-weight-bold text-warning">X RPL 1</div>
-                            </div>
-                            <div class="col-auto">
-                                <a href="#"><i class="fas fa-arrow-right fa-2x text-gray-300"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-warning shadow h-100 py-2">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                    </div>
-                                <div class="h5 mb-0 font-weight-bold text-warning">X RPL 1</div>
-                            </div>
-                            <div class="col-auto">
-                                <a href="#"><i class="fas fa-arrow-right fa-2x text-gray-300"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-warning shadow h-100 py-2">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                    </div>
-                                <div class="h5 mb-0 font-weight-bold text-warning">X RPL 1</div>
-                            </div>
-                            <div class="col-auto">
-                                <a href="#"><i class="fas fa-arrow-right fa-2x text-gray-300"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-warning shadow h-100 py-2">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                    </div>
-                                <div class="h5 mb-0 font-weight-bold text-warning">X RPL 1</div>
-                            </div>
-                            <div class="col-auto">
-                                <a href="#"><i class="fas fa-arrow-right fa-2x text-gray-300"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-warning shadow h-100 py-2">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                    </div>
-                                <div class="h5 mb-0 font-weight-bold text-warning">X RPL 1</div>
-                            </div>
-                            <div class="col-auto">
-                                <a href="#"><i class="fas fa-arrow-right fa-2x text-gray-300"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
         <!-- Content Row -->
 
@@ -221,8 +111,8 @@
                         <h4 class="small font-weight-bold">Sales Tracking <span class="float-right">40%</span>
                         </h4>
                         <div class="progress mb-4">
-                            <div class="progress-bar bg-warning" role="progressbar" style="width: 40%"
-                                aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar bg-warning" role="progressbar" style="width: 40%" aria-valuenow="40"
+                                aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                         <h4 class="small font-weight-bold">Customer Database <span class="float-right">60%</span>
                         </h4>

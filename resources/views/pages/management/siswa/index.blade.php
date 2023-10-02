@@ -1,45 +1,24 @@
 @extends('layouts.dashboard')
 @section('page-content')
-    <div class="flex card mx-4 px-4 py-4 my-5">
-        <h1 style="color: black">Data Kelas
-        
-            <a href="{{ url('management-tambah-kelas') }}" class="btn btn-sm btn-primary float-right">+ Tambah Data</a>
-            <a href="{{ url('excel-export') }}" class="btn btn-sm btn-success float-right mr-2">Export Data</a>
-        
-        </h1>
-        <table class="table table-hover">
-            <thead style="color: black">
-                <tr>
-                    <th scope="col">NIS</th>
-                    <th scope="col">Nama</th>
-                    <th scope="col">Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                @php
-                    $no = 1;
-                @endphp
-                @foreach ($kelas as $item)
-                    <tr>
-                        <td>{{ $no++ }}</td>
-                        <td>{{ $item->nama_kelas }}</td>
-                        <td class="w-25">
-                            <div class="d-flex">
-                                <div class="w-50 mx-2 "> <a href="{{ route('edit-kelas', $item->id) }}"
-                                        class="btn btn-sm btn-warning  w-100">Edit</a></div>
-                                <div class="w-50 mx-2">
-                                    <form action="{{ route('delete-kelas', $item->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger  w-100">Hapus</button>
-                                    </form>
+    <div class="row px-5 py-5">
+
+        @foreach ($kelas as $item)
+            <div class="col col-12 col-sm-8 col-xl-4 col-md-6 mb-4">
+                <div class="card border-left-warning shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                 </div>
+                                <div class="h5 mb-0 font-weight-bold text-warning">{{ $item->nama_kelas }}</div>
                             </div>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+                            <div class="col-auto">
+                                <a href="#"><i class="fas fa-arrow-right fa-2x text-gray-300"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endforeach
     </div>
-    
 @endsection

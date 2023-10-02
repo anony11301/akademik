@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Siswa;
+use App\Models\Kelas;
 use Illuminate\Http\Request;
-use Excel;
-// use App\Exports\SiswaExport;
+use Maatwebsite\Excel\Excel;
+use App\Exports\SiswaExport;
 
 class SiswaController extends Controller
 {
@@ -14,9 +15,9 @@ class SiswaController extends Controller
      */
     public function index()
     {
-        $kelas = Siswa::all();
-        return view('pages.management.dashboard-kelas',[
-            'siswa' => $kelas,
+        $kelas = Kelas::all();
+        return view('pages.management.siswa.index',[
+            'kelas' => $kelas,
         ]);
     }
 
@@ -81,7 +82,7 @@ class SiswaController extends Controller
      */
     public function destroy(string $id)
     {
-        Kelas::destroy($id);
+        Siswa::destroy($id);
         return redirect()->route('management-siswa');
     }
 
