@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kelas;
 use Illuminate\Http\Request;
-use Excel;
+use Maatwebsite\Excel\Excel;
 use App\Exports\KelasExport;
 
 class KelasController extends Controller
