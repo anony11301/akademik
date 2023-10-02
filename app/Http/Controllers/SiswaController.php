@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Siswa;
 use App\Models\Kelas;
 use Illuminate\Http\Request;
-use Excel;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\KelasExport;
 
 class SiswaController extends Controller
 {
@@ -38,7 +39,7 @@ class SiswaController extends Controller
      */
     public function create()
     {
-        return view('pages.management.siswa.add');
+        return view('pages.management.dashboard-tambah-siswa');
     }
 
     /**
