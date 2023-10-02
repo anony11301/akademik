@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Siswa;
 use App\Models\Kelas;
 use Illuminate\Http\Request;
-use Maatwebsite\Excel\Excel;
-use App\Exports\SiswaExport;
+use Excel;
 
 class SiswaController extends Controller
 {
@@ -55,7 +54,12 @@ class SiswaController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $kelas = Siswa::all()->where('id_kelas', '==', $id);
+        $data = [
+            'siswa' => $kelas,
+        ];
+
+        return view('pages.management.siswa.detail', $data);
     }
 
     /**
@@ -63,7 +67,7 @@ class SiswaController extends Controller
      */
     public function edit(string $id)
     {
-        $item = siswa::findOrFail($id);
+        $item = Siswa::findOrFail($id);
         $data = [
             'kelas' => $item,
         ];

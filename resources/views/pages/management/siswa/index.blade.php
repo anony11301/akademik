@@ -13,7 +13,8 @@
                                 <div class="h5 mb-0 font-weight-bold text-warning">{{ $item->nama_kelas }}</div>
                             </div>
                             <div class="col-auto">
-                                <a href="#"><i class="fas fa-arrow-right fa-2x text-gray-300"></i></a>
+                                <a href="{{ route('data-siswa', $item->id) }}"><i
+                                        class="fas fa-arrow-right fa-2x text-gray-300"></i></a>
                             </div>
                         </div>
                     </div>
