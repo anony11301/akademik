@@ -21,6 +21,8 @@ Route::get('/', [LoginController::class, 'index'])->name('login');
 Route::post('/login-proses', [LoginController::class, 'login_proses'])->name('login-proses');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
+Route::get('/create-siswa', [SiswaController::class, 'create']);
+
 
 Route::group(['middleware' => ['isManagement']], function(){
     Route::get('/dashboard-management', [ManagementController::class, 'index'])->name('dashboard-management');

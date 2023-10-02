@@ -39,7 +39,7 @@ class SiswaController extends Controller
      */
     public function create()
     {
-        return view('pages.management.dashboard-tambah-siswa');
+        return view('pages.management.siswa.add');
     }
 
     /**
