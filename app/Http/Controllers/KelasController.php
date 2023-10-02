@@ -57,7 +57,7 @@ class KelasController extends Controller
         ]);
 
         // Redirect or respond as needed
-        return redirect()->route('dashboard-management-kelas');
+        return redirect()->route('management-kelas');
     }
 
     /**
@@ -96,7 +96,7 @@ class KelasController extends Controller
             'nama_kelas' => $result,
         ]);
 
-        return redirect()->route('dashboard-management-kelas');
+        return redirect()->route('management-kelas');
     }
 
     /**
@@ -105,7 +105,7 @@ class KelasController extends Controller
     public function destroy(string $id)
     {
         Kelas::destroy($id);
-        return redirect()->route('dashboard-management-kelas');
+        return redirect()->route('management-kelas');
     }
 
     // Function Export

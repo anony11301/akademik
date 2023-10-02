@@ -3,7 +3,7 @@
     <div class="flex card mx-4 px-4 py-4 my-5">
         <h1 style="color: black">Data Kelas
         
-            <a href="{{ url('dashboard-management-tambah-kelas') }}" class="btn btn-sm btn-primary float-right">+ Tambah Data</a>
+            <a href="{{ url('management-tambah-kelas') }}" class="btn btn-sm btn-primary float-right">+ Tambah Data</a>
             <a href="{{ url('excel-export') }}" class="btn btn-sm btn-success float-right mr-2">Export Data</a>
         
         </h1>

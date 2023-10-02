@@ -38,7 +38,7 @@
             </div>
 
             <button type="submit" class="btn btn-success w-full mt-5 mb-3" id="simpanButton">Simpan</button>
-            <a href="{{ route('dashboard-management-kelas') }}" class="btn btn-primary w-full">Kembali</a>
+            <a href="{{ route('management-kelas') }}" class="btn btn-primary w-full">Kembali</a>
 
         </div>
 

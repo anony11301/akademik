@@ -32,4 +32,9 @@ class Kelas extends Model
     
         return $result;
     }    
+
+    public function siswa()
+    {
+        return $this->hasMany(Siswa::class, 'id_kelas', 'id');
+    }
 }
