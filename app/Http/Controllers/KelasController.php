@@ -15,7 +15,7 @@ class KelasController extends Controller
     public function index()
     {
         $kelas = Kelas::all();
-        return view('pages.management.dashboard-kelas',[
+        return view('pages.management.kelas.index',[
             'kelas' => $kelas,
         ]);
     }
@@ -28,7 +28,7 @@ class KelasController extends Controller
         else {
             $kelas = Kelas::all();
         }
-        return view('pages.management.dashboard-kelas',[
+        return view('pages.management.kelas.index',[
             'kelas' => $kelas,
         ]);   
     }
@@ -38,7 +38,7 @@ class KelasController extends Controller
      */
     public function create()
     {
-        return view('pages.management.dashboard-tambah-kelas');
+        return view('pages.management.kelas.add');
     }
 
     /**
@@ -77,7 +77,7 @@ class KelasController extends Controller
         $data = [
             'kelas' => $item,
         ];
-        return view('pages.management.dashboard-edit-kelas', $data);
+        return view('pages.management.kelas.edit', $data);
     }
 
     /**
