@@ -9,7 +9,7 @@
         <div class="col-lg-3 col-sm-6">
             <div class="card-box bg-orange">
                 <div class="inner">
-                    <h3> 13436 </h3>
+                    <h3> {{ $jumlahKelas }} </h3>
                     <p> Data Kelas </p>
                 </div>
                 <div class="icon">
@@ -22,7 +22,7 @@
         <div class="col-lg-3 col-sm-6">
             <div class="card-box bg-orange">
                 <div class="inner">
-                    <h3> 723 </h3>
+                    <h3> {{ $jumlahSiswa }} </h3>
                     <p> Data Siswa </p>
                 </div>
                 <div class="icon">

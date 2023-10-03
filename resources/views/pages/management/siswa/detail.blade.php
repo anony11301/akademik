@@ -53,7 +53,6 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-<<<<<<< HEAD
                     <div class="modal-body">
                         Apakah Anda yakin ingin menghapus siswa ini?
                     </div>
@@ -111,12 +110,3 @@
 
     </div>
     @endsection
-=======
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-</div>
-@endsection
->>>>>>> 1bf71db4592f3767b4cf6d7cc69f4ae287582598
