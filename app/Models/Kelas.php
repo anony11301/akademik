@@ -15,23 +15,22 @@ class Kelas extends Model
         'id', 'nama_kelas', 'jurusan',
     ];
 
-    protected $hidden = [
-
-    ];
+    protected $hidden = [];
 
     //FUNCTION EXPORT
-    public static function getAllkelas() {
+    public static function getAllkelas()
+    {
         $result = DB::table('kelas')
             ->select('nama_kelas')
             ->get()
             ->toArray();
-    
+
         foreach ($result as $key => $row) {
             $row->nomor_urut = $key + 1;
         }
-    
+
         return $result;
-    }    
+    }
 
     public function siswa()
     {
