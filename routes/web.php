@@ -38,7 +38,7 @@ Route::group(['middleware' => ['isManagement']], function(){
     Route::get('/management-tambah-siswa', [SiswaController::class, 'create'])->name('management-tambah-siswa');
     Route::get('/data-siswa/{id}', [SiswaController::class, 'show'])->name('data-siswa');
     Route::post('/simpan-data-siswa', [SiswaController::class, 'store'])->name('siswa.store');
-    Route::delete('/siswa/{NIS}', [SiswaController::class, 'destroy'])->name('delete-siswa');
+    Route::delete('/delete-siswa/{NIS}', [SiswaController::class, 'destroy'])->name('delete-siswa');
     Route::get('/edit-siswa/{NIS}', [SiswaController::class, 'edit'])->name('edit-siswa');
     Route::post('/update-siswa/{NIS}', [KelasController::class, 'update'])->name('update-siswa');
 

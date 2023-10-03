@@ -2,7 +2,7 @@
 
 @section('page-content')
 <!-- Begin Page Content -->
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
 <link rel="stylesheet" href="css/dashboard.css" type="text/css">
 <div class="container">
     <div class="row justify-content-center">
@@ -13,7 +13,7 @@
                     <p> Data Kelas </p>
                 </div>
                 <div class="icon">
-                    <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                    <i class="fa fa-school" aria-hidden="true"></i>
                 </div>
                 <a href="{{ route('management-kelas') }}" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
             </div>
