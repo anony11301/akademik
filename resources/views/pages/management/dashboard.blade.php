@@ -7,7 +7,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-lg-3 col-sm-6">
-            <div class="card-box bg-blue">
+            <div class="card-box bg-orange">
                 <div class="inner">
                     <h3> 13436 </h3>
                     <p> Data Kelas </p>
@@ -20,7 +20,7 @@
         </div>
 
         <div class="col-lg-3 col-sm-6">
-            <div class="card-box bg-red">
+            <div class="card-box bg-orange">
                 <div class="inner">
                     <h3> 723 </h3>
                     <p> Data Siswa </p>
