@@ -53,6 +53,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
+<<<<<<< HEAD
                     <div class="modal-body">
                         Apakah Anda yakin ingin menghapus siswa ini?
                     </div>
@@ -110,3 +111,50 @@
 
     </div>
     @endsection
+=======
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
+<<<<<<< HEAD
+
+<script>
+    $(document).ready(function() {
+        $('#hapusModal').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget); // Tombol yang memicu modal
+            var id = button.data('id'); // Mengambil data-id dari tombol
+            var modal = $(this);
+            var form = modal.find('#delete-form');
+
+            // Mengatur action form untuk menghapus siswa dengan NIS tertentu
+            form.attr('action', 'delete-siswa' + NIS);
+
+            // Tambahkan SweetAlert saat tombol "Hapus" pada modal ditekan
+            modal.find('.modal-footer button.btn-danger').click(function() {
+                Swal.fire({
+                    title: 'Apakah Anda yakin?',
+                    text: 'Anda tidak akan dapat mengembalikan ini!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Jika pengguna menekan "Yes", kirimkan form hapus
+                        form.submit();
+                    }
+                });
+            });
+        });
+    });
+</script>
+
+
+
+=======
+>>>>>>> 43ff908bc5e07bd9818307cf2ecfc22120259447
+@endsection
+>>>>>>> 1bf71db4592f3767b4cf6d7cc69f4ae287582598
