@@ -80,7 +80,7 @@
             var form = modal.find('#delete-form');
 
             // Mengatur action form untuk menghapus siswa dengan NIS tertentu
-            form.attr('action', '/delete-siswa/' + id);
+            form.attr('action', 'delete-siswa' + NIS);
 
             // Tambahkan SweetAlert saat tombol "Hapus" pada modal ditekan
             modal.find('.modal-footer button.btn-danger').click(function() {
