@@ -19,8 +19,8 @@ class KelasExport implements FromCollection,WithHeadings
 
     public function headings():array {
         return [
-            'Nama Kelas',
             'Nomor',
+            'Nama Kelas',
         ];
     }
 }
