@@ -2,8 +2,7 @@
     @section('page-content')
     <div class="flex card mx-4 px-4 py-4 my-5">
         <h1 style="color: black">Data Kelas
-        {{ $absen }}
-            <form action="{{ route('absen.show', $absen->id) }}" method="get">
+            <form action="" method="get">
                  <div class="row">
                     <div class="col-md-5 form-group">
                         <label for="">Date From</label>
