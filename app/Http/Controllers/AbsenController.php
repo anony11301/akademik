@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Absensi;
 use App\Models\Kelas;
 use App\Models\Siswa;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Builder;
 
 class AbsenController extends Controller
 {
@@ -87,4 +89,44 @@ class AbsenController extends Controller
         return redirect()->route('absen.create', $id_kelas)
             ->with('success', 'Absensi berhasil dihapus.');
     }
+
+    public function select()
+    {
+        $kelas = Kelas::all();
+        return view('pages.management.absen.select',[
+            'kelas' => $kelas,
+        ]);
+    }
+
+
+    public function show($kelas_id, Request $request)
+{
+    $absend = Absensi::all();
+    $siswa = Siswa::where('id_kelas', $kelas_id)->get();
+    $absen = Absensi::where('id_kelas', $kelas_id)
+        ->when(
+            $request->date_from && $request->date_to,
+            function (Builder $builder) use ($request) {
+                $builder->whereBetween(
+                    DB::raw('tanggal'),
+                    [
+                        $request->date_from,
+                        $request->date_to
+                    ]
+                );
+            }
+        )
+        ->orderBy('tanggal', 'desc') // Order by the 'tanggal' field for sorting by date.
+        ->get();
+
+    // Debugging statements
+    // dd($request->date_from, $request->date_to); // Check date parameters.
+    // dd($absen->toSql()); // Check the generated SQL query.
+    // dd($absen->toArray()); // Check the retrieved data.
+
+    return view('pages.management.absen.detail', compact('absen', 'siswa', 'kelas_id', 'request', 'absend'));
 }
+
+}
+
+

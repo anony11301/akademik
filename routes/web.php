@@ -44,8 +44,10 @@ Route::group(['middleware' => ['isManagement']], function () {
     Route::put('/update-siswa/{NIS}', [SiswaController::class, 'update'])->name('update-siswa');
     //Absen
     Route::get('/absen', [AbsenController::class, 'index'])->name('absen.index');
+    Route::get('/absen-select', [AbsenController::class, 'select'])->name('absen.select');
     Route::get('/absen/{kelas_id}', [AbsenController::class, 'create'])->name('absen.create');
     Route::post('/absen/store', [AbsenController::class, 'store'])->name('absen.store');
+    Route::get('/absen-show/{id}', [AbsenController::class, 'show'])->name('absen.show');
 });
 
 // Route Excel
