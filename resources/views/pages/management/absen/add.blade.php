@@ -27,14 +27,14 @@
                             <td>{{ $siswa->NIS }}</td>
                             <td>{{ $siswa->nama }}</td>
                             <td>
-                                <select name="status[]">
+                                <select class="form-control" name="status[]">
                                     <option value="hadir">Hadir</option>
                                     <option value="sakit">Sakit</option>
                                     <option value="izin">Izin</option>
                                 </select>
                             </td>
                             <td>
-                                <input type="text" name="keterangan[]">
+                                <input class="form-control" type="text" name="keterangan[]">
                                 <input type="hidden" name="nis[]" value="{{ $siswa->NIS }}">
                             </td>
                         </tr>
