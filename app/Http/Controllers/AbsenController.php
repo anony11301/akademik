@@ -124,7 +124,7 @@ class AbsenController extends Controller
     // dd($absen->toSql()); // Check the generated SQL query.
     // dd($absen->toArray()); // Check the retrieved data.
 
-    return view('pages.guru.absen.detail', compact('absen', 'siswa', 'kelas_id', 'request', 'absend'));
+    return view('pages.management.absen.detail', compact('absen', 'siswa', 'kelas_id', 'request', 'absend'));
 }
 
 }

@@ -7,6 +7,7 @@ use App\Models\Absensi;
 use App\Models\Kelas;
 use App\Models\Siswa;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Builder;
 
 class GuruController extends Controller
 {
@@ -21,7 +22,7 @@ class GuruController extends Controller
     public function select()
     {
         $kelas = Kelas::all();
-        return view('pages.guru.absen.select',[
+        return view('pages.guru.absen.index',[
             'kelas' => $kelas,
         ]);
     }
@@ -46,7 +47,7 @@ class GuruController extends Controller
             $absen = new Absensi();
             $absen->tanggal = $tanggal;
             $absen->status = $status[$key];
-            $absen->ketergantungan = $ketergantungan[$key];
+            $absen->keterangan = $keterangan[$key];
             $absen->NIS = $n;
             $absen->id_kelas = $kelas_id;
             $absen->save();
@@ -54,5 +55,29 @@ class GuruController extends Controller
 
 
         return redirect()->route('absen.index');
+    }
+
+    public function show($kelas_id, Request $request)
+    {
+        $absend = Absensi::all();
+        $siswa = Siswa::where('id_kelas', $kelas_id)->get();
+        $absen = Absensi::where('id_kelas', $kelas_id)
+            ->when(
+                $request->date_from && $request->date_to,
+                function (Builder $builder) use ($request) {
+                    $builder->whereBetween(
+                        DB::raw('tanggal'),
+                        [
+                            $request->date_from,
+                            $request->date_to
+                        ]
+                    );
+                }
+            )
+            ->orderBy('tanggal', 'desc')
+            ->get();
+
+        
+        return view('pages.guru.absen.detail', compact('absen', 'siswa', 'kelas_id', 'request', 'absend'));
     }
 }
