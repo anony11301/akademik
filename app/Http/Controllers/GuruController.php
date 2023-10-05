@@ -51,5 +51,8 @@ class GuruController extends Controller
             $absen->id_kelas = $kelas_id;
             $absen->save();
         }
+
+
+        return redirect()->route('absen.index');
     }
 }
