@@ -8,6 +8,8 @@ use App\Models\Kelas;
 use App\Models\Siswa;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Builder;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\AbsenExport;
 
 class AbsenController extends Controller
 {
@@ -126,6 +128,11 @@ class AbsenController extends Controller
 
     return view('pages.management.absen.detail', compact('absen', 'siswa', 'kelas_id', 'request', 'absend'));
 }
+
+    public function exportExcel()
+    {
+        return Excel::download(new AbsenExport,'absen-excel.xlsx');
+    }
 
 }
 
