@@ -15,9 +15,10 @@ class Users extends Seeder
     {
         $users = [
             [
-                'email' => 'tes@gmail.com',
+                'nama' => 'Guru',
+                'email' => 'guru@gmail.com',
                 'password' => bcrypt ('123'),
-                'id_level' => '1'
+                'id_level' => '2'
             ]      
         ];
 

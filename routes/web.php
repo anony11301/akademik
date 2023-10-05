@@ -6,6 +6,7 @@ use App\Http\Controllers\ManagementController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\AbsenController;
+use App\Http\Controllers\GuruController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,14 +45,29 @@ Route::group(['middleware' => ['isManagement']], function () {
     Route::delete('/delete-siswa/{NIS}', [SiswaController::class, 'destroy'])->name('delete-siswa');
     Route::get('/edit-siswa/{NIS}', [SiswaController::class, 'edit'])->name('edit-siswa');
     Route::put('/update-siswa/{NIS}', [SiswaController::class, 'update'])->name('update-siswa');
-    
+
     //Absen
-    Route::get('/absen', [AbsenController::class, 'index'])->name('absen.index');
     Route::get('/absen-select', [AbsenController::class, 'select'])->name('absen.select');
     Route::get('/absen/{kelas_id}', [AbsenController::class, 'create'])->name('absen.create');
     Route::post('/absen/store', [AbsenController::class, 'store'])->name('absen.store');
     Route::get('/absen-show/{id}', [AbsenController::class, 'show'])->name('absen.show');
+
+
 });
+
+Route::group(['middleware' => ['isGuru']], function () {
+    Route::get('/dashboard-guru', [ManagementController::class, 'index'])->name('dashboard-guru');
+
+    //Guru
+    Route::get('/absen', [AbsenController::class, 'index'])->name('absen.index');
+    Route::get('/kelas-select', [GuruController::class, 'index'])->name('kelas.select');
+    Route::get('/absen-select', [GuruController::class, 'select'])->name('absen.select');
+    Route::get('/absen/{kelas_id}', [GuruController::class, 'create'])
+
+
+});
+
+
 
 // Route Excel
 Route::get('excel-export', [KelasController::class, 'exportExcel']);
