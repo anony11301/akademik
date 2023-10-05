@@ -48,7 +48,7 @@ Route::group(['middleware' => ['isManagement']], function () {
 
     //Absen
     Route::get('/absen-select', [AbsenController::class, 'select'])->name('absen.select');
-    Route::get('/absen/{kelas_id}', [AbsenController::class, 'create'])->name('absen.create');
+    
     Route::post('/absen/store', [AbsenController::class, 'store'])->name('absen.store');
     Route::get('/absen-show/{id}', [AbsenController::class, 'show'])->name('absen.show');
 
@@ -62,7 +62,8 @@ Route::group(['middleware' => ['isGuru']], function () {
     Route::get('/absen', [AbsenController::class, 'index'])->name('absen.index');
     Route::get('/kelas-select', [GuruController::class, 'index'])->name('kelas.select');
     Route::get('/absen-select', [GuruController::class, 'select'])->name('absen.select');
-    Route::get('/absen/{kelas_id}', [GuruController::class, 'create'])
+    Route::get('/absen/{kelas_id}', [GuruController::class, 'create'])->name('absen.create');
+    Route::get('/absen-show/{id}', [GuruController::class, 'show'])->name('absen.show');
 
 
 });
