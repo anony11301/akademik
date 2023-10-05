@@ -15,7 +15,7 @@ class AbsenController extends Controller
     public function index()
     {
         $kelas = Kelas::all();
-        return view('pages.management.absen.index', compact('kelas'));
+        return view('pages.guru.absen.index', compact('kelas'));
     }
 
 
@@ -23,7 +23,7 @@ class AbsenController extends Controller
     public function create($kelas_id)
     {
         $siswa = Siswa::where('id_kelas', $kelas_id)->get();
-        return view('pages.management.absen.add', compact('siswa', 'kelas_id'));
+        return view('pages.guru.absen.add', compact('siswa', 'kelas_id'));
     }
 
 
@@ -59,7 +59,7 @@ class AbsenController extends Controller
     {
         $absensi = Absensi::findOrFail($id);
 
-        return view('pages.management.absen.edit', compact('absensi'));
+        return view('pages.guru.absen.edit', compact('absensi'));
     }
 
 
@@ -93,7 +93,7 @@ class AbsenController extends Controller
     public function select()
     {
         $kelas = Kelas::all();
-        return view('pages.management.absen.select',[
+        return view('pages.guru.absen.select',[
             'kelas' => $kelas,
         ]);
     }
@@ -124,7 +124,7 @@ class AbsenController extends Controller
     // dd($absen->toSql()); // Check the generated SQL query.
     // dd($absen->toArray()); // Check the retrieved data.
 
-    return view('pages.management.absen.detail', compact('absen', 'siswa', 'kelas_id', 'request', 'absend'));
+    return view('pages.guru.absen.detail', compact('absen', 'siswa', 'kelas_id', 'request', 'absend'));
 }
 
 }
