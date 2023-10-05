@@ -2,6 +2,9 @@
 @section('page-content')
 <div class="flex card mx-4 px-4 py-4 my-5">
     <h1 style="color: black">Data Kelas
+
+        <a href="{{ url('excel-export') }}" class="btn btn-sm btn-success float-right mr-2">Export Data</a>
+
         <form action="" method="get">
             <div class="row">
                 <div class="col-md-5 form-group">
