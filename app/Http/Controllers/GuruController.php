@@ -14,7 +14,7 @@ class GuruController extends Controller
     public function index()
     {
         $kelas = Kelas::all();
-        return view('pages.guru.dashboard',[
+        return view('pages.guru.dashboard', [
             'kelas' => $kelas,
         ]);
     }
@@ -22,7 +22,7 @@ class GuruController extends Controller
     public function select()
     {
         $kelas = Kelas::all();
-        return view('pages.guru.absen.index',[
+        return view('pages.guru.absen.index', [
             'kelas' => $kelas,
         ]);
     }
@@ -61,7 +61,10 @@ class GuruController extends Controller
     {
         $absend = Absensi::all();
         $siswa = Siswa::where('id_kelas', $kelas_id)->get();
-        $absen = Absensi::where('id_kelas', $kelas_id)
+
+        $statusFilter = $request->input('status_filter');
+
+        $query = Absensi::where('id_kelas', $kelas_id)
             ->when(
                 $request->date_from && $request->date_to,
                 function (Builder $builder) use ($request) {
@@ -73,11 +76,14 @@ class GuruController extends Controller
                         ]
                     );
                 }
-            )
-            ->orderBy('tanggal', 'desc')
-            ->get();
+            );
 
-        
+        if (!empty($statusFilter)) {
+            $query->where('status', $statusFilter);
+        }
+
+        $absen = $query->orderBy('tanggal', 'desc')->get();
+
         return view('pages.guru.absen.detail', compact('absen', 'siswa', 'kelas_id', 'request', 'absend'));
     }
 }
