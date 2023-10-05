@@ -62,7 +62,7 @@ Route::group(['middleware' => ['isGuru']], function () {
     Route::get('/absen', [AbsenController::class, 'index'])->name('absen.index');
     Route::get('/kelas-select', [GuruController::class, 'index'])->name('kelas.select');
     Route::get('/absen-select', [GuruController::class, 'select'])->name('absen.select');
-    Route::get('/absen/{kelas_id}', [GuruController::class, 'create'])
+    Route::get('/absen/{kelas_id}', [GuruController::class, 'create']);
 
 
 });
