@@ -30,7 +30,7 @@ Route::group(['middleware' => ['isManagement']], function () {
     Route::get('/dashboard-management', [ManagementController::class, 'index'])->name('dashboard-management');
 
     //Kelas
-    Route::get('/management-kelas', [KelasController::class, 'index'])->name('management-kelas');
+    // Route::get('/management-kelas', [KelasController::class, 'index'])->name('management-kelas');
     Route::get('/management-tambah-kelas', [KelasController::class, 'create'])->name('management-tambah-kelas');
     Route::post('/simpan-data-kelas', [KelasController::class, 'store'])->name('kelas.store');
     Route::get('/edit-kelas/{id}', [KelasController::class, 'edit'])->name('edit-kelas');
@@ -38,9 +38,9 @@ Route::group(['middleware' => ['isManagement']], function () {
     Route::delete('/delete-kelas/{id}', [KelasController::class, 'destroy'])->name('delete-kelas');
 
     //Siswa
-    Route::get('/management-siswa', [SiswaController::class, 'index'])->name('management-siswa');
+    // Route::get('/management-siswa', [SiswaController::class, 'index'])->name('management-siswa');
     Route::get('/management-tambah-siswa', [SiswaController::class, 'create'])->name('management-tambah-siswa');
-    Route::get('/data-siswa/{id}', [SiswaController::class, 'show'])->name('data-siswa');
+    // Route::get('/data-siswa/{id}', [SiswaController::class, 'show'])->name('data-siswa');
     Route::post('/simpan-data-siswa', [SiswaController::class, 'store'])->name('siswa.store');
     Route::delete('/delete-siswa/{NIS}', [SiswaController::class, 'destroy'])->name('delete-siswa');
     Route::get('/edit-siswa/{NIS}', [SiswaController::class, 'edit'])->name('edit-siswa');
@@ -57,14 +57,21 @@ Route::group(['middleware' => ['isGuru']], function () {
     Route::get('/dashboard-guru', [ManagementController::class, 'index'])->name('dashboard-guru');
 
     //Guru
-    Route::get('/absen', [AbsenController::class, 'index'])->name('absen.index');
     Route::get('/kelas-select', [GuruController::class, 'index'])->name('kelas.select');
     Route::get('/absen-select', [GuruController::class, 'select'])->name('absen.select');
     Route::get('/absen/{kelas_id}', [GuruController::class, 'create'])->name('absen.create');
     Route::post('/absen/store', [GuruController::class, 'store'])->name('absen.store');
     Route::get('/absen-show/{id}', [GuruController::class, 'show'])->name('absen.show');
+    
 
 
+});
+
+Route::group( ['middleware' => ['auth']], function(){
+    Route::get('/absen', [AbsenController::class, 'index'])->name('absen.index');
+    Route::get('/management-kelas', [KelasController::class, 'index'])->name('management-kelas');
+    Route::get('/management-siswa', [SiswaController::class, 'index'])->name('management-siswa');
+    Route::get('/data-siswa/{id}', [SiswaController::class, 'show'])->name('data-siswa');
 });
 
 

@@ -2,7 +2,8 @@
 <ul class="navbar-nav bg-orange sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('dashboard-management') }}">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center"
+        href="{{ Auth::user()->id_level == 1 ? route('dashboard-management') : route('dashboard-guru') }}">
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
@@ -14,7 +15,8 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="{{ url('dashboard-management') }}">
+        <a class="nav-link"
+            href="{{ Auth::user()->id_level == 1 ? route('dashboard-management') : route('dashboard-guru') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
@@ -28,43 +30,34 @@
     </div>
 
     <!-- Nav Item -->
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('management-kelas') }}">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>Kelas</span>
-        </a>
-    </li>
+    @if (Auth::user()->id_level == 1)
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('management-kelas') }}">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Kelas</span>
+            </a>
+        </li>
 
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('management-siswa') }}">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>Siswa</span>
-        </a>
-    </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('management-siswa') }}">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Siswa</span>
+            </a>
+        </li>
 
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('absen.index') }}">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>Absensi</span>
-        </a>
-    </li>
-
-
-    <!-- Nav Item - Utilities Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-            aria-expanded="true" aria-controls="collapseUtilities">
-            <i class="fas fa-fw fa-wrench"></i>
-            <span>Absensi</span>
-        </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Absensi:</h6>
-                <a class="collapse-item" href="{{ route('absen.index') }}">Absensi</a>
-                <a class="collapse-item" href="{{ route('absen.select') }}">Rekap Absensi</a>\
-            </div>
-        </div>
-    </li>
-
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('absen.index') }}">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Absensi</span>
+            </a>
+        </li>
+    @else
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('absen.index') }}">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Absensi</span>
+            </a>
+        </li>
+    @endif
 </ul>
 <!-- End of Sidebar -->
