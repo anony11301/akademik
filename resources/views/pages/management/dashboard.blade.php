@@ -34,11 +34,11 @@
         <div class="col-lg-3 col-sm-6">
             <div class="card-box bg-orange">
                 <div class="inner">
-                    <h3> {{ $jumlahKelas }} </h3>
+                    <h3> {{ $jumlahSiswa }} </h3>
                     <p> Data Absen </p>
                 </div>
                 <div class="icon">
-                    <i class="fa fa-users"></i>
+                    <i class="fa fa-book"></i>
                 </div>
                 <a href="{{ route('absen.select') }}" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
             </div>
