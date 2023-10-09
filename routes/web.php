@@ -27,7 +27,7 @@ Route::get('/create-siswa', [SiswaController::class, 'create']);
 
 
 Route::group(['middleware' => ['isManagement'], 'prefix' => 'management'], function () {
-    Route::get('/dashboard', [ManagementController::class, 'index'])->name('dashboard-management');
+    Route::get('/dashboard-management', [ManagementController::class, 'index'])->name('dashboard-management');
 
     //Kelas
     // Route::get('/management-kelas', [KelasController::class, 'index'])->name('management-kelas');
@@ -47,8 +47,8 @@ Route::group(['middleware' => ['isManagement'], 'prefix' => 'management'], funct
     Route::put('/update-siswa/{NIS}', [SiswaController::class, 'update'])->name('update-siswa');
 
     //Absen
-    Route::get('/absen-select', [AbsenController::class, 'select'])->name('absen.select');
-    Route::get('/absen-show/{id}', [AbsenController::class, 'show'])->name('absen.show');
+    // Route::get('/absen-select', [AbsenController::class, 'select'])->name('absen.select');
+    // Route::get('/absen-show/{id}', [AbsenController::class, 'show'])->name('absen.show');
 
 
 });
@@ -61,7 +61,7 @@ Route::group(['middleware' => ['isGuru']], function () {
     Route::get('/absen-select', [GuruController::class, 'select'])->name('absen.select');
     Route::get('/absen/{kelas_id}', [GuruController::class, 'create'])->name('absen.create');
     Route::post('/absen/store', [GuruController::class, 'store'])->name('absen.store');
-    Route::get('/absen-show/{id}', [GuruController::class, 'show'])->name('absen.show');
+    
     
 
 
@@ -72,6 +72,7 @@ Route::group( ['middleware' => ['auth']], function(){
     Route::get('/management-kelas', [KelasController::class, 'index'])->name('management-kelas');
     Route::get('/management-siswa', [SiswaController::class, 'index'])->name('management-siswa');
     Route::get('/data-siswa/{id}', [SiswaController::class, 'show'])->name('data-siswa');
+    Route::get('/absen-show/{id}', [GuruController::class, 'show'])->name('absen.show');
 });
 
 
