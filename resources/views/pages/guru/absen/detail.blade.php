@@ -48,28 +48,6 @@
                     @php
                         $no = 1;
                     @endphp
-                    {{-- @foreach ($absen as $item)
-                        @foreach ($siswa as $nama)
-                            <tr>
-                                <td>{{ $no++ }}</td>
-                                <td>{{ $item->NIS }}</td>
-                                <td>{{ $nama->nama }}</td>
-                                <td>{{ $item->status }}</td>
-                                <td>{{ $item->keterangan }}</td>
-                                <td>{{ $item->tanggal }}</td>
-                            </tr>
-                        @endforeach
-                    @endforeach --}}
-                    {{-- @foreach (array_combine($absen, $siswa) as $item)
-                        <tr>
-                            <td>{{ $no++ }}</td>
-                            <td>{{ $item->NIS }}</td>
-                            <td>{{ $item->nama }}</td>
-                            <td>{{ $item->status }}</td>
-                            <td>{{ $item->keterangan }}</td>
-                            <td>{{ $item->tanggal }}</td>
-                        </tr>
-                    @endforeach --}}
                     @foreach ($absen as $item)
                         <tr>
                             <td>{{ $no++ }}</td>
