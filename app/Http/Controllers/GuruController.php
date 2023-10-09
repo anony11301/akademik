@@ -84,6 +84,16 @@ class GuruController extends Controller
 
         $absen = $query->orderBy('tanggal', 'desc')->get();
 
-        return view('pages.guru.absen.detail', compact('absen', 'siswa', 'kelas_id', 'request', 'absend'));
+        // $data = compact('absen', 'siswa', 'kelas_id', 'request', 'absend');
+        $data = [
+            'absen' => $absen,
+            'siswa' => $siswa,
+            'kelas_id' => $kelas_id,
+            'request' => $request,
+            'absend' => $absend,
+        ];
+
+        return view('pages.guru.absen.detail', $data);
+        // return dd($data)->get();
     }
 }
