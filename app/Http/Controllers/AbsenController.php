@@ -17,7 +17,22 @@ class AbsenController extends Controller
     public function index()
     {
         $kelas = Kelas::all();
-        return view('pages.guru.absen.index', compact('kelas'));
+        $jumlahTidakHadir = [];
+
+        foreach ($kelas as $item) {
+            $tanggalSekarang = now()->toDateString();
+            
+            $count = Absensi::where('tanggal', $tanggalSekarang)
+                ->where('id_kelas', $item->id)
+                ->whereNotIn('status', ['hadir']) 
+                ->count();
+
+            $jumlahTidakHadir[$item->id] = $count;
+        }
+        return view('pages.guru.absen.index', [
+            'kelas' => $kelas,
+            'jumlahTidakHadir' => $jumlahTidakHadir,
+        ]);
     }
 
 
