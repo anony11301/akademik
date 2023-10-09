@@ -27,7 +27,7 @@ Route::get('/create-siswa', [SiswaController::class, 'create']);
 
 
 Route::group(['middleware' => ['isManagement'], 'prefix' => 'management'], function () {
-    Route::get('/dashboard-management', [ManagementController::class, 'index'])->name('dashboard-management');
+    Route::get('/dashboard', [ManagementController::class, 'index'])->name('dashboard-management');
 
     //Kelas
     // Route::get('/management-kelas', [KelasController::class, 'index'])->name('management-kelas');

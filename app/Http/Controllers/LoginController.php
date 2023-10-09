@@ -37,7 +37,7 @@ class LoginController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             if (Auth::user()->id_level == 1) {
-                return redirect()->route('management.dashboard-management');
+                return redirect()->route('dashboard-management');
             } elseif (Auth::user()->id_level == 2) {
                 return redirect()->route('dashboard-guru');
             }
