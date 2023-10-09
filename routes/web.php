@@ -26,7 +26,7 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/create-siswa', [SiswaController::class, 'create']);
 
 
-Route::group(['middleware' => ['isManagement']], function () {
+Route::group(['middleware' => ['isManagement'], 'prefix' => 'management'], function () {
     Route::get('/dashboard-management', [ManagementController::class, 'index'])->name('dashboard-management');
 
     //Kelas
