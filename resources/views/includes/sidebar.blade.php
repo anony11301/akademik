@@ -42,6 +42,13 @@
         </a>
     </li>
 
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('absen.index') }}">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Absensi</span>
+        </a>
+    </li>
+
 
     <!-- Nav Item - Utilities Collapse Menu -->
     <li class="nav-item">
