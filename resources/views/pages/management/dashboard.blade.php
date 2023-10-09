@@ -37,7 +37,7 @@
                 <div class="card-box bg-orange">
                     <div class="inner">
                         <h3> {{ $jumlahSiswa }} </h3>
-                        <p> Data Absen </p>
+                        <p style="color: #fff"> Data Absen </p>
                     </div>
                     <div class="icon">
                         <i class="fa fa-book"></i>
