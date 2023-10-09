@@ -3,7 +3,7 @@
 @section('page-content')
     <!-- Begin Page Content -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/dashboard.css" type="text/css">
+    <link rel="stylesheet" href="/css/dashboard.css" type="text/css">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-3 col-sm-6">
@@ -37,7 +37,7 @@
                 <div class="card-box bg-orange">
                     <div class="inner">
                         <h3> {{ $jumlahSiswa }} </h3>
-                        <p style="color: #fff"> Data Absen </p>
+                        <p> Data Absen </p>
                     </div>
                     <div class="icon">
                         <i class="fa fa-book"></i>
