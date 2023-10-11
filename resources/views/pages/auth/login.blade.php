@@ -46,7 +46,7 @@
                             </div>
 
                             <div class="d-flex mb-5 align-items-center">
-                                <span class="ml-auto"><a href="#" class="forgot-pass">Login Sebagai
+                                <span class="ml-auto"><a href="{{ route('absensi') }}" class="forgot-pass">Login Sebagai
                                         Guest</a></span>
                             </div>
 
