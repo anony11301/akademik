@@ -96,7 +96,11 @@ class GuruController extends Controller
 
         $kehadiran = $absen->where('status','hadir')->count();
         $total_siswa = $absen->count();
+        if ($kehadiran == 0){
+            $persentasi_kehadiran = 0;
+        } else {
         $persentasi_kehadiran = $kehadiran / $total_siswa * 100;
+        }
         // $data = compact('absen', 'siswa', 'kelas_id', 'request', 'absend');
         $data = [
             'absen' => $absen,
