@@ -42,7 +42,7 @@
                     <div class="icon">
                         <i class="fa fa-book"></i>
                     </div>
-                    <a href="{{ route('absen.select') }}" class="card-box-footer">View More <i
+                    <a href="{{ route('absen.index') }}" class="card-box-footer">View More <i
                             class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
