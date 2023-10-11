@@ -22,8 +22,21 @@ class GuruController extends Controller
     public function select()
     {
         $kelas = Kelas::all();
+        $jumlahTidakHadir = [];
+
+        foreach ($kelas as $item) {
+            $tanggalSekarang = now()->toDateString();
+            
+            $count = Absensi::where('tanggal', $tanggalSekarang)
+                ->where('id_kelas', $item->id)
+                ->whereNotIn('status', ['hadir']) 
+                ->count();
+
+            $jumlahTidakHadir[$item->id] = $count;
+        }
         return view('pages.guru.absen.index', [
             'kelas' => $kelas,
+            'jumlahTidakHadir' => $jumlahTidakHadir,
         ]);
     }
 
