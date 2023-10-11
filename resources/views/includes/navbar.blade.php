@@ -1,21 +1,20 @@
 <!-- Topbar -->
 <nav
     class="navbar navbar-expand navbar-light {{ Auth::user() ? 'bg-white' : 'bg-orange' }} topbar mb-4 static-top shadow">
-    <a href="{{ route('absensi') }}" class="row w-100 px-5 py-2" style="color: #fff">
-        <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-laugh-wink"></i>
-        </div>
-        <div class="sidebar-brand-text mx-3"><b>Siakad Prestasi Prima</b></div>
-    </a>
-
-
-    @if (Auth::user())
+    @if (!Auth::user())
+        <a href="{{ route('absensi') }}" class="row w-100 px-5 py-2" style="color: #fff">
+            <div class="sidebar-brand-icon rotate-n-15">
+                <i class="fas fa-laugh-wink"></i>
+            </div>
+            <div class="sidebar-brand-text mx-3"><b>Siakad Prestasi Prima</b></div>
+        </a>
+    @else
         <!-- Sidebar Toggle (Topbar) -->
         <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
             <i class="fa fa-bars"></i>
         </button>
 
-       
+
 
         <!-- Topbar Navbar -->
         <ul class="navbar-nav ml-auto">
@@ -30,8 +29,7 @@
                     <img class="img-profile rounded-circle" src="/bootstrap/img/undraw_profile.svg">
                 </a>
                 <!-- Dropdown - User Information -->
-                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                    aria-labelledby="userDropdown">
+                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{{ route('logout') }}" data-toggle="modal"
                         data-target="#logoutModal">
