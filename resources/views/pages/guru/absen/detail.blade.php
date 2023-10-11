@@ -3,6 +3,7 @@
 @section('page-content')
     <div class="container-fluid">
         <h1 class="mb-4">Data Kelas</h1>
+        <a href="{{ url('excel-export') }}" class="btn btn-sm btn-success float-right mr-2">Export Data</a>
         <form action="" method="get">
             <div class="row mb-3">
                 <div class="col-md-3 form-group">

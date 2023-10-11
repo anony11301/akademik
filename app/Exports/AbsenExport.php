@@ -6,7 +6,7 @@ use App\Models\Absensi;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class AbsenExport implements FromCollection,WithHeadings
+class AbsenExport implements FromCollection
 {
     /**
     * @return \Illuminate\Support\Collection
