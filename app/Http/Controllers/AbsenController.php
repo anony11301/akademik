@@ -118,31 +118,33 @@ class AbsenController extends Controller
 
     public function show($kelas_id, Request $request)
 {
-    $absend = Absensi::all();
-    $siswa = Siswa::where('id_kelas', $kelas_id)->get();
-    $absen = Absensi::where('id_kelas', $kelas_id)
-        ->when(
-            $request->date_from && $request->date_to,
-            function (Builder $builder) use ($request) {
-                $builder->whereBetween(
-                    DB::raw('tanggal'),
-                    [
-                        $request->date_from,
-                        $request->date_to
-                    ]
-                );
-            }
-        )
-        ->orderBy('tanggal', 'desc') // Order by the 'tanggal' field for sorting by date.
-        ->get();
+    $absend = Absensi::whereDate('tanggal', today())->get();
+$siswa = Siswa::where('id_kelas', $kelas_id)->get();
+$absen = Absensi::where('id_kelas', $kelas_id)
+    ->when(
+        $request->date_from && $request->date_to,
+        function (Builder $builder) use ($request) {
+            $builder->whereBetween(
+                DB::raw('tanggal'),
+                [
+                    $request->date_from,
+                    $request->date_to
+                ]
+            );
+        }
+    )
+    ->orderBy('tanggal', 'desc') // Order by the 'tanggal' field for sorting by date.
+    ->get();
 
-    // Debugging statements
-    // dd($request->date_from, $request->date_to); // Check date parameters.
-    // dd($absen->toSql()); // Check the generated SQL query.
-    // dd($absen->toArray()); // Check the retrieved data.
+// Debugging statements
+// dd($request->date_from, $request->date_to); // Check date parameters.
+// dd($absen->toSql()); // Check the generated SQL query.
+// dd($absen->toArray()); // Check the retrieved data.
 
-    return view('pages.management.absen.detail', compact('absen', 'siswa', 'kelas_id', 'request', 'absend'));
+return view('pages.management.absen.detail', compact('absen', 'siswa', 'kelas_id', 'request', 'absend'));
+
 }
+
 
     public function exportExcel()
     {

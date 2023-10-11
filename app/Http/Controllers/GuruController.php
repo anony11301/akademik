@@ -72,41 +72,38 @@ class GuruController extends Controller
 
     public function show($kelas_id, Request $request)
     {
-        $absend = Absensi::all();
         $siswa = Siswa::where('id_kelas', $kelas_id)->get();
-
+    
         $statusFilter = $request->input('status_filter');
-
-        $query = Absensi::where('id_kelas', $kelas_id)
-            ->when(
-                $request->date_from && $request->date_to,
-                function (Builder $builder) use ($request) {
-                    $builder->whereBetween(
-                        DB::raw('tanggal'),
-                        [
-                            $request->date_from,
-                            $request->date_to
-                        ]
-                    );
-                }
-            );
-
+    
+        $query = Absensi::where('id_kelas', $kelas_id);
+    
+        // Filter berdasarkan tanggal hari ini jika tidak ada rentang tanggal yang diberikan
+        if (!$request->date_from && !$request->date_to) {
+            $query->whereDate('tanggal', today());
+        }
+    
+        // Filter berdasarkan rentang tanggal jika ada date_from dan date_to
+        if ($request->date_from && $request->date_to) {
+            $query->whereBetween('tanggal', [$request->date_from, $request->date_to]);
+        }
+    
         if (!empty($statusFilter)) {
             $query->where('status', $statusFilter);
         }
-
+    
         $absen = $query->orderBy('tanggal', 'desc')->get();
-
-        // $data = compact('absen', 'siswa', 'kelas_id', 'request', 'absend');
+    
         $data = [
             'absen' => $absen,
             'siswa' => $siswa,
             'kelas_id' => $kelas_id,
             'request' => $request,
-            'absend' => $absend,
         ];
-
+    
         return view('pages.guru.absen.detail', $data);
-        // return dd($data)->get();
     }
+    
+
+
 }
