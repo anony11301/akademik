@@ -1,48 +1,55 @@
 @extends('layouts.dashboard')
 @section('page-content')
-<div class="container">
-    <h1>Daftar Siswa</h1>
-    <form action="{{ route('absen.store') }}" method="POST">
-        @csrf
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="tanggal">Tanggal</label>
-                    <input type="date" class="form-control" name="tanggal" required>
+    <div class="container">
+        <h1>Daftar Siswa</h1>
+        <form action="{{ route('absen.store') }}" method="POST">
+            @csrf
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="tanggal">Tanggal</label>
+                        <input type="date" class="form-control" name="tanggal" required>
+                    </div>
                 </div>
+                <div class="col-md-12">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>NIS</th>
+                                <th>Nama</th>
+                                <th>Status</th>
+                                <th>Keterangan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($siswa as $siswa)
+                                <tr>
+                                    <td>{{ $siswa->NIS }}</td>
+                                    <td>{{ $siswa->nama }}</td>
+                                    <td>
+                                        <select class="form-control" name="status[]">
+                                            <option value="hadir">Hadir</option>
+                                            <option value="sakit">Sakit</option>
+                                            <option value="izin">Izin</option>
+                                            <option value="alpha">Alpha</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input class="form-control" type="text" name="keterangan[]">
+                                        <input type="hidden" name="nis[]" value="{{ $siswa->NIS }}">
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                <div class="d-flex flex-row-reverse w-100">
+                    <button type="submit" class="btn btn-success w-25">Simpan</button>
+                    <input type="hidden" name="kelas_id" value="{{ $kelas_id }}">
+
+                </div>
+
             </div>
-            <div class="col-md-12">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>NIS</th>
-                            <th>Nama</th>
-                            <th>Status</th>
-                            <th>Keterangan</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($siswa as $siswa)
-                        <tr>
-                            <td>{{ $siswa->NIS }}</td>
-                            <td>{{ $siswa->nama }}</td>
-                            <td>
-                                <select class="form-control" name="status[]">
-                                    <option value="hadir">Hadir</option>
-                                    <option value="sakit">Sakit</option>
-                                    <option value="izin">Izin</option>
-                                    <option value="alpha">Alpha</option>
-                                </select>
-                            </td>
-                            <td>
-                                <input class="form-control" type="text" name="keterangan[]">
-                                <input type="hidden" name="nis[]" value="{{ $siswa->NIS }}">
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-    </form>
-</div>
+        </form>
+    </div>
 @endsection
