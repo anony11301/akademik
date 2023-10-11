@@ -7,6 +7,7 @@ use App\Http\Controllers\KelasController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\AbsenController;
 use App\Http\Controllers\GuruController;
+use App\Http\Controllers\GuestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,8 @@ use App\Http\Controllers\GuruController;
 Route::get('/', [LoginController::class, 'index'])->name('login');
 Route::post('/login-proses', [LoginController::class, 'login_proses'])->name('login-proses');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('absensi', [GuestController::class, 'index'])->name('absensi');
+Route::get('absensi/{id}', [GuestController::class, 'show'])->name('absensi-detail');
 
 Route::get('/create-siswa', [SiswaController::class, 'create']);
 
@@ -69,9 +72,6 @@ Route::group(['middleware' => ['isGuru']], function () {
     Route::get('/absen-select', [GuruController::class, 'select'])->name('absen.select');
     Route::get('/absen/{kelas_id}', [GuruController::class, 'create'])->name('absen.create');
     Route::post('/absen/store', [GuruController::class, 'store'])->name('absen.store');
-    
-    
-
 
 });
 
