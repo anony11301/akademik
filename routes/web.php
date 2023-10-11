@@ -25,6 +25,14 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/create-siswa', [SiswaController::class, 'create']);
 
+Route::group( ['middleware' => ['auth']], function(){
+    Route::get('/absen', [AbsenController::class, 'index'])->name('absen.index');
+    Route::get('/management-kelas', [KelasController::class, 'index'])->name('management-kelas');
+    Route::get('/management-siswa', [SiswaController::class, 'index'])->name('management-siswa');
+    Route::get('/data-siswa/{id}', [SiswaController::class, 'show'])->name('data-siswa');
+    Route::get('/absen-show/{id}', [GuruController::class, 'show'])->name('absen.show');
+});
+
 
 Route::group(['middleware' => ['isManagement'], 'prefix' => 'management'], function () {
     Route::get('/dashboard-management', [ManagementController::class, 'index'])->name('dashboard-management');
@@ -39,9 +47,9 @@ Route::group(['middleware' => ['isManagement'], 'prefix' => 'management'], funct
 
     //Siswa
     // Route::get('/management-siswa', [SiswaController::class, 'index'])->name('management-siswa');
-    Route::get('/management-tambah-siswa', [SiswaController::class, 'create'])->name('management-tambah-siswa');
+    Route::get('/management-tambah-siswa/{id}', [SiswaController::class, 'create'])->name('management-tambah-siswa');
     // Route::get('/data-siswa/{id}', [SiswaController::class, 'show'])->name('data-siswa');
-    Route::post('/simpan-data-siswa', [SiswaController::class, 'store'])->name('siswa.store');
+    Route::post('/simpan-data-siswa/{id}', [SiswaController::class, 'store'])->name('siswa.store');
     Route::delete('/delete-siswa/{NIS}', [SiswaController::class, 'destroy'])->name('delete-siswa');
     Route::get('/edit-siswa/{NIS}', [SiswaController::class, 'edit'])->name('edit-siswa');
     Route::put('/update-siswa/{NIS}', [SiswaController::class, 'update'])->name('update-siswa');
@@ -67,13 +75,7 @@ Route::group(['middleware' => ['isGuru']], function () {
 
 });
 
-Route::group( ['middleware' => ['auth']], function(){
-    Route::get('/absen', [AbsenController::class, 'index'])->name('absen.index');
-    Route::get('/management-kelas', [KelasController::class, 'index'])->name('management-kelas');
-    Route::get('/management-siswa', [SiswaController::class, 'index'])->name('management-siswa');
-    Route::get('/data-siswa/{id}', [SiswaController::class, 'show'])->name('data-siswa');
-    Route::get('/absen-show/{id}', [GuruController::class, 'show'])->name('absen.show');
-});
+
 
 
 

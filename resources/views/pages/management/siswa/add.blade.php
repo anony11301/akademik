@@ -1,22 +1,22 @@
 @extends('layouts.dashboard')
 @section('page-content')
-    <form action="{{ route('siswa.store') }}" method="POST" id="siswa-form">
+    <form action="{{ route('siswa.store', $id_kelas) }}" method="POST" id="siswa-form">
         @csrf
         <div class="card px-5 py-5 container mt-5">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="form-group">
                         <label for="nis">NIS</label>
                         <input class="form-control" type="text" name="nis" placeholder="NIS" aria-label="NIS">
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="form-group">
                         <label for="nama">Nama</label>
                         <input class="form-control" type="text" name="nama" placeholder="Nama" aria-label="Nama">
                     </div>
                 </div>
-                <div class="col-md-4">
+                {{-- <div class="col-md-4">
                     <div class="form-group">
                         <label for="id_kelas">Kelas</label>
                         <select class="form-control" name="id_kelas">
@@ -25,7 +25,7 @@
                             @endforeach
                         </select>
                     </div>
-                </div>
+                </div> --}}
             </div>
 
             <button type="submit" class="btn btn-success w-full mt-5 mb-3" id="simpanButton">Simpan</button>

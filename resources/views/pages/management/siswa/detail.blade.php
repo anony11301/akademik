@@ -4,7 +4,8 @@
             <h1 style="color: black">Data Kelas
 
                 @if (Auth::user()->id_level == 1)
-                    <a href="{{ url('management-tambah-siswa') }}" class="btn btn-sm btn-primary float-right">+ Tambah
+                    <a href="{{ route('management-tambah-siswa', $id_kelas) }}" class="btn btn-sm btn-primary float-right">+
+                        Tambah
                         Data</a>
                     <a href="{{ url('excel-export') }}" class="btn btn-sm btn-success float-right mr-2">Export Data</a>
                 @else

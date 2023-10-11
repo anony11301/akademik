@@ -37,12 +37,12 @@
                             <div class="form-group first">
                                 <label for="email">Email</label>
                                 <input type="text" name="email" class="form-control" placeholder="Email"
-                                    id="email">
+                                    id="email" required>
                             </div>
                             <div class="form-group last mb-3">
                                 <label for="password">Password</label>
                                 <input type="password" name="password" class="form-control" placeholder="Password"
-                                    id="password">
+                                    id="password" required>
                             </div>
 
                             <div class="d-flex mb-5 align-items-center">

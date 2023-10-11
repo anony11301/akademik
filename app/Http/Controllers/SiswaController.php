@@ -37,27 +37,30 @@ class SiswaController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(string $id)
     {
         $kelas = Kelas::all(); // Mengambil semua data kelas
-        return view('pages.management.siswa.add', compact('kelas')); // Kirim data kelas ke view
+        $data = [
+            'kelas' => $kelas,
+            'id_kelas' => $id,
+        ];
+        return view('pages.management.siswa.add', $data); // Kirim data kelas ke view
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, string $id)
     {
         $request->validate([
             'nis' => 'required|unique:siswa,nis',
             'nama' => 'required',
-            'id_kelas' => 'required',
         ]);
 
         $siswa = new Siswa;
         $siswa->nis = $request->nis;
         $siswa->nama = $request->nama;
-        $siswa->id_kelas = $request->id_kelas;
+        $siswa->id_kelas = $id;
 
         $siswa->save();
 
@@ -70,8 +73,10 @@ class SiswaController extends Controller
     public function show(string $id)
     {
         $kelas = Siswa::all()->where('id_kelas', '==', $id);
+        $id_kelas = $id;
         $data = [
             'siswa' => $kelas,
+            'id_kelas' => $id_kelas,
         ];
 
         return view('pages.management.siswa.detail', $data);
