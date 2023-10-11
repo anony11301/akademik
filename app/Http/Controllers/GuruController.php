@@ -72,41 +72,29 @@ class GuruController extends Controller
 
     public function show($kelas_id, Request $request)
     {
-        $absend = Absensi::all();
         $siswa = Siswa::where('id_kelas', $kelas_id)->get();
-
+    
         $statusFilter = $request->input('status_filter');
-
-        $query = Absensi::where('id_kelas', $kelas_id)
-            ->when(
-                $request->date_from && $request->date_to,
-                function (Builder $builder) use ($request) {
-                    $builder->whereBetween(
-                        DB::raw('tanggal'),
-                        [
-                            $request->date_from,
-                            $request->date_to
-                        ]
-                    );
-                }
-            );
-
+    
+        $query = Absensi::where('id_kelas', $kelas_id);
+    
+        // Filter berdasarkan tanggal hari ini jika tidak ada rentang tanggal yang diberikan
+        if (!$request->date_from && !$request->date_to) {
+            $query->whereDate('tanggal', today());
+        }
+    
+        // Filter berdasarkan rentang tanggal jika ada date_from dan date_to
+        if ($request->date_from && $request->date_to) {
+            $query->whereBetween('tanggal', [$request->date_from, $request->date_to]);
+        }
+    
         if (!empty($statusFilter)) {
             $query->where('status', $statusFilter);
         }
-
+    
         $absen = $query->orderBy('tanggal', 'desc')->get();
 
-        $kehadiran = Absensi::where('status', 'hadir')->when( $request->date_from && $request->date_to,
-        function (Builder $builder) use ($request) {
-            $builder->whereBetween(
-                DB::raw('tanggal'),
-                [
-                    $request->date_from,
-                    $request->date_to
-                ]
-            );
-        })->count();
+        $kehadiran = $absen->where('status','hadir')->count();
         $total_siswa = $siswa->count();
         $persentasi_kehadiran = $kehadiran / $total_siswa * 100;
         // $data = compact('absen', 'siswa', 'kelas_id', 'request', 'absend');
@@ -115,11 +103,11 @@ class GuruController extends Controller
             'siswa' => $siswa,
             'kelas_id' => $kelas_id,
             'request' => $request,
-            'absend' => $absend,
             'persentasi_kehadiran' => $persentasi_kehadiran,
         ];
-
         return view('pages.guru.absen.detail', $data);
-        // return dd($data)->get();
     }
+    
+
+
 }
