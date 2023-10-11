@@ -73,9 +73,7 @@ class GuruController extends Controller
     public function show($kelas_id, Request $request)
     {
         $siswa = Siswa::where('id_kelas', $kelas_id)->get();
-    
         $statusFilter = $request->input('status_filter');
-    
         $query = Absensi::where('id_kelas', $kelas_id);
     
         // Filter berdasarkan tanggal hari ini jika tidak ada rentang tanggal yang diberikan
