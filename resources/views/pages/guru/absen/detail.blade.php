@@ -32,6 +32,9 @@
                 </div>
             </div>
         </form>
+        <div class="">
+            Presentase Kehadiran {{ number_format($persentasi_kehadiran) }} %
+        </div>
         <div class="table-responsive">
             <table class="table table-hover">
                 <thead>

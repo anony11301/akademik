@@ -97,6 +97,18 @@ class GuruController extends Controller
 
         $absen = $query->orderBy('tanggal', 'desc')->get();
 
+        $kehadiran = Absensi::where('status', 'hadir')->when( $request->date_from && $request->date_to,
+        function (Builder $builder) use ($request) {
+            $builder->whereBetween(
+                DB::raw('tanggal'),
+                [
+                    $request->date_from,
+                    $request->date_to
+                ]
+            );
+        })->count();
+        $total_siswa = $siswa->count();
+        $persentasi_kehadiran = $kehadiran / $total_siswa * 100;
         // $data = compact('absen', 'siswa', 'kelas_id', 'request', 'absend');
         $data = [
             'absen' => $absen,
@@ -104,6 +116,7 @@ class GuruController extends Controller
             'kelas_id' => $kelas_id,
             'request' => $request,
             'absend' => $absend,
+            'persentasi_kehadiran' => $persentasi_kehadiran,
         ];
 
         return view('pages.guru.absen.detail', $data);
