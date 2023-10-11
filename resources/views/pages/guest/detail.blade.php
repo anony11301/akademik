@@ -31,7 +31,7 @@
                     <button type="submit" class="btn btn-primary w-100">Cari</button>
                 </div>
                 <div class="col-md-1 mt-4 p-2">
-                    <a href="{{ route('absen.show', ['id' => $kelas_id]) }}" class="btn btn-danger w-100">Reset</a>
+                    <a href="{{ route('absensi-detail', ['id' => $kelas_id]) }}" class="btn btn-danger w-100">Reset</a>
                 </div>
             </div>
         </form>
