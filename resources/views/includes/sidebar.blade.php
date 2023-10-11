@@ -30,34 +30,25 @@
     </div>
 
     <!-- Nav Item -->
-    @if (Auth::user()->id_level == 1)
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('management-kelas') }}">
-                <i class="fas fa-fw fa-cog"></i>
-                <span>Kelas</span>
-            </a>
-        </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('management-kelas') }}">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Kelas</span>
+        </a>
+    </li>
 
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('management-siswa') }}">
-                <i class="fas fa-fw fa-cog"></i>
-                <span>Siswa</span>
-            </a>
-        </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('management-siswa') }}">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Siswa</span>
+        </a>
+    </li>
 
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('absen.index') }}">
-                <i class="fas fa-fw fa-cog"></i>
-                <span>Absensi</span>
-            </a>
-        </li>
-    @else
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('absen.index') }}">
-                <i class="fas fa-fw fa-cog"></i>
-                <span>Absensi</span>
-            </a>
-        </li>
-    @endif
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('absen.index') }}">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Absensi</span>
+        </a>
+    </li>
 </ul>
 <!-- End of Sidebar -->
