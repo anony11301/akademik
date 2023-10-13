@@ -104,10 +104,10 @@ class GuruController extends Controller
         }
 
         $absensi = $siswa->map(function ($item) use ($absen) {
-            $siswaAbsen = $absen->where('siswa_id', $item->id)->first();
+            $siswaAbsen = $absen->where('NIS', $item->NIS)->first();
     
             return [
-                'nis' => $item->nis,
+                'NIS' => $item->NIS,
                 'nama' => $item->nama,
                 'status' => $siswaAbsen ? $siswaAbsen->status : null,
                 'keterangan' => $siswaAbsen ? $siswaAbsen->keterangan : null,
