@@ -146,10 +146,10 @@ return view('pages.management.absen.detail', compact('absen', 'siswa', 'kelas_id
 }
 
 
-    public function exportExcel()
-    {
-        return Excel::download(new AbsenExport,'absen-excel.xlsx');
-    }
+    // public function exportExcel()
+    // {
+    //     return Excel::download(new AbsenExport,'absen-excel.xlsx');
+    // }
 
 }
 

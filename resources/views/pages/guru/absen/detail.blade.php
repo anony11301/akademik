@@ -3,7 +3,7 @@
 @section('page-content')
     <div class="container-fluid">
         <h1 class="mb-4">Data Kelas</h1>
-        <a href="{{ url('excel-export') }}" class="btn btn-sm btn-success float-right mr-2">Export Data</a>
+        <a href="{{ route('excel-export-absen', $kelas_id) }}" class="btn btn-sm btn-success float-right mr-2">Export Data</a>
         <form action="" method="get">
             <div class="row mb-3">
                 <div class="col-md-3 form-group">
@@ -18,10 +18,14 @@
                     <label for="status_filter">Filter Status</label>
                     <select class="form-control" name="status_filter" id="status_filter">
                         <option value="">Semua</option>
-                        <option value="hadir" {{ $request->input('status_filter') == 'hadir' ? 'selected' : '' }}>Hadir</option>
-                        <option value="sakit" {{ $request->input('status_filter') == 'sakit' ? 'selected' : '' }}>Sakit</option>
-                        <option value="izin" {{ $request->input('status_filter') == 'izin' ? 'selected' : '' }}>Izin</option>
-                        <option value="alpha" {{ $request->input('status_filter') == 'alpha' ? 'selected' : '' }}>Alpha</option>
+                        <option value="hadir" {{ $request->input('status_filter') == 'hadir' ? 'selected' : '' }}>Hadir
+                        </option>
+                        <option value="sakit" {{ $request->input('status_filter') == 'sakit' ? 'selected' : '' }}>Sakit
+                        </option>
+                        <option value="izin" {{ $request->input('status_filter') == 'izin' ? 'selected' : '' }}>Izin
+                        </option>
+                        <option value="alpha" {{ $request->input('status_filter') == 'alpha' ? 'selected' : '' }}>Alpha
+                        </option>
                     </select>
                 </div>
                 <div class="col-md-1 mt-4 p-2">

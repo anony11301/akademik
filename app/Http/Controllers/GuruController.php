@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\AbsenExport;
 use Illuminate\Http\Request;
 use App\Models\Absensi;
 use App\Models\Kelas;
 use App\Models\Siswa;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Builder;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Session;
 
 class GuruController extends Controller
 {
@@ -99,6 +102,19 @@ class GuruController extends Controller
         } else {
         $persentasi_kehadiran = $kehadiran / $total_siswa * 100;
         }
+
+        $absensi = $siswa->map(function ($item) use ($absen) {
+            $siswaAbsen = $absen->where('siswa_id', $item->id)->first();
+    
+            return [
+                'nis' => $item->nis,
+                'nama' => $item->nama,
+                'status' => $siswaAbsen ? $siswaAbsen->status : null,
+                'keterangan' => $siswaAbsen ? $siswaAbsen->keterangan : null,
+                'tanggal' => $siswaAbsen ? $siswaAbsen->tanggal : null,
+            ];
+        });
+
         // $data = compact('absen', 'siswa', 'kelas_id', 'request', 'absend');
         $data = [
             'absen' => $absen,
@@ -107,9 +123,24 @@ class GuruController extends Controller
             'request' => $request,
             'persentasi_kehadiran' => $persentasi_kehadiran,
         ];
+        Session::put('absen_data', $absensi);
         return view('pages.guru.absen.detail', $data);
+        // return Excel::download(new AbsenExport($absen), 'export-absen.xlsx');
+        // return dd($absen)->get();
     }
     
+    public static function export()
+    {
+        $absen = Session::get('absen_data');
 
+        // return dd($absen)->get();
+
+        // Pastikan data ada sebelum melakukan ekspor
+        if ($absen) {
+            return Excel::download(new AbsenExport($absen), 'export-absen.xlsx');
+        } else {
+            // Handle jika data tidak tersedia di session
+        }
+    }
 
 }
