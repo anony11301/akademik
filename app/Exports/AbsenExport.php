@@ -7,7 +7,7 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use App\Http\Controllers\GuruController;
 
-class AbsenExport implements FromCollection
+class AbsenExport implements FromCollection, withHeadings
 {
     /**
     * @return \Illuminate\Support\Collection
