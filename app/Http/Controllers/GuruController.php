@@ -103,12 +103,15 @@ class GuruController extends Controller
         $persentasi_kehadiran = $kehadiran / $total_siswa * 100;
         }
 
-        $absensi = $siswa->map(function ($item) use ($absen) {
+        $absensi = $siswa->map(function ($item, $key) use ($absen, $kelas_id) {
             $siswaAbsen = $absen->where('NIS', $item->NIS)->first();
-    
+            $nama_kelas = Kelas::where('id', $kelas_id)->first();
+
             return [
+                'no' => $key+1,
                 'NIS' => $item->NIS,
                 'nama' => $item->nama,
+                'nama_kelas' => $nama_kelas->nama_kelas,
                 'status' => $siswaAbsen ? $siswaAbsen->status : null,
                 'keterangan' => $siswaAbsen ? $siswaAbsen->keterangan : null,
                 'tanggal' => $siswaAbsen ? $siswaAbsen->tanggal : null,

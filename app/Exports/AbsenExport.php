@@ -59,6 +59,7 @@ class AbsenExport implements FromCollection
             'Nomor',
             'NIS',
             'Nama Siswa',
+            'Nama Kelas',
             'Status',
             'Keterangan',
             'Tanggal',
