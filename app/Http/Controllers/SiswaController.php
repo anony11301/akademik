@@ -136,17 +136,17 @@ class SiswaController extends Controller
      */
     public function destroy($NIS)
     {
-        // Cari siswa berdasarkan NIS
-        // $siswa = Siswa::where('NIS', $NIS)->with();
-        $siswa = Siswa::findOrFail($NIS);
-        // //Cari data siswa berdasarkan NIS
+        // $siswa = Siswa::where('NIS', $NIS)->first();
         // $absen = Absensi::where('NIS', $NIS)->first();
 
-        // Hapus siswa
-        $siswa->children()->delete();
+        // if($siswa){
+        //     $absen->delete();
+        // }
+        
+        // $siswa->delete();
+
+        $siswa = Siswa::findOrFail($NIS);
         $siswa->delete();
-        
-        
 
         return redirect()->route('management-siswa')->with('success', 'Siswa berhasil dihapus.');
     }
