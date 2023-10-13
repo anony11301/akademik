@@ -7,6 +7,7 @@ use App\Models\Kelas;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\KelasExport;
+use App\Models\Absensi;
 
 class SiswaController extends Controller
 {
@@ -136,14 +137,16 @@ class SiswaController extends Controller
     public function destroy($NIS)
     {
         // Cari siswa berdasarkan NIS
-        $siswa = Siswa::where('NIS', $NIS)->first();
-
-        if (!$siswa) {
-            return redirect()->route('management-siswa')->with('error', 'Siswa tidak ditemukan.');
-        }
+        // $siswa = Siswa::where('NIS', $NIS)->with();
+        $siswa = Siswa::findOrFail($NIS);
+        // //Cari data siswa berdasarkan NIS
+        // $absen = Absensi::where('NIS', $NIS)->first();
 
         // Hapus siswa
+        $siswa->children()->delete();
         $siswa->delete();
+        
+        
 
         return redirect()->route('management-siswa')->with('success', 'Siswa berhasil dihapus.');
     }

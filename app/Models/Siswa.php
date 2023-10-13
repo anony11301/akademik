@@ -36,4 +36,9 @@ class Siswa extends Model
     {
         return $this->belongsTo(Kelas::class, 'id_kelas', 'id');
     }
+
+    public function absen()
+    {
+        return $this->hasMany(Absensi::class, 'NIS', 'NIS');
+    }
 }

@@ -62,76 +62,35 @@
                             @endif
 
                         </tr>
+                        <!-- Modal -->
+                        <div class="modal fade" id="hapusModal" tabindex="-1" role="dialog"
+                            aria-labelledby="hapusModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="hapusModalLabel">Konfirmasi Hapus Siswa</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Apakah Anda yakin ingin menghapus siswa ini?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                        <form id="delete-form" method="POST"
+                                            action="{{ route('delete-siswa', $item->NIS) }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">Hapus</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     @endforeach
                 </tbody>
             </table>
-
-            <!-- Modal -->
-            <div class="modal fade" id="hapusModal" tabindex="-1" role="dialog" aria-labelledby="hapusModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="hapusModalLabel">Konfirmasi Hapus Siswa</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            Apakah Anda yakin ingin menghapus siswa ini?
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                            <form id="delete-form" method="POST" action="">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Hapus</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <!-- Modal -->
-            <div class="modal fade" id="hapusModal" tabindex="-1" role="dialog" aria-labelledby="hapusModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="hapusModalLabel">Konfirmasi Hapus Siswa</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            Apakah Anda yakin ingin menghapus siswa ini?
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                            <form id="delete-form" method="POST" action="">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Hapus</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <script>
-                $(document).ready(function() {
-                    $('#hapusModal').on('show.bs.modal', function(event) {
-                        var button = $(event.relatedTarget); // Tombol yang memicu modal
-                        var id = button.data('id'); // Mengambil data-id dari tombol
-                        var modal = $(this);
-                        var form = modal.find('#delete-form');
-
-                        // Mengatur action form untuk menghapus siswa dengan NIS tertentu
-                        form.attr('action', '/delete-siswa/' + id);
-                    });
-                });
-            </script>
 
         </div>
     @endsection
