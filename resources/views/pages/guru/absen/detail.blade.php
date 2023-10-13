@@ -20,6 +20,8 @@
                         <option value="">Semua</option>
                         <option value="hadir" {{ $request->input('status_filter') == 'hadir' ? 'selected' : '' }}>Hadir
                         </option>
+                        <option value="tidak-hadir" {{ $request->input('status_filter') == 'tidak-hadir' ? 'selected' : '' }}>Tidak Hadir
+                        </option>
                         <option value="sakit" {{ $request->input('status_filter') == 'sakit' ? 'selected' : '' }}>Sakit
                         </option>
                         <option value="izin" {{ $request->input('status_filter') == 'izin' ? 'selected' : '' }}>Izin

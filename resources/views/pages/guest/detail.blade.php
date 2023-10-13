@@ -18,6 +18,7 @@
                     <select class="form-control" name="status_filter" id="status_filter">
                         <option value="">Semua</option>
                         <option value="hadir" {{ $request->input('status_filter') == 'hadir' ? 'selected' : '' }}>Hadir
+                        <option value="tidak-hadir" {{ $request->input('status_filter') == 'tidak-hadir' ? 'selected' : '' }}>Tidak Hadir
                         </option>
                         <option value="sakit" {{ $request->input('status_filter') == 'sakit' ? 'selected' : '' }}>Sakit
                         </option>

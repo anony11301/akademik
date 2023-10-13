@@ -49,7 +49,9 @@ class GuestController extends Controller
             $query->whereBetween('tanggal', [$request->date_from, $request->date_to]);
         }
     
-        if (!empty($statusFilter)) {
+        if ($statusFilter === 'tidak-hadir') {
+            $query->where('status', '!=', 'hadir');
+        } elseif (!empty($statusFilter)) {
             $query->where('status', $statusFilter);
         }
     
