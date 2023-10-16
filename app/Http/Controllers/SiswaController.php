@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\KelasExport;
 use App\Models\Absensi;
+use Illuminate\Support\Facades\DB;
 
 class SiswaController extends Controller
 {
@@ -17,7 +18,7 @@ class SiswaController extends Controller
     public function index()
     {
         $kelas = Kelas::all();
-        return view('pages.management.siswa.index',[
+        return view('pages.management.siswa.index', [
             'kelas' => $kelas,
         ]);
     }
@@ -25,14 +26,13 @@ class SiswaController extends Controller
     public function search(Request $request)
     {
         if ($request->has('search')) {
-            $kelas = Siswa::where('nama_kelas','LIKE','%'.$request->search.'%')->get();
-        }
-        else {
+            $kelas = Siswa::where('nama_kelas', 'LIKE', '%' . $request->search . '%')->get();
+        } else {
             $kelas = Siswa::all();
         }
-        return view('pages.management.dashboard-siswa',[
+        return view('pages.management.dashboard-siswa', [
             'kelas' => $kelas,
-        ]);     
+        ]);
     }
 
     /**
@@ -136,6 +136,7 @@ class SiswaController extends Controller
      */
     public function destroy($NIS)
     {
+<<<<<<< HEAD
         // $siswa = Siswa::where('NIS', $NIS)->first();
         // $absen = Absensi::where('NIS', $NIS)->first();
 
@@ -147,8 +148,24 @@ class SiswaController extends Controller
 
         $siswa = Siswa::findOrFail($NIS);
         $siswa->delete();
+=======
+        try {
+            DB::statement('SET FOREIGN_KEY_CHECKS=0');
 
-        return redirect()->route('management-siswa')->with('success', 'Siswa berhasil dihapus.');
+            $siswa = Siswa::where('NIS', $NIS)->first();
+>>>>>>> f9bfa39fb3f56e474c7eaef4b21cb32cfc172a0f
+
+            if (!$siswa) {
+                return redirect()->route('management-siswa')->with('error', 'Siswa tidak ditemukan.');
+            }
+
+            $siswa->absen()->delete();
+            $siswa->delete();
+
+            return redirect()->route('management-siswa')->with('success');
+        } finally {
+            DB::statement('SET FOREIGN_KEY_CHECKS=1');
+        }
     }
 
     // Function Export
