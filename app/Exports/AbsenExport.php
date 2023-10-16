@@ -4,10 +4,11 @@ namespace App\Exports;
 
 use App\Models\Absensi;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use App\Http\Controllers\GuruController;
 
-class AbsenExport implements FromCollection, withHeadings
+class AbsenExport implements FromCollection, withHeadings, ShouldAutoSize
 {
     /**
     * @return \Illuminate\Support\Collection
