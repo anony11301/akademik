@@ -15,6 +15,7 @@ class DataPelanggaran extends Model
         'NIS',
         'id_pelanggaran',
         'tanggal',
+        'id_kelas',
     ];
 
     protected $hidden = [

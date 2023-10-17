@@ -45,9 +45,9 @@
                                                 <button type="button" class="btn btn-primary"
                                                     data-dismiss="modal">Batal</button>
                                                 <button type="submit" class="btn btn-warning">Simpan</button>
+                                                <input type="hidden" name="kelas_id" value="{{ $kelas->id }}">
                                             </div>
                                         </form>
-
                                     </div>
                                 </div>
                             </div>
