@@ -13,7 +13,7 @@
                                 <div class="h5 mb-0 font-weight-bold text-warning">{{ $item->nama_kelas }}</div>
                             </div>
                             <div class="col-auto">
-                                <a href="{{ route('absen.show', $item->id) }}"><i
+                                <a href="#"><i
                                         class="fas fa-arrow-right fa-2x text-gray-300 dropend"></i></a>
                             </div>
                         </div>

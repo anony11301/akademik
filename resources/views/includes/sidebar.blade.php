@@ -50,5 +50,19 @@
             <span>Absensi</span>
         </a>
     </li>
+    @if (Auth::user()->id_level == 1)
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('pelanggaran') }}">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Pelanggaran</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('data-pelanggaran') }}">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Data Pelanggaran</span>
+            </a>
+        </li>
+    @endif
 </ul>
 <!-- End of Sidebar -->
