@@ -14,8 +14,21 @@ class DataPelanggaranController extends Controller
     public function index()
     {
         $data = Kelas::all();
+        $jumlahPelanggaran = [];
+
+        foreach ($data as $item) {
+            $tanggalSekarang = now()->toDateString();
+            
+            $count = DataPelanggaran::where('tanggal', $tanggalSekarang)
+                ->where('id_kelas', $item->id)
+                ->whereNotIn('status', ['hadir']) 
+                ->count();
+
+            $jumlahTidakHadir[$item->id] = $count;
+        }
         return view('pages.management.data pelanggaran.index', [
             'kelas' => $data,
+            'jumlahPelanggaran' => $jumlahPelanggaran,
         ]);
     }
 
