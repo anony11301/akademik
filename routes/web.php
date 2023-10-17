@@ -61,6 +61,7 @@ Route::group(['middleware' => ['isManagement'], 'prefix' => 'management'], funct
 
     //Pelanggaran
     Route::get('/pelanggaran', [PelanggaranController::class, 'index'])->name('pelanggaran');
+    Route::get('/kelas-pelanggaran', [PelanggaranController::class, 'select'])->name('kelas-pelanggaran');
     Route::get('/tambah-pelanggaran', [PelanggaranController::class, 'create'])->name('add-pelanggaran');
     Route::post('/save-pelanggaran', [PelanggaranController::class, 'store'])->name('save-pelanggaran');
     Route::get('/edit-pelanggaran/{id}', [PelanggaranController::class, 'edit'])->name('edit-pelanggaran');

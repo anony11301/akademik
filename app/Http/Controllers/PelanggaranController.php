@@ -3,7 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pelanggaran;
+use App\Exports\AbsenExport;
 use Illuminate\Http\Request;
+use App\Models\Absensi;
+use App\Models\Kelas;
+use App\Models\Siswa;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Builder;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Session;
 
 class PelanggaranController extends Controller
 {
@@ -15,6 +23,27 @@ class PelanggaranController extends Controller
         $data = Pelanggaran::all();
         return view('pages.management.pelanggaran.index',[
             'data' => $data,
+        ]);
+    }
+
+    public function select()
+    {
+        $kelas = Kelas::all();
+        $jumlahTidakHadir = [];
+
+        foreach ($kelas as $item) {
+            $tanggalSekarang = now()->toDateString();
+            
+            $count = Absensi::where('tanggal', $tanggalSekarang)
+                ->where('id_kelas', $item->id)
+                ->whereNotIn('status', ['hadir']) 
+                ->count();
+
+            $jumlahTidakHadir[$item->id] = $count;
+        }
+        return view('pages.management.pelanggaran.kelas', [
+            'kelas' => $kelas,
+            'jumlahTidakHadir' => $jumlahTidakHadir,
         ]);
     }
 
