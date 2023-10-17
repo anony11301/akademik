@@ -8,6 +8,7 @@ use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\AbsenController;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\GuestController;
+use App\Http\Controllers\PelanggaranController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,9 +58,13 @@ Route::group(['middleware' => ['isManagement'], 'prefix' => 'management'], funct
     Route::get('/edit-siswa/{NIS}', [SiswaController::class, 'edit'])->name('edit-siswa');
     Route::put('/update-siswa/{NIS}', [SiswaController::class, 'update'])->name('update-siswa');
 
-    //Absen
-    // Route::get('/absen-select', [AbsenController::class, 'select'])->name('absen.select');
-    // Route::get('/absen-show/{id}', [AbsenController::class, 'show'])->name('absen.show');
+    //Pelanggaran
+    Route::get('/pelanggaran', [PelanggaranController::class, 'index'])->name('pelanggaran');
+    Route::get('/tambah-pelanggaran', [PelanggaranController::class, 'create'])->name('add-pelanggaran');
+    Route::post('/save-pelanggaran', [PelanggaranController::class, 'store'])->name('save-pelanggaran');
+    Route::get('/edit-pelanggaran/{id}', [PelanggaranController::class, 'edit'])->name('edit-pelanggaran');
+    Route::post('/update-pelanggaran/{id}', [PelanggaranController::class, 'update'])->name('update-pelanggaran');
+    Route::delete('delete-pelanggaran/{id}', [PelanggaranController::class, 'destroy'])->name('delete-pelanggaran');
 
 
 });

@@ -9,6 +9,8 @@ class DataPelanggaran extends Model
 {
     use HasFactory;
 
+    protected $table = 'data_pelanggaran';
+
     protected $fillable = [
         'nis',
         'id_pelanggaran',
@@ -16,6 +18,6 @@ class DataPelanggaran extends Model
     ];
 
     protected $hidden = [
-        
+
     ];
 }
