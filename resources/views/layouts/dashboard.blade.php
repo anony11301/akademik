@@ -36,12 +36,12 @@
                 @yield('page-content')
             </div>
             <div class="card-body">
-            <div class="chart-pie pt-4">
-                <canvas id="myPieChart"></canvas>
-            </div>
-            <hr>
-            Styling for the donut chart can be found in the
-            <code>/js/demo/chart-pie-demo.js</code> file.
+                <div class="chart-pie pt-4">
+                    <canvas id="myPieChart"></canvas>
+                </div>
+                <hr>
+                Styling for the donut chart can be found in the
+                <code>/js/demo/chart-pie-demo.js</code> file.
             </div>
             @include('includes.footer')
         </div>

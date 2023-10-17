@@ -57,6 +57,12 @@
                 <span>Pelanggaran</span>
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('data-pelanggaran') }}">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Data Pelanggaran</span>
+            </a>
+        </li>
     @endif
 </ul>
 <!-- End of Sidebar -->

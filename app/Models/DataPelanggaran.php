@@ -12,7 +12,7 @@ class DataPelanggaran extends Model
     protected $table = 'data_pelanggaran';
 
     protected $fillable = [
-        'nis',
+        'NIS',
         'id_pelanggaran',
         'tanggal',
     ];

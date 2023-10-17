@@ -6,6 +6,7 @@ use App\Http\Controllers\ManagementController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\AbsenController;
+use App\Http\Controllers\DataPelanggaranController;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\PelanggaranController;
@@ -65,6 +66,11 @@ Route::group(['middleware' => ['isManagement'], 'prefix' => 'management'], funct
     Route::get('/edit-pelanggaran/{id}', [PelanggaranController::class, 'edit'])->name('edit-pelanggaran');
     Route::post('/update-pelanggaran/{id}', [PelanggaranController::class, 'update'])->name('update-pelanggaran');
     Route::delete('delete-pelanggaran/{id}', [PelanggaranController::class, 'destroy'])->name('delete-pelanggaran');
+
+    //Data Pelanggaran
+    Route::get('data-pelanggaran', [DataPelanggaranController::class, 'index'])->name('data-pelanggaran');
+    Route::get('data-pelanggaran/{id}', [DataPelanggaranController::class, 'show'])->name('data-pelanggaran-kelas');
+    Route::post('save-data-pelanggaran/{id}', [DataPelanggaranController::class, 'store'])->name('save-data-pelanggaran');
 
 
 });
