@@ -16,6 +16,7 @@ class DataPelanggaranController extends Controller
     public function index()
     {
         $data = Kelas::all();
+        
         return view('pages.management.data pelanggaran.index', [
             'kelas' => $data,
         ]);

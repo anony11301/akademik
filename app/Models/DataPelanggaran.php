@@ -20,4 +20,14 @@ class DataPelanggaran extends Model
     protected $hidden = [
 
     ];
+
+    public function siswa()
+    {
+        return $this->belongsTo(Siswa::class, 'NIS', 'NIS');
+    }
+
+    public function pelanggaran()
+    {
+        return $this->belongsTo(Pelanggaran::class, 'id_pelanggaran', 'id');
+    }
 }
