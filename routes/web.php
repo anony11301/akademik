@@ -70,7 +70,7 @@ Route::group(['middleware' => ['isManagement'], 'prefix' => 'management'], funct
 
     //Data Pelanggaran
     Route::get('data-pelanggaran', [DataPelanggaranController::class, 'index'])->name('data-pelanggaran');
-    Route::get('data-pelanggaran/{id}', [DataPelanggaranController::class, 'show'])->name('data-pelanggaran-kelas');
+    Route::get('data-pelanggaran/{kelas_id}', [DataPelanggaranController::class, 'show'])->name('data-pelanggaran-kelas');
     Route::post('save-data-pelanggaran/{id}', [DataPelanggaranController::class, 'store'])->name('save-data-pelanggaran');
 
 

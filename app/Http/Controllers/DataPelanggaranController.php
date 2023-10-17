@@ -21,10 +21,9 @@ class DataPelanggaranController extends Controller
             
             $count = DataPelanggaran::where('tanggal', $tanggalSekarang)
                 ->where('id_kelas', $item->id)
-                ->whereNotIn('status', ['hadir']) 
                 ->count();
 
-            $jumlahTidakHadir[$item->id] = $count;
+            $jumlahPelanggaran[$item->id] = $count;
         }
         
         return view('pages.management.data pelanggaran.index', [
@@ -42,6 +41,7 @@ class DataPelanggaranController extends Controller
             'siswa' => $data,
             'kelas' => $kelas,
             'pelanggaran' => $pelanggaran,
+            'kelas_id' => $id
         ]);
     }
 
@@ -49,11 +49,13 @@ class DataPelanggaranController extends Controller
     {
         $nis = $request->nis;
         $id_pelanggaran = $request->id_pelanggaran;
+        $kelas_id = $id;
         $date = Carbon::today();
 
         DataPelanggaran::create([
             'NIS' => $nis,
             'id_pelanggaran' => $id_pelanggaran,
+            'id_kelas' => $kelas_id,
             'tanggal' => $date,
         ]);
 
