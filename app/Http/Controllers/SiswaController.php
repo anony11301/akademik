@@ -136,24 +136,10 @@ class SiswaController extends Controller
      */
     public function destroy($NIS)
     {
-<<<<<<< HEAD
-        // $siswa = Siswa::where('NIS', $NIS)->first();
-        // $absen = Absensi::where('NIS', $NIS)->first();
-
-        // if($siswa){
-        //     $absen->delete();
-        // }
-        
-        // $siswa->delete();
-
-        $siswa = Siswa::findOrFail($NIS);
-        $siswa->delete();
-=======
         try {
             DB::statement('SET FOREIGN_KEY_CHECKS=0');
 
             $siswa = Siswa::where('NIS', $NIS)->first();
->>>>>>> f9bfa39fb3f56e474c7eaef4b21cb32cfc172a0f
 
             if (!$siswa) {
                 return redirect()->route('management-siswa')->with('error', 'Siswa tidak ditemukan.');
