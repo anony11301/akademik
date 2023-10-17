@@ -35,6 +35,14 @@
                 @include('includes.navbar')
                 @yield('page-content')
             </div>
+            <div class="card-body">
+            <div class="chart-pie pt-4">
+                <canvas id="myPieChart"></canvas>
+            </div>
+            <hr>
+            Styling for the donut chart can be found in the
+            <code>/js/demo/chart-pie-demo.js</code> file.
+            </div>
             @include('includes.footer')
         </div>
     </div>
@@ -62,6 +70,7 @@
                 </div>
             </div>
         </div>
+
         <script src="/bootstrap/vendor/jquery/jquery.min.js"></script>
         <script src="/bootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
@@ -77,4 +86,11 @@
         <!-- Page level custom scripts -->
         <script src="/js/demo/chart-area-demo.js"></script>
         <script src="/js/demo/chart-pie-demo.js"></script>
+        <script src="https://cdnjs.com/libraries/Chart.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        <script src="bootstrap/vendor/chart.js/Chart.min.js"></script>
+        <script src="bootstrap/js/demo/chart-area-demo.js"></script>
+        <script src="bootstrap/js/demo/chart-pie-demo.js"></script>
+        <script src="bootstrap/js/demo/chart-bar-demo.js"></script>
 </body>
