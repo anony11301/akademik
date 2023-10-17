@@ -26,6 +26,7 @@ class DataPelanggaranController extends Controller
 
             $jumlahTidakHadir[$item->id] = $count;
         }
+        
         return view('pages.management.data pelanggaran.index', [
             'kelas' => $data,
             'jumlahPelanggaran' => $jumlahPelanggaran,

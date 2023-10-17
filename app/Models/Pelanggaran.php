@@ -19,4 +19,9 @@ class Pelanggaran extends Model
     protected $hidden = [
 
     ];
+
+    public function data_pelanggaran()
+    {
+        return $this->hasMany(DataPelanggaran::class, 'id_pelanggaran', 'id');
+    }
 }

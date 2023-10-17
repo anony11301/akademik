@@ -10,6 +10,7 @@
                             <div class="col">
                                 <div class="h5 mb-0 font-weight-bold text-warning">{{ $item->nama_kelas }}</div>
                                 <small class="text-muted">Tidak Hadir: {{ $jumlahPelanggaran[$item->id] }}</small>
+                                <small class="text-muted">Tidak Hadir: </small>
                             </div>
                             <div class="col-auto">
                                 <div class="dropdown">
