@@ -14,8 +14,19 @@ class DataPelanggaranController extends Controller
     public function index()
     {
         $data = Kelas::all();
+        $jumlah_pelanggaran = [];
+        $data_siswa = DataPelanggaran::with('siswa.kelas')->get();
+
+        foreach ($data as $item) {
+            
+            $count = DataPelanggaran::where($item->id, $data_siswa->siswa->id_kelas)
+                ->count();
+
+            $jumlah_pelanggaran[$item->id] = $count;
+        }
         return view('pages.management.data pelanggaran.index', [
             'kelas' => $data,
+            'jumlah_pelanggaran' => $jumlah_pelanggaran,
         ]);
     }
 
