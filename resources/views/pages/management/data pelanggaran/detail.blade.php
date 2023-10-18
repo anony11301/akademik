@@ -20,7 +20,7 @@
                     @php
                         $no = 1;
                     @endphp
-                    @foreach ($data_pelanggran as $item)
+                    @foreach ($data_pelanggaran as $item)
                         <tr>
                             <td>{{ $no++ }}</td>
                             <td>{{ $item->NIS }}</td>

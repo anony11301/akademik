@@ -66,8 +66,8 @@ class DataPelanggaranController extends Controller
 
     public function detail($kelas_id, Request $request)
     {
+        $
         $siswa = Siswa::where('id_kelas', $kelas_id)->get();
-        $kelas = Kelas::where('nama_kelas', $nama_kelas)->get();
         $query = Absensi::where('id_kelas', $kelas_id);
     
         // Filter berdasarkan tanggal hari ini jika tidak ada rentang tanggal yang diberikan
@@ -90,10 +90,15 @@ class DataPelanggaranController extends Controller
         $persentasi_kehadiran = $kehadiran / $total_siswa * 100;
         }
 
-        $absensi = $siswa->map(function ($item, $key) use ($absen, $kelas_id) {
-            $siswaAbsen = $absen->where('NIS', $item->NIS)->first();
-            $nama_kelas = Kelas::where('id', $kelas_id)->first();
-
+        // $data = compact('absen', 'siswa', 'kelas_id', 'request', 'absend');
+        $data = [
+            'absen' => $absen,
+            'siswa' => $siswa,
+            'kelas_id' => $kelas_id,
+            'request' => $request,
+            'persentasi_kehadiran' => $persentasi_kehadiran,
+        ];
+        Session::put('data_pelanggaran', $data_pelanggaran);
         return view('pages.management.data pelanggaran.detail', $data);
         // return Excel::download(new AbsenExport($absen), 'export-absen.xlsx');
         // return dd($absen)->get();

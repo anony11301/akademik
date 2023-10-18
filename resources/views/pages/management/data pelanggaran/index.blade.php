@@ -16,7 +16,7 @@
                             <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 
-                                <a class="dropdown-item" href="{{ route('absen.show', $item->id) }}">Rekap</a>
+                                <a class="dropdown-item" href="{{ route('pelanggaran-show', $item->id) }}">Rekap</a>
                                 <a class="dropdown-item" href="{{ route('data-pelanggaran-kelas', $item->id) }}">
                                     Input Pelanggaran
                                 </a>
