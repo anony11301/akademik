@@ -4,6 +4,21 @@
     <div class="container-fluid">
         <h1 class="mb-4">Data Pelanggaran</h1>
         <a href="#" class="btn btn-sm btn-success float-right mr-2">Export Data</a>
+        <form action="" method="get">
+            <div class="row-mb-3">
+                <div class="col-md-3 form-group">
+                    <label for="date_from">Dari Tanggal</label>
+                    <input type="date" name="date_from" class="form-control" value="{{ $request->input('date_from') }}">
+                </div>
+                <div class="col-md-3 form-group">
+                    <label for="date_to">Sampai Tanggal</label>
+                    <input type="date" name="date_to" class="form-control" value="{{ $request->input('date_to') }}">
+                </div>
+                <div class="col-md-1 mt-4 p-2">
+                    <button type="submit" class="btn btn-primary w-100">Cari</button>
+                </div>
+            </div>
+        </form>
         <div class="table-responsive">
             <table class="table table-hover">
                 <thead>
@@ -20,7 +35,7 @@
                     @php
                         $no = 1;
                     @endphp
-                    @foreach ($siswa as $item)
+                    @foreach ($filteredSiswa as $item)
                         <tr>
                             <td>{{ $no++ }}</td>
                             <td>{{ $item->siswa->nama }}</td>

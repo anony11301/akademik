@@ -66,15 +66,14 @@ class DataPelanggaranController extends Controller
 
     public function detail(Request $request)
 {
+    $siswa = DataPelanggaran::with('siswa', 'kelas')->get();
+    
+    $dateFrom = $request->input('date_from');
+    $dateTo = $request->input('date_to');
 
-    // Mengambil siswa berdasarkan kelas
-    // $siswa = Siswa::where('id_kelas', $kelas_id)->with('data_pelanggaran.pelanggaran')->get();
-    $siswa = DataPelanggaran::with('siswa','kelas')->get();
+    $filteredSiswa = DataPelanggaran::whereBetween('tanggal', [$dateFrom, $dateTo])->get();
 
-    return view('pages.management.data pelanggaran.detail', [
-        'siswa' => $siswa,
-    ]);
-
-    // return dd($siswa)->get();
+    return view('pages.management.data pelanggaran.detail', compact('siswa', 'filteredSiswa', 'request'));
 }
+
 }
