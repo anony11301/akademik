@@ -2,7 +2,7 @@
 
 @section('page-content')
     <div class="container-fluid">
-        <h1 class="mb-4">Data Kelas</h1>
+        <h1 class="mb-4">Data Pelanggaran</h1>
         <a href="#" class="btn btn-sm btn-success float-right mr-2">Export Data</a>
         <div class="table-responsive">
             <table class="table table-hover">
@@ -11,23 +11,23 @@
                         <th scope="col">No</th>
                         <th scope="col">NIS</th>
                         <th scope="col">Nama Siswa</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Keterangan</th>
-                        <th scope="col">Tanggal</th>
+                        <th scope="col">Kelas</th>
+                        <th scope="col">Pelanggaran</th>
+                        <th scope="col">Poin</th>
                     </tr>
                 </thead>
                 <tbody>
                     @php
                         $no = 1;
                     @endphp
-                    @foreach ($siswa as $item)
+                    @foreach ($data_pelanggran as $item)
                         <tr>
                             <td>{{ $no++ }}</td>
                             <td>{{ $item->NIS }}</td>
-                            <td>{{ $siswa->where('NIS', $item->NIS)->first()->nama }}</td>
-                            <td>{{ $item->status }}</td>
-                            <td>{{ $item->keterangan }}</td>
-                            <td>{{ $item->tanggal }}</td>
+                            <td>{{ $data_pelanggaran->where('NIS', $item->NIS)->first()->nama }}</td>
+                            <td>{{ $item->kelas }}</td>
+                            <td>{{ $item->pelanggaran }}</td>
+                            <td>{{ $item->poin }}</td>
                         </tr>
                     @endforeach
                 </tbody>

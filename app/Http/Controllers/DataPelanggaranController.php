@@ -6,8 +6,10 @@ use App\Models\DataPelanggaran;
 use App\Models\Kelas;
 use App\Models\Pelanggaran;
 use App\Models\Siswa;
+use App\Models\Absensi;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class DataPelanggaranController extends Controller
 {
@@ -60,5 +62,40 @@ class DataPelanggaranController extends Controller
         ]);
 
         return redirect()->route('data-pelanggaran-kelas', $id);
+    }
+
+    public function detail($kelas_id, Request $request)
+    {
+        $siswa = Siswa::where('id_kelas', $kelas_id)->get();
+        $kelas = Kelas::where('nama_kelas', $nama_kelas)->get();
+        $query = Absensi::where('id_kelas', $kelas_id);
+    
+        // Filter berdasarkan tanggal hari ini jika tidak ada rentang tanggal yang diberikan
+        if (!$request->date_from && !$request->date_to) {
+            $query->whereDate('tanggal', today());
+        }
+    
+        // Filter berdasarkan rentang tanggal jika ada date_from dan date_to
+        if ($request->date_from && $request->date_to) {
+            $query->whereBetween('tanggal', [$request->date_from, $request->date_to]);
+        }
+    
+        $absen = $query->orderBy('tanggal', 'desc')->get();
+
+        $kehadiran = $absen->where('status','hadir')->count();
+        $total_siswa = $absen->count();
+        if ($kehadiran == 0){
+            $persentasi_kehadiran = 0;
+        } else {
+        $persentasi_kehadiran = $kehadiran / $total_siswa * 100;
+        }
+
+        $absensi = $siswa->map(function ($item, $key) use ($absen, $kelas_id) {
+            $siswaAbsen = $absen->where('NIS', $item->NIS)->first();
+            $nama_kelas = Kelas::where('id', $kelas_id)->first();
+
+        return view('pages.management.data pelanggaran.detail', $data);
+        // return Excel::download(new AbsenExport($absen), 'export-absen.xlsx');
+        // return dd($absen)->get();
     }
 }
