@@ -10,6 +10,7 @@ use App\Http\Controllers\DataPelanggaranController;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\PelanggaranController;
+use App\Models\DataPelanggaran;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,9 +70,10 @@ Route::group(['middleware' => ['isManagement'], 'prefix' => 'management'], funct
     Route::delete('delete-pelanggaran/{id}', [PelanggaranController::class, 'destroy'])->name('delete-pelanggaran');
 
     //Data Pelanggaran
-    Route::get('data-pelanggaran', [DataPelanggaranController::class, 'index'])->name('data-pelanggaran');
-    Route::get('data-pelanggaran/{kelas_id}', [DataPelanggaranController::class, 'show'])->name('data-pelanggaran-kelas');
-    Route::post('save-data-pelanggaran/{id}', [DataPelanggaranController::class, 'store'])->name('save-data-pelanggaran');
+    Route::get('/data-pelanggaran', [DataPelanggaranController::class, 'index'])->name('data-pelanggaran');
+    Route::get('/data-pelanggaran/{kelas_id}', [DataPelanggaranController::class, 'show'])->name('data-pelanggaran-kelas');
+    Route::post('/save-data-pelanggaran/{id}', [DataPelanggaranController::class, 'store'])->name('save-data-pelanggaran');
+    Route::get('/rekap-pelanggaran', [DataPelanggaranController::class, 'detail'])->name('rekap-pelanggaran');
 
 
 });

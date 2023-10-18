@@ -17,11 +17,12 @@
                             <tr>
                                 <td>{{ $siswa->NIS }}</td>
                                 <td>{{ $siswa->nama }}</td>
-                                <td><a href="#" class="btn btn-danger" data-toggle="modal" data-target="#addData">Tambah
+                                <td><a href="#" class="btn btn-danger" data-toggle="modal"
+                                        data-target="#addData{{ $siswa->NIS }}">Tambah
                                         Pelanggaran</a></td>
                             </tr>
                             <!-- modal -->
-                            <div class="modal fade" id="addData" tabindex="-1" role="dialog"
+                            <div class="modal fade" id="addData{{ $siswa->NIS }}" tabindex="-1" role="dialog"
                                 aria-labelledby="konfirmasiModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">

@@ -36,4 +36,9 @@ class Kelas extends Model
     {
         return $this->hasMany(Siswa::class, 'id_kelas', 'id');
     }
+
+    public function data_pelanggaran()
+    {
+        return $this->hasMany(DataPelanggaran::class, 'id_kelas', 'id');
+    }
 }

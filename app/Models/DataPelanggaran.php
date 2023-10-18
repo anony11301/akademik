@@ -31,4 +31,9 @@ class DataPelanggaran extends Model
     {
         return $this->belongsTo(Pelanggaran::class, 'id_pelanggaran', 'id');
     }
+
+    public function kelas()
+    {
+        return $this->belongsTo(Kelas::class, 'id_kelas', 'id');
+    }
 }

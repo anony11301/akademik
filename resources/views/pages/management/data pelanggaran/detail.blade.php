@@ -9,25 +9,25 @@
                 <thead>
                     <tr>
                         <th scope="col">No</th>
-                        <th scope="col">NIS</th>
-                        <th scope="col">Nama Siswa</th>
+                        <th scope="col">Nama</th>
                         <th scope="col">Kelas</th>
                         <th scope="col">Pelanggaran</th>
                         <th scope="col">Poin</th>
+                        <th scope="col">Tanggal</th>
                     </tr>
                 </thead>
                 <tbody>
                     @php
                         $no = 1;
                     @endphp
-                    @foreach ($data_pelanggran as $item)
+                    @foreach ($siswa as $item)
                         <tr>
                             <td>{{ $no++ }}</td>
-                            <td>{{ $item->NIS }}</td>
-                            <td>{{ $data_pelanggaran->where('NIS', $item->NIS)->first()->nama }}</td>
-                            <td>{{ $item->kelas }}</td>
-                            <td>{{ $item->pelanggaran }}</td>
-                            <td>{{ $item->poin }}</td>
+                            <td>{{ $item->siswa->nama }}</td>
+                            <td>{{ $item->kelas->nama_kelas }}</td>
+                            <td>{{ $item->pelanggaran->nama_pelanggaran }}</td>
+                            <td>{{ $item->pelanggaran->poin }}</td>
+                            <td>{{ $item->tanggal }}</td>
                         </tr>
                     @endforeach
                 </tbody>

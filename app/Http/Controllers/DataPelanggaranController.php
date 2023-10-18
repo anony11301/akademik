@@ -64,38 +64,17 @@ class DataPelanggaranController extends Controller
         return redirect()->route('data-pelanggaran-kelas', $id);
     }
 
-    public function detail($kelas_id, Request $request)
-    {
-        $siswa = Siswa::where('id_kelas', $kelas_id)->get();
-        $kelas = Kelas::where('nama_kelas', $nama_kelas)->get();
-        $query = Absensi::where('id_kelas', $kelas_id);
-    
-        // Filter berdasarkan tanggal hari ini jika tidak ada rentang tanggal yang diberikan
-        if (!$request->date_from && !$request->date_to) {
-            $query->whereDate('tanggal', today());
-        }
-    
-        // Filter berdasarkan rentang tanggal jika ada date_from dan date_to
-        if ($request->date_from && $request->date_to) {
-            $query->whereBetween('tanggal', [$request->date_from, $request->date_to]);
-        }
-    
-        $absen = $query->orderBy('tanggal', 'desc')->get();
+    public function detail(Request $request)
+{
 
-        $kehadiran = $absen->where('status','hadir')->count();
-        $total_siswa = $absen->count();
-        if ($kehadiran == 0){
-            $persentasi_kehadiran = 0;
-        } else {
-        $persentasi_kehadiran = $kehadiran / $total_siswa * 100;
-        }
+    // Mengambil siswa berdasarkan kelas
+    // $siswa = Siswa::where('id_kelas', $kelas_id)->with('data_pelanggaran.pelanggaran')->get();
+    $siswa = DataPelanggaran::with('siswa','kelas')->get();
 
-        $absensi = $siswa->map(function ($item, $key) use ($absen, $kelas_id) {
-            $siswaAbsen = $absen->where('NIS', $item->NIS)->first();
-            $nama_kelas = Kelas::where('id', $kelas_id)->first();
+    return view('pages.management.data pelanggaran.detail', [
+        'siswa' => $siswa,
+    ]);
 
-        return view('pages.management.data pelanggaran.detail', $data);
-        // return Excel::download(new AbsenExport($absen), 'export-absen.xlsx');
-        // return dd($absen)->get();
-    }
+    // return dd($siswa)->get();
+}
 }

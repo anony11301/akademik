@@ -42,7 +42,7 @@ class Siswa extends Model
         return $this->hasMany(Absensi::class, 'NIS', 'NIS');
     }
 
-    public function pelanggaran()
+    public function data_pelanggaran()
     {
         return $this->hasMany(DataPelanggaran::class, 'NIS', 'NIS');
     }
