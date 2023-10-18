@@ -46,7 +46,7 @@
         <div class="col-lg-4 col-sm-6 mt-5">
             <div class="card-box bg-orange">
                 <div class="inner">
-                    <h3> {{ $persentaseKehadiran }}% </h3>
+                    <h3> {{ number_format($persentaseKehadiran) }}% </h3>
                     <p style="color: #fff"> Persentase Kehadiran </p>
                 </div>
                 <div class="icon">
@@ -57,7 +57,7 @@
         <div class="col-lg-4 col-sm-6 mt-5">
             <div class="card-box bg-orange">
                 <div class="inner">
-                    <h3> {{ $persentaseKehadiran }}% </h3>
+                    <h3> {{ number_format($persentaseKehadiran) }}% </h3>
                     <p style="color: #fff"> Persentase Kehadiran </p>
                 </div>
                 <div class="icon">
