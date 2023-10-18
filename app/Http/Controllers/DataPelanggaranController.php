@@ -65,23 +65,23 @@ class DataPelanggaranController extends Controller
     }
 
     public function detail(Request $request)
-{
-    $siswa = DataPelanggaran::with('siswa', 'kelas')->get();
-    
-    $dateFrom = $request->input('date_from');
-    $dateTo = $request->input('date_to');
+    {
+        $siswa = DataPelanggaran::with('siswa', 'kelas')->get();
+        
+        $dateFrom = $request->input('date_from');
+        $dateTo = $request->input('date_to');
 
-    // Cek apakah rentang tanggal sudah diatur
-    if ($dateFrom && $dateTo) {
-        // Jika rentang tanggal sudah diatur, gunakan filter date range
-        $filteredSiswa = DataPelanggaran::whereBetween('tanggal', [$dateFrom, $dateTo])->get();
-    } else {
-        // Jika rentang tanggal tidak diatur, gunakan data hanya untuk hari ini
-        $today = Carbon::now()->toDateString();
-        $filteredSiswa = DataPelanggaran::whereDate('tanggal', $today)->get();
+        // Cek apakah rentang tanggal sudah diatur
+        if ($dateFrom && $dateTo) {
+            // Jika rentang tanggal sudah diatur, gunakan filter date range
+            $filteredSiswa = DataPelanggaran::whereBetween('tanggal', [$dateFrom, $dateTo])->get();
+        } else {
+            // Jika rentang tanggal tidak diatur, gunakan data hanya untuk hari ini
+            $today = Carbon::now()->toDateString();
+            $filteredSiswa = DataPelanggaran::whereDate('tanggal', $today)->get();
+        }
+
+        return view('pages.management.data pelanggaran.detail', compact('siswa', 'filteredSiswa', 'request'));
     }
-
-    return view('pages.management.data pelanggaran.detail', compact('siswa', 'filteredSiswa', 'request'));
-}
 
 }
