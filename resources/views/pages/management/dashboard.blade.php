@@ -50,7 +50,7 @@
                 <div class="card-box bg-orange">
                     <div class="inner">
                         <h3> {{ number_format($persentaseKehadiran) }}% </h3>
-                        <p style="color: #fff"> Persentase Kehadiran </p>
+                        <p style="color: #fff"> Persentase Kehadiran Bulan Ini </p>
                     </div>
                     <div class="icon">
                         <i class="fa fa-chart-pie"></i>
@@ -60,11 +60,11 @@
             <div class="col-lg-4 col-sm-6 mt-5">
                 <div class="card-box bg-orange">
                     <div class="inner">
-                        <h3> {{ number_format($persentaseKehadiran) }}% </h3>
-                        <p style="color: #fff"> Persentase Kehadiran </p>
+                        <h3> {{ number_format($totalPelanggaran) }} </h3>
+                        <p style="color: #fff"> Jumlah Pelanggaran Bulan Ini</p>
                     </div>
                     <div class="icon">
-                        <i class="fa fa-chart-pie"></i>
+                        <i class="fa-solid fa-triangle-exclamation"></i>
                     </div>
                 </div>
             </div>
