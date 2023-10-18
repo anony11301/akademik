@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Siswa;
 use App\Models\Kelas;
 use App\Models\Absensi;
+use App\Models\DataPelanggaran;
 use Illuminate\Support\Carbon;
 
 class ManagementController extends Controller
@@ -29,12 +30,19 @@ class ManagementController extends Controller
 
         $persentaseKehadiran = ($totalKehadiran / $totalSiswa) * 100;
 
+        $pelanggaran = DataPelanggaran::whereYear('tanggal', $tahunSekarang)
+            ->whereMonth('tanggal', $bulanSekarang)
+            ->get();
+
+        $totalPelanggaran = $pelanggaran->count();
+
         return view(
             'pages.management.dashboard',
             [
                 'jumlahSiswa' => $jumlahSiswa,
                 'jumlahKelas' => $jumlahKelas,
                 'persentaseKehadiran' => $persentaseKehadiran,
+                'totalPelanggaran' => $totalPelanggaran,
             ]
         );
     }
