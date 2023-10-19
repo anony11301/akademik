@@ -2,8 +2,12 @@
 @section('page-content')
     <div class="row px-5 py-5">
 
+    <div class="col col-12">
+            <a href="{{ route('rekap-pelanggaran') }}" class="btn btn-primary w-100">Rekap Data Pelanggaran</a>
+    </div>
+
         @foreach ($kelas as $item)
-            <div class="col col-12 col-xl-4 col-md-6 mb-4">
+            <div class="col col-12 col-xl-4 col-md-6 mt-4">
                 <div class="card border-left-warning shadow h-100 py-2">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
@@ -28,10 +32,5 @@
                 </div>
             </div>
         @endforeach
-
-        <div class="col col-12">
-            <a href="{{ route('rekap-pelanggaran') }}" class="btn btn-primary w-100">Rekap Data Pelanggaran</a>
-        </div>
-
     </div>
 @endsection

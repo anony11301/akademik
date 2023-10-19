@@ -14,6 +14,10 @@
                     <label for="date_to">Sampai Tanggal</label>
                     <input type="date" name="date_to" class="form-control" value="{{ $request->input('date_to') }}">
                 </div>
+                <div class="col-md-3 form-group">
+                    <label for="search">Cari</label>
+                    <input type="text" name="search" class="form-control" value="{{ $request->input('search') }}">
+                </div>
                 <div class="col-md-1 mt-4 p-2">
                     <button type="submit" class="btn btn-primary w-100">Cari</button>
                 </div>

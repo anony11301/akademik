@@ -20,14 +20,14 @@ class DataPelanggaranController extends Controller
 
         foreach ($data as $item) {
             $tanggalSekarang = now()->toDateString();
-            
+
             $count = DataPelanggaran::where('tanggal', $tanggalSekarang)
                 ->where('id_kelas', $item->id)
                 ->count();
 
             $jumlahPelanggaran[$item->id] = $count;
         }
-        
+
         return view('pages.management.data pelanggaran.index', [
             'kelas' => $data,
             'jumlahPelanggaran' => $jumlahPelanggaran,
@@ -39,7 +39,7 @@ class DataPelanggaranController extends Controller
         $data = Siswa::where('id_kelas', $id)->get();
         $kelas = Kelas::where('id', $id)->first();
         $pelanggaran = Pelanggaran::all();
-        return view('pages.management.data pelanggaran.add',[
+        return view('pages.management.data pelanggaran.add', [
             'siswa' => $data,
             'kelas' => $kelas,
             'pelanggaran' => $pelanggaran,
@@ -65,23 +65,38 @@ class DataPelanggaranController extends Controller
     }
 
     public function detail(Request $request)
-{
-    $siswa = DataPelanggaran::with('siswa', 'kelas')->get();
-    
-    $dateFrom = $request->input('date_from');
-    $dateTo = $request->input('date_to');
+    {
+        $siswa = DataPelanggaran::with('siswa', 'kelas')->get();
 
-    // Cek apakah rentang tanggal sudah diatur
-    if ($dateFrom && $dateTo) {
-        // Jika rentang tanggal sudah diatur, gunakan filter date range
-        $filteredSiswa = DataPelanggaran::whereBetween('tanggal', [$dateFrom, $dateTo])->get();
-    } else {
-        // Jika rentang tanggal tidak diatur, gunakan data hanya untuk hari ini
-        $today = Carbon::now()->toDateString();
-        $filteredSiswa = DataPelanggaran::whereDate('tanggal', $today)->get();
+        $dateFrom = $request->input('date_from');
+        $dateTo = $request->input('date_to');
+        $search = $request->input('search');
+        $filteredSiswa = DataPelanggaran::query();
+
+        // Cek apakah rentang tanggal sudah diatur
+        if ($dateFrom && $dateTo) {
+            // Jika rentang tanggal sudah diatur, gunakan filter date range
+            $filteredSiswa->whereBetween('tanggal', [$dateFrom, $dateTo]);
+        } else {
+            // Jika rentang tanggal tidak diatur, gunakan data hanya untuk hari ini
+            $today = Carbon::now()->toDateString();
+            $filteredSiswa->whereDate('tanggal', $today);
+        }
+
+        if (!empty($search)) {
+            $filteredSiswa->where(function ($query) use ($search) {
+                $query->whereHas('siswa', function ($query) use ($search) {
+                    $query->where('nama', 'like', '%' . $search . '%');
+                })->orWhereHas('kelas', function ($query) use ($search) {
+                    $query->where('nama_kelas', 'like', '%' . $search . '%');
+                })->orWhereHas('pelanggaran', function ($query) use ($search) {
+                    $query->where('nama_pelanggaran', 'like', '%' . $search . '%');
+                });
+            });
+        }
+
+        $filteredSiswa = $filteredSiswa->get();
+
+        return view('pages.management.data pelanggaran.detail', compact('siswa', 'filteredSiswa', 'request'));
     }
-
-    return view('pages.management.data pelanggaran.detail', compact('siswa', 'filteredSiswa', 'request'));
-}
-
 }
