@@ -64,7 +64,7 @@
         </div>
 
 
-        @stack('addon-script')
+
 
         <script src="/bootstrap/vendor/jquery/jquery.min.js"></script>
         <script src="/bootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -75,17 +75,6 @@
         <!-- Custom scripts for all pages-->
         <script src="/bootstrap/js/sb-admin-2.min.js"></script>
 
-        <!-- Page level plugins -->
-        {{-- <script src="/bootstrap/vendor/chart.js/Chart.min.js"></script>
-
-        <!-- Page level custom scripts -->
-        <script src="/bootstrap/js/demo/chart-area-demo.js"></script>
-        <script src="/bootstrap/js/demo/chart-pie-demo.js"></script>
-        <script src="https://cdnjs.com/libraries/Chart.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-        <script src="/bootstrap/vendor/chart.js/Chart.min.js"></script>
-        <script src="/bootstrap/js/demo/chart-area-demo.js"></script>
-        <script src="/bootstrap/js/demo/chart-pie-demo.js"></script>
-        <script src="/bootstrap/js/demo/chart-bar-demo.js"></script> --}}
+        @stack('addon-script')
 </body>
