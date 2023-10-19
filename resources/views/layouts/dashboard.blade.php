@@ -14,7 +14,9 @@
     <!-- Custom fonts for this template-->
     <link href="/bootstrap/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="/css/style.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="/bootstrap/css/sb-admin-2.min.css" rel="stylesheet">
@@ -43,7 +45,8 @@
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -60,6 +63,9 @@
             </div>
         </div>
 
+
+
+
         <script src="/bootstrap/vendor/jquery/jquery.min.js"></script>
         <script src="/bootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
@@ -69,17 +75,6 @@
         <!-- Custom scripts for all pages-->
         <script src="/bootstrap/js/sb-admin-2.min.js"></script>
 
-        <!-- Page level plugins -->
-        <script src="/bootstrap/vendor/chart.js/Chart.min.js"></script>
-
-        <!-- Page level custom scripts -->
-        <script src="/js/demo/chart-area-demo.js"></script>
-        <script src="/js/demo/chart-pie-demo.js"></script>
-        <script src="https://cdnjs.com/libraries/Chart.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-        <script src="bootstrap/vendor/chart.js/Chart.min.js"></script>
-        <script src="bootstrap/js/demo/chart-area-demo.js"></script>
-        <script src="bootstrap/js/demo/chart-pie-demo.js"></script>
-        <script src="bootstrap/js/demo/chart-bar-demo.js"></script>
+        @stack('addon-script')
 </body>
