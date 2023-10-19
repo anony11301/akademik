@@ -6,21 +6,22 @@
         <a href="{{ route('excel-export-absen', $kelas_id) }}" class="btn btn-sm btn-success float-right mr-2">Export Data</a>
         <form action="" method="get">
             <div class="row mb-3">
-                <div class="col-md-3 form-group">
+                <div class="col-md-3 form-group col-12">
                     <label for="date_from">Dari Tanggal</label>
                     <input type="date" name="date_from" class="form-control" value="{{ $request->date_from }}">
                 </div>
-                <div class="col-md-3 form-group">
+                <div class="col-md-3 form-group col-12">
                     <label for="date_to">Sampai Tanggal</label>
                     <input type="date" name="date_to" class="form-control" value="{{ $request->date_to }}">
                 </div>
-                <div class="col-md-3 form-group">
+                <div class="col-md-3 form-group col-12">
                     <label for="status_filter">Filter Status</label>
                     <select class="form-control" name="status_filter" id="status_filter">
                         <option value="">Semua</option>
                         <option value="hadir" {{ $request->input('status_filter') == 'hadir' ? 'selected' : '' }}>Hadir
                         </option>
-                        <option value="tidak-hadir" {{ $request->input('status_filter') == 'tidak-hadir' ? 'selected' : '' }}>Tidak Hadir
+                        <option value="tidak-hadir"
+                            {{ $request->input('status_filter') == 'tidak-hadir' ? 'selected' : '' }}>Tidak Hadir
                         </option>
                         <option value="sakit" {{ $request->input('status_filter') == 'sakit' ? 'selected' : '' }}>Sakit
                         </option>
@@ -30,10 +31,10 @@
                         </option>
                     </select>
                 </div>
-                <div class="col-md-1 mt-4 p-2">
+                <div class="col-md-1 mt-4 p-2 col-12">
                     <button type="submit" class="btn btn-primary w-100">Cari</button>
                 </div>
-                <div class="col-md-1 mt-4 p-2">
+                <div class="col-md-1 mt-4 p-2 col-12">
                     <a href="{{ route('absen.show', ['id' => $kelas_id]) }}" class="btn btn-danger w-100">Reset</a>
                 </div>
             </div>
@@ -47,10 +48,10 @@
                     <tr>
                         <th scope="col">No</th>
                         <th scope="col">NIS</th>
-                        <th scope="col">Nama Siswa</th>
+                        <th scope="col" style="white-space: nowrap">Nama Siswa</th>
                         <th scope="col">Status</th>
                         <th scope="col">Keterangan</th>
-                        <th scope="col">Tanggal</th>
+                        <th scope="col" style="white-space: nowrap">Tanggal</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -61,10 +62,10 @@
                         <tr>
                             <td>{{ $no++ }}</td>
                             <td>{{ $item->NIS }}</td>
-                            <td>{{ $siswa->where('NIS', $item->NIS)->first()->nama }}</td>
+                            <td style="white-space: nowrap">{{ $siswa->where('NIS', $item->NIS)->first()->nama }}</td>
                             <td>{{ $item->status }}</td>
                             <td>{{ $item->keterangan }}</td>
-                            <td>{{ $item->tanggal }}</td>
+                            <td style="white-space: nowrap">{{ $item->tanggal }}</td>
                         </tr>
                     @endforeach
                 </tbody>
