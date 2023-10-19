@@ -46,30 +46,6 @@
                             class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
-            <div class="col-lg-4 col-sm-6 mt-5">
-                <div class="card-box bg-orange">
-                    <div class="inner">
-                        <h3> {{ number_format($persentaseKehadiran) }}% </h3>
-                        <p style="color: #fff"> Persentase Kehadiran Bulan Ini </p>
-                    </div>
-                    <div class="icon">
-                        <i class="fa fa-chart-pie"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-sm-6 mt-5">
-                <div class="card-box bg-orange">
-                    <div class="inner">
-                        <h3> {{ number_format($totalPelanggaran) }} </h3>
-                        <p style="color: #fff"> Jumlah Pelanggaran Bulan Ini</p>
-                    </div>
-                    <div class="icon">
-                        <i class="fa-solid fa-triangle-exclamation"></i>
-                    </div>
-                </div>
-            </div>
-
-
         </div>
         <div class="row my-5">
             <div class="col-xl-4 col-lg-5">

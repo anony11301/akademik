@@ -1,7 +1,7 @@
     @extends('layouts.dashboard')
     @section('page-content')
         <div class="flex card mx-4 px-4 py-4 my-5">
-            <h1 style="color: black">Data Kelas
+            <h1 style="color: black">Data Kelas {{ $nama_kelas->nama_kelas }}
 
                 @if (Auth::user()->id_level == 1)
                     <a href="{{ route('management-tambah-siswa', $id_kelas) }}" class="btn btn-sm btn-primary float-right">+

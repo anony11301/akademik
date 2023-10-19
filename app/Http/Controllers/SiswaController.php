@@ -75,7 +75,9 @@ class SiswaController extends Controller
     {
         $kelas = Siswa::all()->where('id_kelas', '==', $id);
         $id_kelas = $id;
+        $nama_kelas = Kelas::where('id', '=', $id)->first();
         $data = [
+            'nama_kelas' => $nama_kelas,
             'siswa' => $kelas,
             'id_kelas' => $id_kelas,
         ];
