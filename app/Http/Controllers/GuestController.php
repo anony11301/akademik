@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Kelas;
-use App\Models\Absensi;
 use Illuminate\Http\Request;
 use App\Models\Siswa;
+use App\Models\Kelas;
+use App\Models\Absensi;
+use App\Models\DataPelanggaran;
+use Illuminate\Support\Carbon;
 
 class GuestController extends Controller
 {
@@ -25,9 +27,30 @@ class GuestController extends Controller
             $jumlahTidakHadir[$item->id] = $count;
         }
 
+        $jumlahSiswa = Siswa::count();
+        $jumlahKelas = Kelas::count();
+
+        $now = carbon::now();
+
+        $bulanSekarang = $now->month;
+        $tahunSekarang = $now->year;
+
+
+        $absensi = Absensi::whereYear('tanggal', $tahunSekarang)
+            ->whereMonth('tanggal', $bulanSekarang)
+            ->get();
+
+
+        $totalKehadiran = $absensi->where('status', 'hadir')->count();
+        $totalSiswa = $absensi->count();
+
+        $persentaseKehadiran = ($totalKehadiran / $totalSiswa) * 100;
+
+
         return view('pages.guest.index',[
             'kelas' => $kelas,
             'jumlahTidakHadir' => $jumlahTidakHadir,
+            'persentaseKehadiran' => $persentaseKehadiran,
         ]);
     }
 
@@ -64,6 +87,7 @@ class GuestController extends Controller
         } else {
         $persentasi_kehadiran = $kehadiran / $total_siswa * 100;
         }
+
         $kelas = Kelas::where('id', $kelas_id)->get();
         // $data = compact('absen', 'siswa', 'kelas_id', 'request', 'absend');
         $data = [
@@ -71,6 +95,7 @@ class GuestController extends Controller
             'siswa' => $siswa,
             'kelas_id' => $kelas_id,
             'request' => $request,
+            'persentaseKehadiran' => $persentaseKehadiran,
             'persentasi_kehadiran' => $persentasi_kehadiran,
             'kelas' => $kelas,
         ];

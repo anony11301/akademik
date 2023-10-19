@@ -24,5 +24,47 @@
                 </div>
             @endforeach
         </div>
+        <div class="col-xs-3 col-lg-4">
+            <div class="card shadow mb-4">
+                 <!-- Card Header - Dropdown -->
+                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                     <h6 class="m-0 font-weight-bold text-primary">
+                         Persentase Kehadiran Bulan Ini
+                     </h6>
+                </div>
+                <div class="card-body">
+                    <div class="pt-4 pb-2">
+                        <canvas id="myPieChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    
+
+
+
+        @push('addon-script')
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        <script>
+            // Data untuk grafik pie
+            var persentaseKehadiran = {!! $persentaseKehadiran !!};
+
+            var data = {
+                labels: ["Hadir", "Tidak Hadir"],
+                datasets: [{
+                    data: [persentaseKehadiran, 100 - persentaseKehadiran], // Menggunakan perhitungan selisih
+                    backgroundColor: ["#33FF57", "#FF5733"]
+                }]
+            };
+
+            // Inisialisasi grafik
+            var ctx = document.getElementById('myPieChart').getContext('2d');
+            var myPieChart = new Chart(ctx, {
+                type: 'pie',
+                data: data
+            });
+        </script>
+    @endpush
 @endsection

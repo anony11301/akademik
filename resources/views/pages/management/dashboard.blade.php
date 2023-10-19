@@ -89,6 +89,8 @@
     </div>
 
     @push('addon-script')
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
         <script>
             // Data untuk grafik pie
             var persentaseKehadiran = {!! $persentaseKehadiran !!};
