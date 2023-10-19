@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 @section('page-content')
     <div class="flex card mx-4 px-4 py-4 my-5">
-        <h1 style="color: black">Data Kelas
+        <div style="color: black" class="h4 ">Data Kelas
 
             @if (Auth::user()->id_level == 1)
                 <a href="{{ route('management-tambah-kelas') }}" class="btn btn-sm btn-primary float-right">+ Tambah Data</a>
@@ -11,7 +11,7 @@
             @endif
 
 
-        </h1>
+        </div>
         <table class="table table-hover">
             <thead style="color: black">
                 <tr>

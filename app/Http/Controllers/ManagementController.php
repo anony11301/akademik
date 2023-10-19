@@ -36,6 +36,25 @@ class ManagementController extends Controller
 
         $totalPelanggaran = $pelanggaran->count();
 
+        //chart pelanggaran
+        // Ambil data pelanggaran dari database
+        $dataPelanggaran = DataPelanggaran::all();
+
+        // Buat array asosiatif untuk label bulan dan setel nilai awalnya ke 0
+        $labels = [
+            'Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun',
+            'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des',
+        ];
+
+        $data = array_fill(0, 12, 0);
+
+        $tahun = Carbon::now()->year;
+
+        for($i = 1; $i <= 12; $i++ )
+        {
+            $data[$i - 1] = DataPelanggaran::whereMonth('tanggal', $i)->whereYear('tanggal', $tahun)->count();
+        }
+
         return view(
             'pages.management.dashboard',
             [
@@ -43,7 +62,11 @@ class ManagementController extends Controller
                 'jumlahKelas' => $jumlahKelas,
                 'persentaseKehadiran' => $persentaseKehadiran,
                 'totalPelanggaran' => $totalPelanggaran,
+                'labels' => $labels,
+                'data' => $data
             ]
         );
+
+        // return dd($data, $labels)->get();
     }
 }
