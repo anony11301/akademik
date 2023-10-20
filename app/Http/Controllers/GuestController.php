@@ -46,11 +46,27 @@ class GuestController extends Controller
 
         $persentaseKehadiran = ($totalKehadiran / $totalSiswa) * 100;
 
+        $labels = [
+            'Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun',
+            'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des',
+        ];
+
+        $data = array_fill(0, 12, 0);
+
+        $tahun = Carbon::now()->year;
+
+        for($i = 1; $i <= 12; $i++ )
+        {
+            $data[$i - 1] = DataPelanggaran::whereMonth('tanggal', $i)->whereYear('tanggal', $tahun)->count();
+        }
+
 
         return view('pages.guest.index',[
             'kelas' => $kelas,
             'jumlahTidakHadir' => $jumlahTidakHadir,
             'persentaseKehadiran' => $persentaseKehadiran,
+            'labels' => $labels,
+            'data' => $data
         ]);
     }
 
@@ -95,7 +111,6 @@ class GuestController extends Controller
             'siswa' => $siswa,
             'kelas_id' => $kelas_id,
             'request' => $request,
-            'persentaseKehadiran' => $persentaseKehadiran,
             'persentasi_kehadiran' => $persentasi_kehadiran,
             'kelas' => $kelas,
         ];
