@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('page-content')
-    <div class="container-fluid vh-100 px-5">
-        <h1 class="mb-4">Data Absensi Kelas : {{ $kelas->first()->nama_kelas }}</h1>
+    <div class="container-fluid px-5">
+        <div class="mb-4 h4">Data Absensi Kelas : {{ $kelas->first()->nama_kelas }}</div>
         <form action="" method="get">
             <div class="row mb-3">
                 <div class="col-md-3 form-group">
@@ -18,7 +18,8 @@
                     <select class="form-control" name="status_filter" id="status_filter">
                         <option value="">Semua</option>
                         <option value="hadir" {{ $request->input('status_filter') == 'hadir' ? 'selected' : '' }}>Hadir
-                        <option value="tidak-hadir" {{ $request->input('status_filter') == 'tidak-hadir' ? 'selected' : '' }}>Tidak Hadir
+                        <option value="tidak-hadir"
+                            {{ $request->input('status_filter') == 'tidak-hadir' ? 'selected' : '' }}>Tidak Hadir
                         </option>
                         <option value="sakit" {{ $request->input('status_filter') == 'sakit' ? 'selected' : '' }}>Sakit
                         </option>
@@ -40,15 +41,15 @@
             <h5>Presentase Kehadiran: {{ number_format($persentasi_kehadiran) }}%</h5>
         </div>
         <div class="table-responsive">
-            <table class="table table-hover">
+            <table class="table table-hover mb-5 py-5">
                 <thead>
                     <tr>
                         <th scope="col">No</th>
-                        <th scope="col">NIS</th>
-                        <th scope="col">Nama Siswa</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Keterangan</th>
-                        <th scope="col">Tanggal</th>
+                        <th scope="col" style="white-space: nowrap">NIS</th>
+                        <th scope="col" style="white-space: nowrap">Nama Siswa</th>
+                        <th scope="col" style="white-space: nowrap">Status</th>
+                        <th scope="col" style="white-space: nowrap">Keterangan</th>
+                        <th scope="col" style="white-space: nowrap">Tanggal</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -58,15 +59,16 @@
                     @foreach ($absen as $item)
                         <tr>
                             <td>{{ $no++ }}</td>
-                            <td>{{ $item->NIS }}</td>
-                            <td>{{ $siswa->where('NIS', $item->NIS)->first()->nama }}</td>
-                            <td>{{ $item->status }}</td>
-                            <td>{{ $item->keterangan }}</td>
-                            <td>{{ $item->tanggal }}</td>
+                            <td style="white-space: nowrap">{{ $item->NIS }}</td>
+                            <td style="white-space: nowrap">{{ $siswa->where('NIS', $item->NIS)->first()->nama }}</td>
+                            <td style="white-space: nowrap">{{ $item->status }}</td>
+                            <td style="white-space: nowrap">{{ $item->keterangan }}</td>
+                            <td style="white-space: nowrap">{{ $item->tanggal }}</td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
+        <div class="my-5 py-5"></div>
     </div>
 @endsection
