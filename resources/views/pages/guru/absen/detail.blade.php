@@ -69,7 +69,7 @@
                         <tr>
                             <td>{{ $no++ }}</td>
                             <td>{{ $item->NIS }}</td>
-                            <td style="white-space: nowrap">{{ $siswa->where('NIS', $item->NIS)->first()->nama }}</td>
+                            <td style="white-space: nowrap">{{ $item->siswa->nama }}</td>
                             <td>{{ $item->status }}</td>
                             <td>{{ $item->keterangan }}</td>
                             <td style="white-space: nowrap">{{ $item->tanggal }}</td>

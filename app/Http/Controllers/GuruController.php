@@ -77,7 +77,7 @@ class GuruController extends Controller
     {
         $siswa = Siswa::where('id_kelas', $kelas_id)->get();
         $statusFilter = $request->input('status_filter');
-        $query = Absensi::where('id_kelas', $kelas_id);
+        $query = Absensi::with('siswa')->where('id_kelas', $kelas_id);
     
         // Filter berdasarkan tanggal hari ini jika tidak ada rentang tanggal yang diberikan
         if (!$request->date_from && !$request->date_to) {
