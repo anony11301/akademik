@@ -2,8 +2,15 @@
 
 @section('page-content')
     <div class="container-fluid">
-        <h1 class="mb-4">Data Kelas</h1>
-        <a href="{{ route('excel-export-absen', $kelas_id) }}" class="btn btn-sm btn-success float-right mr-2">Export Data</a>
+        <div class="s-flex py-4">
+            <h1 class="mb-4">Data Absensi Kelas {{ $nama_kelas }}</h1>
+            <div class="d-flex flex-row-reveerse">
+                <a href="{{ route('excel-export-absen', $kelas_id) }}" class="btn btn-sm btn-success float-right mr-2">Export
+                    Data</a>
+            </div>
+
+        </div>
+
         <form action="" method="get">
             <div class="row mb-3">
                 <div class="col-md-3 form-group col-12">

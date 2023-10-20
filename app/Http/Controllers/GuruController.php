@@ -120,18 +120,18 @@ class GuruController extends Controller
             ];
         });
 
-        // $data = compact('absen', 'siswa', 'kelas_id', 'request', 'absend');
+        $nama_kelas = Kelas::where('id', $kelas_id)->first();
         $data = [
             'absen' => $absen,
             'siswa' => $siswa,
             'kelas_id' => $kelas_id,
             'request' => $request,
             'persentasi_kehadiran' => $persentasi_kehadiran,
+            'nama_kelas' => $nama_kelas->nama_kelas,
         ];
         Session::put('absen_data', $absensi);
         return view('pages.guru.absen.detail', $data);
-        // return Excel::download(new AbsenExport($absen), 'export-absen.xlsx');
-        // return dd($absen)->get();
+
     }
     
     public static function export()

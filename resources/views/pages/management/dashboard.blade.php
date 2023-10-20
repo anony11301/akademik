@@ -49,7 +49,7 @@
         </div>
         <div class="row my-5">
             <div class="col-xl-4 col-lg-5">
-                <div class="card h-100 justify-content-center shadow mb-4">
+                <div class="card h-100 justify-content-center shadow">
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                         <h6 class="m-0 font-weight-bold text-primary">
@@ -64,7 +64,7 @@
                 </div>
             </div>
             <div class="col-xl-8 col-lg-5">
-                <div class="card h-100 justify-content-center shadow mb-4">
+                <div class="card h-100 justify-content-center shadow">
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                         <h6 class="m-0 font-weight-bold text-primary">

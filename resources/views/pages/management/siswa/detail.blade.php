@@ -25,12 +25,12 @@
                         <tr>
                             @if (Auth::user()->id_level == 1)
                                 <th scope="col">#</th>
-                                <th scope="col">NIS</th>
+                                <th scope="col" style="white-space: nowrap">NIS</th>
                                 <th scope="col" style="white-space: nowrap">Nama Siswa</th>
                                 <th scope="col">Aksi</th>
                             @else
                                 <th scope="col">#</th>
-                                <th scope="col">NIS</th>
+                                <th scope="col" style="white-space: nowrap">NIS</th>
                                 <th scope="col" style="white-space: nowrap">Nama Siswa</th>
                             @endif
 
@@ -44,7 +44,7 @@
                             <tr>
                                 @if (Auth::user()->id_level == 1)
                                     <td>{{ $no++ }}</td>
-                                    <td>{{ $item->NIS }}</td>
+                                    <td style="white-space: nowrap">{{ $item->NIS }}</td>
                                     <td style="white-space: nowrap">{{ $item->nama }}</td>
                                     <td class="w-25">
                                         <div class="d-flex">
@@ -65,7 +65,7 @@
                                     </td>
                                 @else
                                     <td>{{ $no++ }}</td>
-                                    <td>{{ $item->NIS }}</td>
+                                    <td style="white-space: nowrap">{{ $item->NIS }}</td>
                                     <td style="white-space: nowrap">{{ $item->nama }}</td>
                                 @endif
 

@@ -12,36 +12,39 @@
                     </div>
                 </div>
                 <div class="col-md-12">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>NIS</th>
-                                <th>Nama</th>
-                                <th>Status</th>
-                                <th>Keterangan</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($siswa as $siswa)
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
                                 <tr>
-                                    <td>{{ $siswa->NIS }}</td>
-                                    <td>{{ $siswa->nama }}</td>
-                                    <td>
-                                        <select class="form-control" name="status[]">
-                                            <option value="hadir">Hadir</option>
-                                            <option value="sakit">Sakit</option>
-                                            <option value="izin">Izin</option>
-                                            <option value="alpha">Alpha</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <input class="form-control" type="text" name="keterangan[]">
-                                        <input type="hidden" name="nis[]" value="{{ $siswa->NIS }}">
-                                    </td>
+                                    <th style="white-space: nowrap">NIS</th>
+                                    <th style="white-space: nowrap">Nama</th>
+                                    <th style="white-space: nowrap">Status</th>
+                                    <th style="white-space: nowrap">Keterangan</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @foreach ($siswa as $siswa)
+                                    <tr>
+                                        <td style="white-space: nowrap">{{ $siswa->NIS }}</td>
+                                        <td style="white-space: nowrap">{{ $siswa->nama }}</td>
+                                        <td style="white-space: nowrap">
+                                            <select class="form-control" name="status[]" style="width: 100px">
+                                                <option value="hadir">Hadir</option>
+                                                <option value="sakit">Sakit</option>
+                                                <option value="izin">Izin</option>
+                                                <option value="alpha">Alpha</option>
+                                            </select>
+                                        </td>
+                                        <td style="white-space: nowrap">
+                                            <input class="form-control" type="text" name="keterangan[]">
+                                            <input type="hidden" name="nis[]" value="{{ $siswa->NIS }}">
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
                 <div class="d-flex flex-row-reverse w-100">
                     <button type="submit" class="btn btn-success w-25">Simpan</button>
