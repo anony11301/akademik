@@ -6,9 +6,11 @@ use App\Models\DataPelanggaran;
 use App\Models\Kelas;
 use App\Models\Pelanggaran;
 use App\Models\Siswa;
+use App\Exports\PelanggaranExport;
 use App\Models\Absensi;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Session;
 
 class DataPelanggaranController extends Controller
@@ -98,5 +100,10 @@ class DataPelanggaranController extends Controller
         $filteredSiswa = $filteredSiswa->get();
 
         return view('pages.management.data pelanggaran.detail', compact('siswa', 'filteredSiswa', 'request'));
+    }
+
+    public static function export()
+    {
+        return Excel::download(new PelanggaranExport, 'data_pelanggaran.xlsx');
     }
 }

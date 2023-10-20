@@ -95,4 +95,5 @@ Route::group(['middleware' => ['isGuru']], function () {
 
 // Route Excel
 Route::get('excel-export', [KelasController::class, 'exportExcel']);
+Route::get('excel-export-pelanggaran', [DataPelanggaranController::class, 'export']);
 Route::get('/excel-export-absen/{id}', [GuruController::class, 'export'])->name('excel-export-absen');

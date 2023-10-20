@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h1 class="mb-0">Data Pelanggaran</h1>
-            <a href="#" class="btn btn-sm btn-success">Export Data</a>
+            <a href="{{ url('excel-export-pelanggaran') }}" class="btn btn-sm btn-success">Export Data</a>
         </div>
         <form action="" method="get">
             <div class="row mb-3">
