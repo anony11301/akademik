@@ -159,6 +159,6 @@ class SiswaController extends Controller
     // Function Export
     public function exportExcel()
     {
-        return Excel::download(new KelasExport,'kelas-excel.xlsx');
+        return Excel::download(new KelasExport,'siswa-excel.xlsx');
     }
 }

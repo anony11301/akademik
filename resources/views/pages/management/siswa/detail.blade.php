@@ -12,9 +12,9 @@
                         class="btn btn-sm btn-primary float-right mt-2">+
                         Tambah
                         Data</a>
-                    <a href="{{ url('excel-export') }}" class="btn btn-sm btn-success float-right mr-2 mt-2">Export Data</a>
+                    <a href="{{ url('excel-export-siswa') }}" class="btn btn-sm btn-success float-right mr-2 mt-2">Export Data</a>
                 @else
-                    <a href="{{ url('excel-export') }}" class="btn btn-sm btn-success float-right mr-2 mt-2">Export Data</a>
+                    <a href="{{ url('excel-export-siswa') }}" class="btn btn-sm btn-success float-right mr-2 mt-2">Export Data</a>
                 @endif
 
 
