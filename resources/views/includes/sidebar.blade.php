@@ -5,7 +5,7 @@
     <a class="sidebar-brand d-flex align-items-center justify-content-center"
         href="{{ Auth::user()->id_level == 1 ? route('dashboard-management') : route('dashboard-guru') }}">
         <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-laugh-wink"></i>
+            <img src="/img/logo-smk.png" alt="logo">
         </div>
         <div class="sidebar-brand-text mx-3">SMK Prestasi Prima</div>
     </a>
