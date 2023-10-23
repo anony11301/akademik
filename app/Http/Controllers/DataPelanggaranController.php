@@ -56,6 +56,15 @@ class DataPelanggaranController extends Controller
         $kelas_id = $id;
         $date = Carbon::today();
 
+        $pelanggaran = Pelanggaran::find($id_pelanggaran);
+        $poin_pelanggaran = $pelanggaran->poin;
+
+        $siswa = Siswa::where('NIS', $nis)->first();
+        $poin_siswa = $siswa->poin;
+        $poin_siswa += $poin_pelanggaran;
+
+        $siswa->update(['poin' => $poin_siswa]);
+
         DataPelanggaran::create([
             'NIS' => $nis,
             'id_pelanggaran' => $id_pelanggaran,
