@@ -163,10 +163,12 @@ class SiswaController extends Controller
     
 
     // Function Export
-    public function exportExcel()
+    public function exportSiswaByKelas($id_kelas)
     {
-        return Excel::download(new SiswaExport,'siswa-excel.xlsx');
+        $export = new SiswaExport($id_kelas);
+        return Excel::download($export, 'siswa-excel.xlsx');
     }
+
 
     //Function Import
     public function import_excel(Request $request) 

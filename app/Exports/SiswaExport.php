@@ -5,6 +5,8 @@ namespace App\Exports;
 use App\Models\Siswa;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
+use Illuminate\Support\Facades\DB;
+
 
 class SiswaExport implements FromCollection, WithHeadings
 {
@@ -13,7 +15,13 @@ class SiswaExport implements FromCollection, WithHeadings
     */
     public function collection()
     {
-        return collect(Siswa::getAllSiswa());
+        $siswa = DB::table('siswa')
+            ->select('NIS', 'nama', 'poin')
+            ->where('id_kelas', $this->id_kelas)
+            ->get();
+
+        return $siswa;
+    
     }
 
     public function headings():array {
@@ -22,5 +30,12 @@ class SiswaExport implements FromCollection, WithHeadings
             'nama',
             'poin'
         ];
+    }
+
+    protected $id_kelas;
+
+    public function __construct($id_kelas)
+    {
+        $this->id_kelas = $id_kelas;
     }
 }
