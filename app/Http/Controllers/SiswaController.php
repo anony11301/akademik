@@ -192,6 +192,6 @@ class SiswaController extends Controller
 		Session::flash('sukses','Data Siswa Berhasil Diimport!');
  
 		// alihkan halaman kembali
-		return redirect('pages/management/siswa/detail');
+        return redirect()->route('data-siswa');
 	}
 }

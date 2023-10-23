@@ -56,9 +56,9 @@
                         </div>
                     </div>
 
-                    <a href="{{ route('excel-export-siswa', $data) }}" class="btn btn-sm btn-success float-right mr-2 mt-2">Export Data</a>
+                    <a href="{{ url('excel-export-siswa') }}" class="btn btn-sm btn-success float-right mr-2 mt-2">Export Data</a>
                 @else
-                    <a href="{{ route('excel-export-siswa', $data) }}" class="btn btn-sm btn-success float-right mr-2 mt-2">Export Data</a>
+                    <a href="{{ url('excel-export-siswa') }}" class="btn btn-sm btn-success float-right mr-2 mt-2">Export Data</a>
                 @endif
 
 
