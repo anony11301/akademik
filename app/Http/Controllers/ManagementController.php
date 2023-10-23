@@ -28,7 +28,12 @@ class ManagementController extends Controller
         $totalKehadiran = $absensi->where('status', 'hadir')->count();
         $totalSiswa = $absensi->count();
 
-        $persentaseKehadiran = ($totalKehadiran / $totalSiswa) * 100;
+        if($totalKehadiran == 0){
+            $persentaseKehadiran = 0;
+        }
+        else {
+            $persentaseKehadiran = ($totalKehadiran / $totalSiswa) * 100;
+        }
 
         $pelanggaran = DataPelanggaran::whereYear('tanggal', $tahunSekarang)
             ->whereMonth('tanggal', $bulanSekarang)
