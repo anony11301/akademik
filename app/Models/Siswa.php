@@ -16,7 +16,8 @@ class Siswa extends Model
     protected $fillable = [
         'NIS', 
         'nama',
-        'id_kelas'
+        'id_kelas',
+        'poin'
     ];
 
     protected $hidden = [
@@ -25,7 +26,7 @@ class Siswa extends Model
 
     public static function getAllsiswa() {
         $result = DB::table('siswa')
-            ->select('NIS','nama','id_kelas')
+            ->select('NIS','nama','id_kelas', 'poin')
             ->get()
             ->toArray();
 

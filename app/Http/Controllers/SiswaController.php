@@ -80,6 +80,7 @@ class SiswaController extends Controller
             'nama_kelas' => $nama_kelas,
             'siswa' => $kelas,
             'id_kelas' => $id_kelas,
+            'poin' => $kelas
         ];
 
         return view('pages.management.siswa.detail', $data);

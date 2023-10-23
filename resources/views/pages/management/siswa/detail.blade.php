@@ -27,11 +27,13 @@
                                 <th scope="col">#</th>
                                 <th scope="col" style="white-space: nowrap">NIS</th>
                                 <th scope="col" style="white-space: nowrap">Nama Siswa</th>
+                                <th scope="col" style="white-space: nowrap">Poin</th>
                                 <th scope="col">Aksi</th>
                             @else
                                 <th scope="col">#</th>
                                 <th scope="col" style="white-space: nowrap">NIS</th>
                                 <th scope="col" style="white-space: nowrap">Nama Siswa</th>
+                                <th scope="col" style="white-space: nowrap">Poin</th>
                             @endif
 
                         </tr>
@@ -46,6 +48,7 @@
                                     <td>{{ $no++ }}</td>
                                     <td style="white-space: nowrap">{{ $item->NIS }}</td>
                                     <td style="white-space: nowrap">{{ $item->nama }}</td>
+                                    <td style="white-space: nowrap">{{ $item->poin }}</td>
                                     <td class="w-25">
                                         <div class="d-flex">
                                             <div class="w-50 mx-2 ">
@@ -67,6 +70,8 @@
                                     <td>{{ $no++ }}</td>
                                     <td style="white-space: nowrap">{{ $item->NIS }}</td>
                                     <td style="white-space: nowrap">{{ $item->nama }}</td>
+                                    <td style="white-space: nowrap">{{ $item->poin }}</td>
+
                                 @endif
 
                             </tr>
