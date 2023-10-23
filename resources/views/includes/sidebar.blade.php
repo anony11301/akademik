@@ -2,21 +2,18 @@
 <ul class="navbar-nav bg-orange sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center"
-        href="{{ Auth::user()->id_level == 1 ? route('dashboard-management') : route('dashboard-guru') }}">
-        <div class="sidebar-brand-icon rotate-n-15">
-            <img src="/img/logo-smk.png" alt="logo">
-        </div>
-        <div class="sidebar-brand-text mx-3">SMK Prestasi Prima</div>
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ Auth::user()->id_level == 1 ? route('dashboard-management') : route('dashboard-guru') }}">
+        <img src="/img/logo-smk.png" alt="logo" style="width: 100px; height: 100px; margin-top: 50px;>
     </a>
+
+
 
     <!-- Divider -->
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link"
-            href="{{ Auth::user()->id_level == 1 ? route('dashboard-management') : route('dashboard-guru') }}">
+        <a class="nav-link" href="{{ Auth::user()->id_level == 1 ? route('dashboard-management') : route('dashboard-guru') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
