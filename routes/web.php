@@ -101,4 +101,4 @@ Route::get('/excel-export-absen/{id}', [GuruController::class, 'export'])->name(
 
 
 //Route Import Excel
-Route::post('/pages/management/siswa/import_excel', [SiswaController::class, 'import_excel']);
+Route::post('/pages/management/siswa/import_excel/{id}', [SiswaController::class, 'import_excel'])->name('import-siswa');

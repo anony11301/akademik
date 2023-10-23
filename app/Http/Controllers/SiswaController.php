@@ -171,7 +171,7 @@ class SiswaController extends Controller
 
 
     //Function Import
-    public function import_excel(Request $request) 
+    public function import_excel(Request $request, $id_kelas) 
 	{
 		// validasi
 		$this->validate($request, [
@@ -194,6 +194,7 @@ class SiswaController extends Controller
 		Session::flash('sukses','Data Siswa Berhasil Diimport!');
  
 		// alihkan halaman kembali
-		return redirect('pages/management/siswa/detail');
+		return redirect()->route('data-siswa', $id_kelas);
+
 	}
 }
