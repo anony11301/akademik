@@ -32,34 +32,34 @@
     <!-- Nav Item -->
     <li class="nav-item">
         <a class="nav-link" href="{{ route('management-kelas') }}">
-            <i class="fas fa-fw fa-cog"></i>
+            <i class="fa-solid fa-door-closed"></i>
             <span>Kelas</span>
         </a>
     </li>
 
     <li class="nav-item">
         <a class="nav-link" href="{{ route('management-siswa') }}">
-            <i class="fas fa-fw fa-cog"></i>
+            <i class="fa-solid fa-users"></i>
             <span>Siswa</span>
         </a>
     </li>
 
     <li class="nav-item">
         <a class="nav-link" href="{{ route('absen.index') }}">
-            <i class="fas fa-fw fa-cog"></i>
+            <i class="fa-solid fa-book"></i>
             <span>Absensi</span>
         </a>
     </li>
     @if (Auth::user()->id_level == 1)
         <li class="nav-item">
             <a class="nav-link" href="{{ route('pelanggaran') }}">
-                <i class="fas fa-fw fa-cog"></i>
+                <i class="fa-solid fa-triangle-exclamation"></i>
                 <span>Pelanggaran</span>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{{ route('data-pelanggaran') }}">
-                <i class="fas fa-fw fa-cog"></i>
+                <i class="fa-solid fa-circle-exclamation"></i>
                 <span>Data Pelanggaran</span>
             </a>
         </li>
