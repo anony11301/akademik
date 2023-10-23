@@ -24,7 +24,7 @@ class Siswa extends Model
 
     ];
 
-    public static function getAllsiswa() {
+    public static function getAllsiswa($id_kelas) {
         $result = DB::table('siswa')
             ->select('NIS','nama', 'poin')
             ->get()
