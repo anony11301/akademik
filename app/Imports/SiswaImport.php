@@ -18,7 +18,6 @@ class SiswaImport implements ToModel
             'NIS' => $row[1],
             'nama' => $row[2],
             'id_kelas' => $row[3],
-            'poin' => $row[4] 
         ]);
     }
 }
