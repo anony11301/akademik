@@ -26,7 +26,7 @@ class Siswa extends Model
 
     public static function getAllsiswa() {
         $result = DB::table('siswa')
-            ->select('NIS','nama','id_kelas', 'poin')
+            ->select('NIS','nama', 'poin')
             ->get()
             ->toArray();
 

@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Session;
+
 use App\Models\Siswa;
 use App\Models\Kelas;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Exports\KelasExport;
+use App\Exports\SiswaExport;
+use App\Imports\SiswaImport;
 use App\Models\Absensi;
 use Illuminate\Support\Facades\DB;
 
@@ -157,9 +160,38 @@ class SiswaController extends Controller
         }
     }
 
+    
+
     // Function Export
     public function exportExcel()
     {
-        return Excel::download(new KelasExport,'siswa-excel.xlsx');
+        return Excel::download(new SiswaExport,'siswa-excel.xlsx');
     }
+
+    //Function Import
+    public function import_excel(Request $request) 
+	{
+		// validasi
+		$this->validate($request, [
+			'file' => 'required|mimes:csv,xls,xlsx'
+		]);
+ 
+		// menangkap file excel
+		$file = $request->file('file');
+ 
+		// membuat nama file unik
+		$nama_file = rand().$file->getClientOriginalName();
+ 
+		// upload ke folder file_siswa di dalam folder public
+		$file->move('file_siswa',$nama_file);
+ 
+		// import data
+		Excel::import(new SiswaImport, public_path('/file_siswa/'.$nama_file));
+ 
+		// notifikasi dengan session
+		Session::flash('sukses','Data Siswa Berhasil Diimport!');
+ 
+		// alihkan halaman kembali
+		return redirect('pages/management/siswa/detail');
+	}
 }
