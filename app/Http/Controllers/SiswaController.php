@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Session;
+use Illuminate\Support\Facades\Session;
 
 use App\Models\Siswa;
 use App\Models\Kelas;
@@ -188,7 +188,7 @@ class SiswaController extends Controller
 		$file->move('file_siswa',$nama_file);
  
 		// import data
-		Excel::import(new SiswaImport, public_path('/file_siswa/'.$nama_file));
+		Excel::import(new SiswaImport($id_kelas), public_path('/file_siswa/'.$nama_file));
  
 		// notifikasi dengan session
 		Session::flash('sukses','Data Siswa Berhasil Diimport!');
