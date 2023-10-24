@@ -9,6 +9,7 @@ use App\Models\Kelas;
 use App\Models\Siswa;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Session;
 
@@ -66,6 +67,7 @@ class GuruController extends Controller
             $absen->keterangan = $keterangan[$key];
             $absen->NIS = $n;
             $absen->id_kelas = $kelas_id;
+            $absen->created_by = Auth::user()->id;
             $absen->save();
         }
 

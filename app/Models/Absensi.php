@@ -19,6 +19,7 @@ class Absensi extends Model
         'tanggal',
         'status', // Kolom status (hadir, sakit, izin)
         'keterangan', // Kolom keterangan
+        'created_by',
     ];
 
     // Relasi ke model Siswa

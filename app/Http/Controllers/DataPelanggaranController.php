@@ -10,6 +10,7 @@ use App\Exports\PelanggaranExport;
 use App\Models\Absensi;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Session;
 
@@ -70,6 +71,7 @@ class DataPelanggaranController extends Controller
             'id_pelanggaran' => $id_pelanggaran,
             'id_kelas' => $kelas_id,
             'tanggal' => $date,
+            'created_by' => Auth::user()->id,
         ]);
 
         return redirect()->route('data-pelanggaran-kelas', $id);

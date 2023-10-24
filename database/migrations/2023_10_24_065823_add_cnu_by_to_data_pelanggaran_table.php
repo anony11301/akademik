@@ -12,8 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('data_pelanggaran', function (Blueprint $table) {
-            $table->integer('created_by');
-            $table->integer('updated_by');
+            $table->integer('created_by')->nullable();
         });
     }
 
