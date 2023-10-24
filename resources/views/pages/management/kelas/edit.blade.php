@@ -21,10 +21,10 @@
                 <div class="form-group">
                     <label for="jurusan">Jurusan</label>
                     <select class="form-control" id="jurusan" name="jurusan">
-                        <option value="RPL">Rekaya Perangkat Lunak</option>
-                        <option value="MM">Multimedia</option>
-                        <option value="TKJ">Teknik Komputer Jaringan</option>
-                        <option value="BC">Broadcasting</option>
+                        <option value="PPLG">Pemodelan Perangkat Lunak dan Gim (PPLG)</option>
+                        <option value="DKV">Desain Komunikasi Visual (DKV)</option>
+                        <option value="TJKT">Teknik Jaringan Komputer dan Telekomunikasi (TJKT)</option>
+                        <option value="BCF">Broadcasting Film (BCF)</option>
                     </select>
                 </div>
             </div>
@@ -35,6 +35,8 @@
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
                     </select>
                 </div>
             </div>
