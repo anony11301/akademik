@@ -44,7 +44,12 @@ class GuestController extends Controller
         $totalKehadiran = $absensi->where('status', 'hadir')->count();
         $totalSiswa = $absensi->count();
 
-        $persentaseKehadiran = ($totalKehadiran / $totalSiswa) * 100;
+        if($totalKehadiran == 0){
+            $persentaseKehadiran = 0;
+        }
+        else {
+            $persentaseKehadiran = ($totalKehadiran / $totalSiswa) * 100;
+        }
 
         $labels = [
             'Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun',
