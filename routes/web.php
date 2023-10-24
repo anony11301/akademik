@@ -3,6 +3,14 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ManagementController;
+use App\Http\Controllers\KelasController;
+use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\AbsenController;
+use App\Http\Controllers\DataPelanggaranController;
+use App\Http\Controllers\GuruController;
+use App\Http\Controllers\GuestController;
+use App\Http\Controllers\PelanggaranController;
+use App\Models\DataPelanggaran;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,4 +24,81 @@ use App\Http\Controllers\ManagementController;
 */
 
 Route::get('/', [LoginController::class, 'index'])->name('login');
-Route::get('/dashboard-managemen', [ManagementController::class, 'index'])->name('dashboard-managemen');
+Route::post('/login-proses', [LoginController::class, 'login_proses'])->name('login-proses');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('absensi', [GuestController::class, 'index'])->name('absensi');
+Route::get('absensi/{id}', [GuestController::class, 'show'])->name('absensi-detail');
+
+Route::get('/create-siswa', [SiswaController::class, 'create']);
+
+Route::group( ['middleware' => ['auth']], function(){
+    Route::get('/absen', [AbsenController::class, 'index'])->name('absen.index');
+    Route::get('/management-kelas', [KelasController::class, 'index'])->name('management-kelas');
+    Route::get('/management-siswa', [SiswaController::class, 'index'])->name('management-siswa');
+    Route::get('/data-siswa/{id}', [SiswaController::class, 'show'])->name('data-siswa');
+    Route::get('/absen-show/{id}', [GuruController::class, 'show'])->name('absen.show');
+});
+
+
+Route::group(['middleware' => ['isManagement'], 'prefix' => 'management'], function () {
+    Route::get('/dashboard-management', [ManagementController::class, 'index'])->name('dashboard-management');
+
+    //Kelas
+    // Route::get('/management-kelas', [KelasController::class, 'index'])->name('management-kelas');
+    Route::get('/management-tambah-kelas', [KelasController::class, 'create'])->name('management-tambah-kelas');
+    Route::post('/simpan-data-kelas', [KelasController::class, 'store'])->name('kelas.store');
+    Route::get('/edit-kelas/{id}', [KelasController::class, 'edit'])->name('edit-kelas');
+    Route::post('/update-kelas/{id}', [KelasController::class, 'update'])->name('update-kelas');
+    Route::delete('/delete-kelas/{id}', [KelasController::class, 'destroy'])->name('delete-kelas');
+
+    //Siswa
+    // Route::get('/management-siswa', [SiswaController::class, 'index'])->name('management-siswa');
+    Route::get('/management-tambah-siswa/{id}', [SiswaController::class, 'create'])->name('management-tambah-siswa');
+    // Route::get('/data-siswa/{id}', [SiswaController::class, 'show'])->name('data-siswa');
+    Route::post('/simpan-data-siswa/{id}', [SiswaController::class, 'store'])->name('siswa.store');
+    Route::delete('/delete-siswa/{NIS}', [SiswaController::class, 'destroy'])->name('delete-siswa');
+    Route::get('/edit-siswa/{NIS}', [SiswaController::class, 'edit'])->name('edit-siswa');
+    Route::put('/update-siswa/{NIS}', [SiswaController::class, 'update'])->name('update-siswa');
+
+    //Pelanggaran
+    Route::get('/pelanggaran', [PelanggaranController::class, 'index'])->name('pelanggaran');
+    Route::get('/pelanggaran-show/{id}', [DataPelanggaranController::class, 'detail'])->name('pelanggaran-show');
+    Route::get('/tambah-pelanggaran', [PelanggaranController::class, 'create'])->name('add-pelanggaran');
+    Route::post('/save-pelanggaran', [PelanggaranController::class, 'store'])->name('save-pelanggaran');
+    Route::get('/edit-pelanggaran/{id}', [PelanggaranController::class, 'edit'])->name('edit-pelanggaran');
+    Route::post('/update-pelanggaran/{id}', [PelanggaranController::class, 'update'])->name('update-pelanggaran');
+    Route::delete('delete-pelanggaran/{id}', [PelanggaranController::class, 'destroy'])->name('delete-pelanggaran');
+
+    //Data Pelanggaran
+    Route::get('/data-pelanggaran', [DataPelanggaranController::class, 'index'])->name('data-pelanggaran');
+    Route::get('/data-pelanggaran/{kelas_id}', [DataPelanggaranController::class, 'show'])->name('data-pelanggaran-kelas');
+    Route::post('/save-data-pelanggaran/{id}', [DataPelanggaranController::class, 'store'])->name('save-data-pelanggaran');
+    Route::get('/rekap-pelanggaran', [DataPelanggaranController::class, 'detail'])->name('rekap-pelanggaran');
+
+
+});
+
+Route::group(['middleware' => ['isGuru']], function () {
+    Route::get('/dashboard-guru', [ManagementController::class, 'index'])->name('dashboard-guru');
+
+    //Guru
+    Route::get('/kelas-select', [GuruController::class, 'index'])->name('kelas.select');
+    Route::get('/absen-select', [GuruController::class, 'select'])->name('absen.select');
+    Route::get('/absen/{kelas_id}', [GuruController::class, 'create'])->name('absen.create');
+    Route::post('/absen/store', [GuruController::class, 'store'])->name('absen.store');
+
+});
+
+
+
+
+
+// Route Excel
+Route::get('excel-export', [KelasController::class, 'exportExcel']);
+Route::get('/excel-export-siswa/{id}', [SiswaController::class, 'exportSiswaByKelas'])->name('excel-export-siswa');
+Route::get('excel-export-pelanggaran', [DataPelanggaranController::class, 'export']);
+Route::get('/excel-export-absen/{id}', [GuruController::class, 'export'])->name('excel-export-absen');
+
+
+//Route Import Excel
+Route::post('/pages/management/siswa/import_excel/{id}', [SiswaController::class, 'import_excel'])->name('import-siswa');
