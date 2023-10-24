@@ -20,6 +20,7 @@
 
     <!-- Custom styles for this template-->
     <link href="/bootstrap/css/sb-admin-2.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="/img/logo-smk.png" type="image/x-icon">
 
 </head>
 
