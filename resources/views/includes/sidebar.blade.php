@@ -2,9 +2,9 @@
 <ul class="navbar-nav bg-orange sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center"
+    <a class="sidebar-brand d-flex align-items-center justify-content-center container-fluid my-5"
         href="{{ Auth::user()->id_level == 1 ? route('dashboard-management') : route('dashboard-guru') }}">
-        <img src="/img/logo-smk.png" alt="logo" style="width: 100px; height: 100px; margin-top: 50px;">
+        <img src="/img/logo-smk.png" alt="logo" class="w-75">
     </a>
 
 
