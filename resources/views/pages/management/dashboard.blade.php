@@ -73,7 +73,7 @@
                     </div>
                     <div class="card-body">
                         <div class="pt-4 pb-2">
-                            <canvas id="myLineChart"></canvas>
+                            <canvas id="myLineChart" class="w-100 h-100"></canvas>
                         </div>
                     </div>
                 </div>
