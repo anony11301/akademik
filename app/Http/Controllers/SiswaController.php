@@ -11,6 +11,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\SiswaExport;
 use App\Imports\SiswaImport;
 use App\Models\Absensi;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class SiswaController extends Controller
@@ -65,6 +66,7 @@ class SiswaController extends Controller
         $siswa->nis = $request->nis;
         $siswa->nama = $request->nama;
         $siswa->id_kelas = $id;
+        $siswa->created_by = Auth::user()->id;
 
         $siswa->save();
 
@@ -132,6 +134,7 @@ class SiswaController extends Controller
             'NIS' => $request->input('NIS'),
             'nama' => $request->input('nama'),
             'id_kelas' => $request->input('kelas'),
+            'updated_by' => Auth::user()->id,
         ]);
 
         return redirect()->route('management-siswa')->with('success', 'Siswa berhasil diperbarui.');

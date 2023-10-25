@@ -12,7 +12,7 @@ class Kelas extends Model
     protected $table = 'kelas';
 
     protected $fillable = [
-        'id', 'nama_kelas', 'jurusan',
+        'id', 'nama_kelas', 'jurusan','created_by', 'updated_by',
     ];
 
     protected $hidden = [];
