@@ -6,7 +6,7 @@
         </tr>
     </thead>
     <tbody>
-    @php $no = 1 $endphp
+    @php $no = 1 @endphp
     @foreach($kelas as $kelas)
         <tr>
             <td style="border: 1px solid black;">{{ $no++ }}</td>

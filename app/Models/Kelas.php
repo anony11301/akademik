@@ -25,10 +25,6 @@ class Kelas extends Model
             ->get()
             ->toArray();
 
-        foreach ($result as $key => $row) {
-            $row->nomor_urut = $key + 1;
-        }
-
         return $result;
     }
 
