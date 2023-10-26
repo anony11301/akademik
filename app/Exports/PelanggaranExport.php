@@ -8,7 +8,7 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 use Illuminate\Support\Facades\DB;
 use App\Models\DataPelanggaran;
 
-class PelanggaranExport implements FromCollection, WithHeadings
+class PelanggaranExport implements FromCollection, WithHeadings, ShouldAutoSize
 {
      /**
     * @return \Illuminate\Support\Collection

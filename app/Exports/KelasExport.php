@@ -4,23 +4,20 @@ namespace App\Exports;
 
 use App\Models\Kelas;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\FromView;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class KelasExport implements FromCollection,WithHeadings
+class KelasExport implements FromView, ShouldAutoSize
 {
     /**
     * @return \Illuminate\Support\Collection
     */
-    public function collection()
+    public function view(): View
     {
-        return collect(Kelas::getAllkelas());
-        // return Kelas::all();
-    }
-
-    public function headings():array {
-        return [
-            'Nomor',
-            'Nama Kelas',
-        ];
+        return view('export.kelas', [
+            'kelas' => Kelas::all()
+        ]);
     }
 }
