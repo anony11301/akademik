@@ -4,8 +4,9 @@ namespace App\Imports;
 
 use App\Models\Siswa;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class SiswaImport implements ToModel
+class SiswaImport implements ToModel, WithHeadingRow
 {
     private $id_kelas;
     private $startRow;
@@ -18,16 +19,17 @@ class SiswaImport implements ToModel
 
     public function model(array $row)
     {
-        // Mengecek bahwa baris saat ini lebih besar dari baris judul, yang ingin dihindari
-        if ($this->startRow > 1) {
-            // Mengembalikan model data siswa hanya jika baris saat ini adalah data aktual
-            return new Siswa([
-                'NIS' => $row[1],
-                'nama' => $row[2],
-                'id_kelas' => $this->id_kelas,
-            ]);
+        if ($this->startRow <= 1) {
+            return null; 
         }
-        return null;
+
+        return new Siswa([
+            'NIS' => $row['nis'],
+            'nama' => $row['nama'],
+            'id_kelas' => $this->id_kelas,
+        ]);
     }
 }
+
+
 
