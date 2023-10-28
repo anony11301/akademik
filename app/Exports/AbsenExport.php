@@ -3,67 +3,28 @@
 namespace App\Exports;
 
 use App\Models\Absensi;
-use Maatwebsite\Excel\Concerns\FromCollection;
+use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
-use Maatwebsite\Excel\Concerns\WithHeadings;
-use App\Http\Controllers\GuruController;
 
-class AbsenExport implements FromCollection, withHeadings, ShouldAutoSize
+class AbsenExport implements FromVIew, ShouldAutoSize
 {
     /**
     * @return \Illuminate\Support\Collection
     */
-    // public function collection()
-    // {
-    //     return collect(GuruController::export());
-    //     // return Kelas::all();
-    // }
+    protected $id_kelas;
 
-    protected $data;
-
-    public function __construct($data)
+    public function __construct($id_kelas)
     {
-        $this->data = $data;
+        $this->id_kelas = $id_kelas;
     }
 
-    public function collection()
+    public function view(): View
     {
-        // $absen = $this->data['absen'];
-        // $siswa = $this->data['siswa'];
-        // $kelas_id = $this->data['kelas_id'];
-        // $request = $this->data['request'];
-        // $persentasi_kehadiran = $this->data['persentasi_kehadiran'];
+        $absen = Absensi::where('id_kelas', $this->id_kelas)->get();
 
-        // $collection = [];
-
-        // foreach ($absen as $key => $value) {
-        //     $siswaData = isset($siswa[$value->siswa_id]) ? $siswa[$value->siswa_id] : null;
-
-        //     if ($siswaData) {
-        //         $collection[] = [
-        //             $key + 1,  // Nomor
-        //             $siswaData->nis,  // NIS
-        //             $siswaData->nama,  // Nama Siswa
-        //             $value->status,  // Status
-        //             $value->keterangan,  // Keterangan
-        //             $value->tanggal,  // Tanggal
-        //         ];
-        //     }
-        // }
-
-        return $this->data;
-
-    }
-
-    public function headings():array {
-        return [
-            'Nomor',
-            'NIS',
-            'Nama Siswa',
-            'Nama Kelas',
-            'Status',
-            'Keterangan',
-            'Tanggal',
-        ];
+        return view('export.absen', [
+            'absen' => $absen
+        ]);
     }
 }

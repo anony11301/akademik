@@ -20,6 +20,6 @@
             <td style="border: 1px solid black;">{{ $pelanggaran->poin }}</td>
             <td style="border: 1px solid black;">{{ $pelanggaran->tanggal }}</td>
         </tr>
-    </tbody>
     @endforeach
+    </tbody>
 </table>

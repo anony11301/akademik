@@ -12,16 +12,16 @@
     </thead>
     <tbody>
     @php $no = 1 @endphp
-    @foreach($absen as absen)
+    @foreach($absen as $absen)
         <tr>
             <td style="border: 1px solid black;">{{ $no++ }}</td>
             <td style="border: 1px solid black;">{{ $absen->NIS }}</td>
-            <td style="border: 1px solid black;">{{ $absen->nama }}</td>
-            <td style="border: 1px solid black;">{{ $absen->nama_kelas }}</td>
+            <td style="border: 1px solid black;">{{ $absen->siswa->nama }}</td>
+            <td style="border: 1px solid black;">{{ $absen->kelas->nama_kelas }}</td>
             <td style="border: 1px solid black;">{{ $absen->status }}</td>
             <td style="border: 1px solid black;">{{ $absen->keterangan }}</td>
             <td style="border: 1px solid black;">{{ $absen->tanggal }}</td>
         </tr>
-    </tbody>
     @endforeach
+    </tbody>
 </table>
