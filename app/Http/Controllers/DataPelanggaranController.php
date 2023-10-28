@@ -6,7 +6,7 @@ use App\Models\DataPelanggaran;
 use App\Models\Kelas;
 use App\Models\Pelanggaran;
 use App\Models\Siswa;
-use App\Exports\PelanggaranExport;
+use App\Exports\DataPelanggaranExport;
 use App\Models\Absensi;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -115,6 +115,6 @@ class DataPelanggaranController extends Controller
 
     public static function export()
     {
-        return Excel::download(new PelanggaranExport, 'data_pelanggaran.xlsx');
+        return Excel::download(new DataPelanggaranExport, 'data_pelanggaran.xlsx');
     }
 }

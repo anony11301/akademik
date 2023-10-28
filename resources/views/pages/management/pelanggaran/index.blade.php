@@ -4,7 +4,7 @@
         <div class="py-4" style="color: black">
             <div class="h3">Data Jenis Pelanggaran</div>
             <a href="{{ route('add-pelanggaran') }}" class="btn btn-sm btn-primary float-right mt-2">+ Tambah Data</a>
-            <a href="{{ url('excel-export') }}" class="btn btn-sm btn-success float-right mr-2 mt-2">Export Data</a>
+            <a href="{{ url('excel-export-jenis') }}" class="btn btn-sm btn-success float-right mr-2 mt-2">Export Data</a>
         </div>
 
 
