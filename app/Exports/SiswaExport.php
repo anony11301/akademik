@@ -6,11 +6,6 @@ use App\Models\Siswa;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
-use Maatwebsite\Excel\Concerns\WithStyles;
-use Maatwebsite\Excel\Concerns\FromCollection;
-use Maatwebsite\Excel\Concerns\WithHeadings;
-use Illuminate\Support\Facades\DB;
-
 
 class SiswaExport implements FromView, ShouldAutoSize
 {
@@ -31,7 +26,5 @@ class SiswaExport implements FromView, ShouldAutoSize
         return view('export.siswa', [
             'siswa' => $siswa
         ]);
-    }
-
-
+    }   
 }

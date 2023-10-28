@@ -136,18 +136,10 @@ class GuruController extends Controller
 
     }
     
-    public static function export()
+    public static function export($id_kelas)
     {
-        $absen = Session::get('absen_data');
-
-        // return dd($absen)->get();
-
-        // Pastikan data ada sebelum melakukan ekspor
-        if ($absen) {
-            return Excel::download(new AbsenExport($absen), 'export-absen.xlsx');
-        } else {
-            // Handle jika data tidak tersedia di session
-        }
+        $export = new AbsenExport($id_kelas);
+        return Excel::download($export, 'absen.xlsx');
     }
 
 }
