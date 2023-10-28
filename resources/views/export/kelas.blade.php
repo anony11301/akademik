@@ -12,6 +12,6 @@
             <td style="border: 1px solid black;">{{ $no++ }}</td>
             <td style="border: 1px solid black;">{{ $kelas->nama_kelas }}</td>
         </tr>
-    </tbody>
     @endforeach
+    </tbody>
 </table>

@@ -102,3 +102,11 @@ Route::get('/excel-export-absen/{id}', [GuruController::class, 'export'])->name(
 
 //Route Import Excel
 Route::post('/pages/management/siswa/import_excel/{id}', [SiswaController::class, 'import_excel'])->name('import-siswa');
+
+Route::get('/download-template-excel', function() {
+    $file = public_path('templates/template_siswa.xlsx'); // Sesuaikan dengan lokasi file Excel kosong
+    $headers = ['Content-Type: application/vnd.ms-excel'];
+    $fileName = 'template_siswa.xlsx'; // Ganti dengan nama file Excel kosong Anda
+    return response()->download($file, $fileName, $headers);
+})->name('download-template-excel');
+
