@@ -12,7 +12,7 @@ class Kelas extends Model
     protected $table = 'kelas';
 
     protected $fillable = [
-        'id', 'nama_kelas', 'jurusan',
+        'id', 'nama_kelas', 'jurusan','created_by', 'updated_by',
     ];
 
     protected $hidden = [];
@@ -24,10 +24,6 @@ class Kelas extends Model
             ->select('nama_kelas')
             ->get()
             ->toArray();
-
-        foreach ($result as $key => $row) {
-            $row->nomor_urut = $key + 1;
-        }
 
         return $result;
     }

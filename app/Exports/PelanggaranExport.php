@@ -2,36 +2,20 @@
 
 namespace App\Exports;
 
-use Maatwebsite\Excel\Concerns\FromCollection;
+use App\Models\Pelanggaran;
+use Maatwebsite\Excel\Concerns\FromView;
+use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
-use Maatwebsite\Excel\Concerns\WithHeadings;
-use Illuminate\Support\Facades\DB;
-use App\Models\DataPelanggaran;
 
-class PelanggaranExport implements FromCollection, WithHeadings
+class PelanggaranExport implements FromView, ShouldAutoSize
 {
-     /**
+    /**
     * @return \Illuminate\Support\Collection
     */
-    // public function collection()
-    // {
-    //     return collect(GuruController::export());
-    //     // return Kelas::all();
-    // }
-
-    public function collection()
+    public function view(): View
     {
-        // Query untuk menggabungkan data dari tiga tabel
-        return collect(DataPelanggaran::getAllPelanggaran());
-    }
-    public function headings():array {
-        return [
-            'No',
-            'Nama',
-            'Kelas',
-            'Pelanggaran',
-            'Poin',
-            'Tanggal',
-        ];
+        return view('export.pelanggaran', [
+            'pelanggaran' => Pelanggaran::all()
+        ]);
     }
 }

@@ -6,10 +6,11 @@ use App\Models\DataPelanggaran;
 use App\Models\Kelas;
 use App\Models\Pelanggaran;
 use App\Models\Siswa;
-use App\Exports\PelanggaranExport;
+use App\Exports\DataPelanggaranExport;
 use App\Models\Absensi;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Session;
 
@@ -70,6 +71,7 @@ class DataPelanggaranController extends Controller
             'id_pelanggaran' => $id_pelanggaran,
             'id_kelas' => $kelas_id,
             'tanggal' => $date,
+            'created_by' => Auth::user()->id,
         ]);
 
         return redirect()->route('data-pelanggaran-kelas', $id);
@@ -113,6 +115,6 @@ class DataPelanggaranController extends Controller
 
     public static function export()
     {
-        return Excel::download(new PelanggaranExport, 'data_pelanggaran.xlsx');
+        return Excel::download(new DataPelanggaranExport, 'data_pelanggaran.xlsx');
     }
 }

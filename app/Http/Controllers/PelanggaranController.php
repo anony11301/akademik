@@ -3,15 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pelanggaran;
-use App\Exports\AbsenExport;
+use App\Exports\PelanggaranExport;
 use Illuminate\Http\Request;
 use App\Models\Absensi;
 use App\Models\Kelas;
-use App\Models\Siswa;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Database\Eloquent\Builder;
 use Maatwebsite\Excel\Facades\Excel;
-use Illuminate\Support\Facades\Session;
 
 class PelanggaranController extends Controller
 {
@@ -106,5 +102,10 @@ class PelanggaranController extends Controller
         $item->delete();
 
         return redirect()->route('pelanggaran');
+    }
+
+    public function export()
+    {
+        return Excel::download(new PelanggaranExport, 'Pelanggaran.xlsx');
     }
 }

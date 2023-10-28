@@ -17,7 +17,9 @@ class Siswa extends Model
         'NIS', 
         'nama',
         'id_kelas',
-        'poin'
+        'poin',
+        'created_by',
+        'updated_by',
     ];
 
     protected $hidden = [

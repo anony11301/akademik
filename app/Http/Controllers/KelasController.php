@@ -6,6 +6,7 @@ use App\Models\Kelas;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\KelasExport;
+use Illuminate\Support\Facades\Auth;
 
 class KelasController extends Controller
 {
@@ -54,6 +55,7 @@ class KelasController extends Controller
 
         Kelas::create([
             'nama_kelas' => $result,
+            'created_by' => Auth::user()->id,
         ]);
 
         // Redirect or respond as needed
@@ -94,6 +96,7 @@ class KelasController extends Controller
 
         $item->update([
             'nama_kelas' => $result,
+            'updated_by' => Auth::user()->id,
         ]);
 
         return redirect()->route('management-kelas');
