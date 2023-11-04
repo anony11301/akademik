@@ -1,7 +1,7 @@
 <table>
     <thead>
         <tr>
-            <th style="font-family: calibri; font-size: 12px; text-align: center; border: 1px solid black; background-color: yellow;">No</th>
+            <th style="font-family: calibri; font-size: 12px; text-align: center; border: 1px solid black; background-color: yellow;">Nom</th>
             <th style="font-family: calibri; font-size: 12px; text-align: center; border: 1px solid black; background-color: yellow;">Nama</th>
             <th style="font-family: calibri; font-size: 12px; text-align: center; border: 1px solid black; background-color: yellow;">Kelas</th>
             <th style="font-family: calibri; font-size: 12px; text-align: center; border: 1px solid black; background-color: yellow;">Pelanggaran</th>
