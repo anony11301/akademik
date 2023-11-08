@@ -42,10 +42,10 @@ class DataPelanggaran extends Model
 
     public static function getAllPelanggaran() {
         $data = DB::table('data_pelanggaran')
-            ->join('pelanggaran', 'data_pelanggaran.id', '=', 'pelanggaran.id')
+            ->join('pelanggaran', 'data_pelanggaran.id', '=', 'pelanggaran.nama_pelanggaran')
             ->join('siswa', 'data_pelanggaran.NIS', '=', 'siswa.NIS')
             ->join('kelas', 'data_pelanggaran.id_kelas', '=', 'kelas.id')
-            ->select('data_pelanggaran.id', 'siswa.nama', 'kelas.nama_kelas', 'pelanggaran.nama_pelanggaran as nama_pelanggaran', 'pelanggaran.poin', 'data_pelanggaran.tanggal')
+            ->select('data_pelanggaran.id', 'siswa.nama', 'kelas.nama_kelas', 'pelanggaran.nama_pelanggaran', 'pelanggaran.poin', 'data_pelanggaran.tanggal')
             ->get()
             ->toArray();
     
