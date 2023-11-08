@@ -51,10 +51,12 @@
                                                 <input type="file" name="file" required="required">
                                             </div>
 
-                                        </div>  
+                                        </div>
                                         <div class="modal-footer">
-                                            <a href="{{ route('download-template-excel') }}" class="btn btn-success">Download Template</a>
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <a href="{{ route('download-template-excel') }}"
+                                                class="btn btn-success">Download Template</a>
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Close</button>
                                             <button type="submit" class="btn btn-primary">Import</button>
                                         </div>
                                     </div>
