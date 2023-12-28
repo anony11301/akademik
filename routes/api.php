@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api;
 use App\Http\Controllers\Api\KelasApi;
 use App\Http\Controllers\Api\SiswaApi;
+use App\Http\Controllers\Api\UsersApi;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/siswa', [SiswaApi::class, 'index']);
 Route::get('/kelas', [KelasApi::class, 'index']);
+Route::get('/users', [UsersApi::class, 'index']);
