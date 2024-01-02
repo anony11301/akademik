@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class SiswaApi extends Controller
 {
@@ -29,7 +30,18 @@ class SiswaApi extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $siswa = new Siswa;
+        $siswa->NIS = $request->nis;
+        $siswa->nama = $request->nama;
+        $siswa->id_kelas = $request->id_kelas;
+
+        $siswa->save();
+
+        return response()->json([
+            'status' => true,
+            'message' => "Data Created successfully!",
+            'siswa' => $siswa
+        ], 200);
     }
 
     /**
@@ -53,7 +65,18 @@ class SiswaApi extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $siswa = Siswa::find($id);
+        $siswa->NIS = $request->nis;
+        $siswa->nama = $request->nama;
+        $siswa->id_kelas = $request->id_kelas;
+
+        $siswa->update();
+
+        return response()->json([
+            'status' => true,
+            'message' => "Data Updated successfully!",
+            'siswa' => $siswa
+        ], 200);
     }
 
     /**
@@ -61,6 +84,13 @@ class SiswaApi extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $siswa = Siswa::find($id);
+
+        $siswa->delete();
+
+        return response()->json([
+            'status' => true,
+            'message' => "Data Deleted successfully!",
+        ], 200);
     }
 }
