@@ -3,17 +3,17 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Siswa;
+use App\Models\DataPelanggaran;
 use Illuminate\Http\Request;
 
-class SiswaApi extends Controller
+class DataPelanggaranApi extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return Siswa::all();
+        return DataPelanggaran::all();
     }
 
     /**
@@ -37,7 +37,7 @@ class SiswaApi extends Controller
      */
     public function show(string $id)
     {
-        return Siswa::where('id_kelas', $id)->get();
+        //
     }
 
     /**

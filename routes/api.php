@@ -4,7 +4,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api;
 use App\Http\Controllers\Api\AbsenApi;
+use App\Http\Controllers\Api\DataPelanggaranApi;
 use App\Http\Controllers\Api\KelasApi;
+use App\Http\Controllers\Api\PelanggaranApi;
 use App\Http\Controllers\Api\SiswaApi;
 use App\Http\Controllers\Api\UsersApi;
 
@@ -23,7 +25,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/siswa', [SiswaApi::class, 'index']);
-Route::get('/kelas', [KelasApi::class, 'index']);
-Route::get('/users', [UsersApi::class, 'index']);
-Route::get('/absensi', [AbsenApi::class, 'index']);
+Route::get('/siswa', [SiswaApi::class, 'index']); //Get All Siswa
+Route::get('/siswa/{id_kelas}', [SiswaApi::class, 'show']); //Get Siswa By ID Kelas
+Route::get('/kelas', [KelasApi::class, 'index']); //Get All Kelas
+Route::get('/users', [UsersApi::class, 'index']); //Get All Users
+Route::get('/absensi', [AbsenApi::class, 'index']); //Get All Absensi
+Route::get('/pelanggaran', [PelanggaranApi::class, 'index']); //Get All Pelanggaran
+Route::get('/data-pelanggaran', [DataPelanggaranApi::class, 'index']); //Get All Data Pelanggaran
