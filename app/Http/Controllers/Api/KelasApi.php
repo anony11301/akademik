@@ -29,7 +29,15 @@ class KelasApi extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $kelas = new Kelas;
+        $kelas->nama_kelas = $request->nama_kelas;
+        $kelas->save();
+
+        return response()->json([
+            'status' => true,
+            'message' => "Data Created successfully!",
+            'kelas' => $kelas
+        ], 200);
     }
 
     /**
@@ -53,7 +61,15 @@ class KelasApi extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $kelas = Kelas::find($id);
+        $kelas->nama_kelas = $request->nama_kelas;
+        $kelas->update();
+
+        return response()->json([
+            'status' => true,
+            'message' => "Data Updated successfully!",
+            'kelas' => $kelas
+        ], 200);
     }
 
     /**
@@ -61,6 +77,11 @@ class KelasApi extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $kelas = Kelas::find($id);
+        $kelas->delete();
+        return response()->json([
+            'status' => true,
+            'message' => "Data Deleted successfully!",
+        ], 200);
     }
 }

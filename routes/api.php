@@ -36,9 +36,11 @@ Route::get('/data-pelanggaran', [DataPelanggaranApi::class, 'index']); //Get All
 
 /* ----- POST ----- */
 Route::post('/create-siswa', [SiswaApi::class, 'store']); //Create Siswa
+Route::post('/create-kelas', [KelasApi::class, 'store']); //Create Kelas
 
 /* ----- PUT ----- */
 Route::put('/update-siswa/{NIS}', [SiswaApi::class, 'update']); //Update Siswa
+Route::put('/update-kelas/{id}', [KelasApi::class, 'update']); //Update Kelas
 
 /* ----- DELETE ----- */
 Route::delete('/delete-siswa/{NIS}', [SiswaApi::class, 'destroy']); //Delete Siswa
