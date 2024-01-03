@@ -29,7 +29,17 @@ class PelanggaranApi extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pelanggaran = new Pelanggaran;
+        $pelanggaran->nama_pelanggaran = $request->nama_pelanggaran;
+        $pelanggaran->poin = $request->poin;
+
+        $pelanggaran->save();
+
+        return response()->json([
+            'status' => true,
+            'message' => "Data Created successfully!",
+            'pelanggaran' => $pelanggaran
+        ]);
     }
 
     /**
@@ -53,7 +63,17 @@ class PelanggaranApi extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $pelanggaran = Pelanggaran::find($id);
+        $pelanggaran->nama_pelanggaran = $request->nama_pelanggaran;
+        $pelanggaran->poin = $request->poin;
+
+        $pelanggaran->update();
+
+        return response()->json([
+            'status' => true,
+            'message' => "Data Updated successfully!",
+            'pelanggaran' => $pelanggaran
+        ]);
     }
 
     /**
@@ -61,6 +81,13 @@ class PelanggaranApi extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $pelanggaran = Pelanggaran::find($id);
+
+        $pelanggaran->delete();
+
+        return response()->json([
+            'status' => true,
+            'message' => "Data Deleted successfully!",
+        ]);
     }
 }
