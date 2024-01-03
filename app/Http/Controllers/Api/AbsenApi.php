@@ -29,7 +29,20 @@ class AbsenApi extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $absensi = new Absensi;
+        $absensi->nis = $request->nis;
+        $absensi->tanggal = $request->tanggal;
+        $absensi->status = $request->status;
+        $absensi->keterangan = $request->keterangan;
+        $absensi->id_kelas = $request->id_kelas;
+
+        $absensi->save();
+
+        return response()->json([
+            'status' => true,
+            'message' => "Data Created successfully!",
+            'absensi' => $absensi
+        ]);
     }
 
     /**
@@ -53,7 +66,20 @@ class AbsenApi extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $absensi = Absensi::find($id);
+        $absensi->nis = $request->nis;
+        $absensi->tanggal = $request->tanggal;
+        $absensi->status = $request->status;
+        $absensi->keterangan = $request->keterangan;
+        $absensi->id_kelas = $request->id_kelas;
+
+        $absensi->update();
+
+        return response()->json([
+            'status' => true,
+            'message' => "Data Updated successfully!",
+            'absensi' => $absensi
+        ]);
     }
 
     /**
@@ -61,6 +87,13 @@ class AbsenApi extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $absensi = Absensi::find($id);
+
+        $absensi->delete();
+
+        return response()->json([
+            'status' => true,
+            'message' => "Data Deleted successfully!",
+        ]);
     }
 }
