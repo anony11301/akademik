@@ -29,7 +29,19 @@ class DataPelanggaranApi extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data_pelanggaran = new DataPelanggaran;
+        $data_pelanggaran->nis = $request->nis;
+        $data_pelanggaran->is_pelanggaran = $request->is_pelanggaran;
+        $data_pelanggaran->tanggal = $request->tanggal;
+        $data_pelanggaran->id_kelas = $request->id_kelas;
+
+        $data_pelanggaran->save();
+
+        return response()->json([
+            'status' => true,
+            'message' => "Data Created successfully!",
+            'data_pelanggaran' => $data_pelanggaran
+        ]);
     }
 
     /**
@@ -53,7 +65,19 @@ class DataPelanggaranApi extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data_pelanggaran = DataPelanggaran::find($id);
+        $data_pelanggaran->nis = $request->nis;
+        $data_pelanggaran->is_pelanggaran = $request->is_pelanggaran;
+        $data_pelanggaran->tanggal = $request->tanggal;
+        $data_pelanggaran->id_kelas = $request->id_kelas;
+
+        $data_pelanggaran->update();
+
+        return response()->json([
+            'status' => true,
+            'message' => "Data Updated successfully!",
+            'data_pelanggaran' => $data_pelanggaran
+        ]);
     }
 
     /**
@@ -61,6 +85,13 @@ class DataPelanggaranApi extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $data_pelanggaran = DataPelanggaran::find($id);
+
+        $data_pelanggaran->delete();
+
+        return response()->json([
+            'status' => true,
+            'message' => "Data Deleted successfully!",
+        ]);
     }
 }
