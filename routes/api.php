@@ -9,6 +9,10 @@ use App\Http\Controllers\Api\KelasApi;
 use App\Http\Controllers\Api\PelanggaranApi;
 use App\Http\Controllers\Api\SiswaApi;
 use App\Http\Controllers\Api\UsersApi;
+use App\Models\Absensi;
+use App\Models\DataPelanggaran;
+use App\Models\Pelanggaran;
+use Database\Seeders\Users;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,10 +41,23 @@ Route::get('/data-pelanggaran', [DataPelanggaranApi::class, 'index']); //Get All
 /* ----- POST ----- */
 Route::post('/create-siswa', [SiswaApi::class, 'store']); //Create Siswa
 Route::post('/create-kelas', [KelasApi::class, 'store']); //Create Kelas
+Route::post('/create-users', [UsersApi::class, 'store']); //Create Users
+Route::post('/create-absen', [AbsenApi::class, 'store']); //Create Absen
+Route::post('/create-data-pelanggaran', [DataPelanggaranApi::class, 'store']); //Create Data Pelanggaran
+Route::post('/create-pelanggaran', [PelanggaranApi::class, 'store']); //Create Pelanggaran
 
 /* ----- PUT ----- */
 Route::put('/update-siswa/{NIS}', [SiswaApi::class, 'update']); //Update Siswa
 Route::put('/update-kelas/{id}', [KelasApi::class, 'update']); //Update Kelas
+Route::put('/update-users/{id}', [UsersApi::class, 'update']); //Users Users
+Route::put('/update-absen/{id}', [AbsenApi::class, 'update']); //Absen Absen
+Route::put('/update-data-pelanggaran/{id}', [DataPelanggaranApi::class, 'update']); //Data Pelanggaran Data Pelanggaran
+Route::put('/update-pelanggaran/{id}', [PelanggaranApi::class, 'update']); //Pelanggaran Pelanggaran
 
 /* ----- DELETE ----- */
 Route::delete('/delete-siswa/{NIS}', [SiswaApi::class, 'destroy']); //Delete Siswa
+Route::delete('/delete-kelas/{id}', [KelasApi::class, 'destroy']); //Delete Kelas
+Route::delete('/delete-users/{id}', [UsersApi::class, 'destroy']); //Delete Users
+Route::delete('/delete-absen/{id}', [AbsenApi::class, 'destroy']); //Delete Absen
+Route::delete('/delete-data-pelanggaran/{id}', [DataPelanggaranApi::class, 'destroy']); //Delete Data Pelanggaran
+Route::delete('/delete-pelanggaran/{id}', [PelanggaranApi::class, 'destroy']); //Delete Pelanggaran
