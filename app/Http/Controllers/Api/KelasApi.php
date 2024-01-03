@@ -37,7 +37,7 @@ class KelasApi extends Controller
             'status' => true,
             'message' => "Data Created successfully!",
             'kelas' => $kelas
-        ], 200);
+        ]);
     }
 
     /**
@@ -69,7 +69,7 @@ class KelasApi extends Controller
             'status' => true,
             'message' => "Data Updated successfully!",
             'kelas' => $kelas
-        ], 200);
+        ]);
     }
 
     /**
@@ -82,6 +82,6 @@ class KelasApi extends Controller
         return response()->json([
             'status' => true,
             'message' => "Data Deleted successfully!",
-        ], 200);
+        ]);
     }
 }

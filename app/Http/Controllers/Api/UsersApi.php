@@ -29,7 +29,19 @@ class UsersApi extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = new User;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = $request->password;
+        $user->id_level = $request->id_level;
+
+        $user->save();
+
+        return response()->json([
+            'status' => true,
+            'message' => "Data Created successfully!",
+            'user' => $user
+        ]);
     }
 
     /**
@@ -53,7 +65,19 @@ class UsersApi extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $user = User::find($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = $request->password;
+        $user->id_level = $request->id_level;
+
+        $user->update();
+
+        return response()->json([
+            'status' => true,
+            'message' => "Data Updated successfully!",
+            'user' => $user
+        ]);
     }
 
     /**
@@ -61,6 +85,13 @@ class UsersApi extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $user = User::find($id);
+
+        $user->delete();
+
+        return response()->json([
+            'status' => true,
+            'message' => "Data Deleted successfully!",
+        ]);
     }
 }

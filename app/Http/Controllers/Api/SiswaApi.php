@@ -41,7 +41,7 @@ class SiswaApi extends Controller
             'status' => true,
             'message' => "Data Created successfully!",
             'siswa' => $siswa
-        ], 200);
+        ]);
     }
 
     /**
@@ -76,7 +76,7 @@ class SiswaApi extends Controller
             'status' => true,
             'message' => "Data Updated successfully!",
             'siswa' => $siswa
-        ], 200);
+        ]);
     }
 
     /**
@@ -91,6 +91,6 @@ class SiswaApi extends Controller
         return response()->json([
             'status' => true,
             'message' => "Data Deleted successfully!",
-        ], 200);
+        ]);
     }
 }
