@@ -40,7 +40,7 @@ class SiswaApi extends Controller
         return response()->json([
             'status' => true,
             'message' => "Data Created successfully!",
-            'siswa' => $siswa
+            'siswa' => $siswa->latest()->first()
         ]);
     }
 
