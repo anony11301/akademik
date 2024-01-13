@@ -13,20 +13,18 @@ class DataPelanggaran extends Model
     protected $table = 'data_pelanggaran';
 
     protected $fillable = [
-        'NIS',
+        'NISN',
         'id_pelanggaran',
         'tanggal',
         'id_kelas',
         'created_by',
     ];
 
-    protected $hidden = [
-
-    ];
+    protected $hidden = [];
 
     public function siswa()
     {
-        return $this->belongsTo(Siswa::class, 'NIS', 'NIS');
+        return $this->belongsTo(Siswa::class, 'NISN', 'NISN');
     }
 
     public function pelanggaran()
@@ -40,16 +38,16 @@ class DataPelanggaran extends Model
     }
 
 
-    public static function getAllPelanggaran() {
+    public static function getAllPelanggaran()
+    {
         $data = DB::table('data_pelanggaran')
             ->join('pelanggaran', 'data_pelanggaran.id', '=', 'pelanggaran.nama_pelanggaran')
-            ->join('siswa', 'data_pelanggaran.NIS', '=', 'siswa.NIS')
+            ->join('siswa', 'data_pelanggaran.NISN', '=', 'siswa.NISN')
             ->join('kelas', 'data_pelanggaran.id_kelas', '=', 'kelas.id')
             ->select('data_pelanggaran.id', 'siswa.nama', 'kelas.nama_kelas', 'pelanggaran.nama_pelanggaran', 'pelanggaran.poin', 'data_pelanggaran.tanggal')
             ->get()
             ->toArray();
-    
+
         return $data;
     }
-    
 }

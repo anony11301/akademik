@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('data_pelanggaran', function (Blueprint $table) {
             $table->id();
-            $table->string('NIS');
+            $table->string('NISN');
             $table->unsignedBigInteger('id_pelanggaran');
             $table->foreign('id_pelanggaran')->references('id')->on('pelanggaran');
-            $table->foreign('NIS')->references('NIS')->on('siswa');
+            $table->foreign('NISN')->references('NISN')->on('siswa');
             $table->date('tanggal');
             $table->timestamps();
         });

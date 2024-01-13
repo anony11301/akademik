@@ -13,15 +13,15 @@ return new class extends Migration
     {
         Schema::create('absen', function (Blueprint $table) {
             $table->id();
-            $table->foreign('NIS')->references('NIS')->on('siswa');
+            $table->foreign('NISN')->references('NISN')->on('siswa');
             $table->foreign('id_kelas')->references('id')->on('kelas');
-            $table->string('NIS');
+            $table->string('NISN');
             $table->date('tanggal');
             $table->string('status');
             $table->text('keterangan')->nullable();
             $table->unsignedBigInteger('id_kelas');
 
-            
+
             $table->timestamps();
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
