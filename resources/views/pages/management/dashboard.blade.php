@@ -97,7 +97,7 @@
                 }]
             };
 
-            // Inisialisasi grafik
+            // Inisnialisasi grafik
             var ctx = document.getElementById('myPieChart').getContext('2d');
             var myPieChart = new Chart(ctx, {
                 type: 'pie',

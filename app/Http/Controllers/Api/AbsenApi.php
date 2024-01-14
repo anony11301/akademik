@@ -30,7 +30,7 @@ class AbsenApi extends Controller
     public function store(Request $request)
     {
         $absensi = new Absensi;
-        $absensi->nis = $request->nis;
+        $absensi->nisn = $request->nisn;
         $absensi->tanggal = $request->tanggal;
         $absensi->status = $request->status;
         $absensi->keterangan = $request->keterangan;
@@ -67,7 +67,7 @@ class AbsenApi extends Controller
     public function update(Request $request, string $id)
     {
         $absensi = Absensi::find($id);
-        $absensi->nis = $request->nis;
+        $absensi->nisn = $request->nisn;
         $absensi->tanggal = $request->tanggal;
         $absensi->status = $request->status;
         $absensi->keterangan = $request->keterangan;

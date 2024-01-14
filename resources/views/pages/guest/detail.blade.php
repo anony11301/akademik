@@ -45,7 +45,7 @@
                 <thead>
                     <tr>
                         <th scope="col">No</th>
-                        <th scope="col" style="white-space: nowrap">NIS</th>
+                        <th scope="col" style="white-space: nowrap">NISN</th>
                         <th scope="col" style="white-space: nowrap">Nama Siswa</th>
                         <th scope="col" style="white-space: nowrap">Status</th>
                         <th scope="col" style="white-space: nowrap">Keterangan</th>
@@ -59,8 +59,8 @@
                     @foreach ($absen as $item)
                         <tr>
                             <td>{{ $no++ }}</td>
-                            <td style="white-space: nowrap">{{ $item->NIS }}</td>
-                            <td style="white-space: nowrap">{{ $siswa->where('NIS', $item->NIS)->first()->nama }}</td>
+                            <td style="white-space: nowrap">{{ $item->NISN }}</td>
+                            <td style="white-space: nowrap">{{ $siswa->where('NISN', $item->NISN)->first()->nama }}</td>
                             <td style="white-space: nowrap">{{ $item->status }}</td>
                             <td style="white-space: nowrap">{{ $item->keterangan }}</td>
                             <td style="white-space: nowrap">{{ $item->tanggal }}</td>

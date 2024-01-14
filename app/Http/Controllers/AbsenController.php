@@ -21,10 +21,10 @@ class AbsenController extends Controller
 
         foreach ($kelas as $item) {
             $tanggalSekarang = now()->toDateString();
-            
+
             $count = Absensi::where('tanggal', $tanggalSekarang)
                 ->where('id_kelas', $item->id)
-                ->whereNotIn('status', ['hadir']) 
+                ->whereNotIn('status', ['hadir'])
                 ->count();
 
             $jumlahTidakHadir[$item->id] = $count;
@@ -50,16 +50,16 @@ class AbsenController extends Controller
         $tanggal = $request->input('tanggal');
         $status = $request->input('status');
         $keterangan = $request->input('keterangan');
-        $nis = $request->input('nis');
+        $nisn = $request->input('nisn');
         $kelas_id = $request->input('kelas_id');
 
 
-        foreach ($nis as $key => $n) {
+        foreach ($nisn as $key => $n) {
             $absen = new Absensi();
             $absen->tanggal = $tanggal;
             $absen->status = $status[$key];
             $absen->keterangan = $keterangan[$key];
-            $absen->NIS = $n;
+            $absen->NISN = $n;
             $absen->id_kelas = $kelas_id;
             $absen->save();
         }
@@ -110,40 +110,39 @@ class AbsenController extends Controller
     public function select()
     {
         $kelas = Kelas::all();
-        return view('pages.guru.absen.select',[
+        return view('pages.guru.absen.select', [
             'kelas' => $kelas,
         ]);
     }
 
 
     public function show($kelas_id, Request $request)
-{
-    $absend = Absensi::whereDate('tanggal', today())->get();
-$siswa = Siswa::where('id_kelas', $kelas_id)->get();
-$absen = Absensi::where('id_kelas', $kelas_id)
-    ->when(
-        $request->date_from && $request->date_to,
-        function (Builder $builder) use ($request) {
-            $builder->whereBetween(
-                DB::raw('tanggal'),
-                [
-                    $request->date_from,
-                    $request->date_to
-                ]
-            );
-        }
-    )
-    ->orderBy('tanggal', 'desc') // Order by the 'tanggal' field for sorting by date.
-    ->get();
+    {
+        $absend = Absensi::whereDate('tanggal', today())->get();
+        $siswa = Siswa::where('id_kelas', $kelas_id)->get();
+        $absen = Absensi::where('id_kelas', $kelas_id)
+            ->when(
+                $request->date_from && $request->date_to,
+                function (Builder $builder) use ($request) {
+                    $builder->whereBetween(
+                        DB::raw('tanggal'),
+                        [
+                            $request->date_from,
+                            $request->date_to
+                        ]
+                    );
+                }
+            )
+            ->orderBy('tanggal', 'desc') // Order by the 'tanggal' field for sorting by date.
+            ->get();
 
-// Debugging statements
-// dd($request->date_from, $request->date_to); // Check date parameters.
-// dd($absen->toSql()); // Check the generated SQL query.
-// dd($absen->toArray()); // Check the retrieved data.
+        // Debugging statements
+        // dd($request->date_from, $request->date_to); // Check date parameters.
+        // dd($absen->toSql()); // Check the generated SQL query.
+        // dd($absen->toArray()); // Check the retrieved data.
 
-return view('pages.management.absen.detail', compact('absen', 'siswa', 'kelas_id', 'request', 'absend'));
-
-}
+        return view('pages.management.absen.detail', compact('absen', 'siswa', 'kelas_id', 'request', 'absend'));
+    }
 
 
     // public function exportExcel()
@@ -152,5 +151,3 @@ return view('pages.management.absen.detail', compact('absen', 'siswa', 'kelas_id
     // }
 
 }
-
-

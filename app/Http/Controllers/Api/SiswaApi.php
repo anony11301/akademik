@@ -31,7 +31,7 @@ class SiswaApi extends Controller
     public function store(Request $request)
     {
         $siswa = new Siswa;
-        $siswa->NIS = $request->NIS;
+        $siswa->NISN = $request->NISN;
         $siswa->nama = $request->nama;
         $siswa->id_kelas = $request->id_kelas;
 
@@ -66,7 +66,7 @@ class SiswaApi extends Controller
     public function update(Request $request, string $id)
     {
         $siswa = Siswa::find($id);
-        $siswa->NIS = $request->NIS;
+        $siswa->NISN = $request->NISN;
         $siswa->nama = $request->nama;
         $siswa->id_kelas = $request->id_kelas;
 

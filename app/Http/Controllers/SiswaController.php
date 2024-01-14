@@ -58,12 +58,12 @@ class SiswaController extends Controller
     public function store(Request $request, string $id)
     {
         $request->validate([
-            'nis' => 'required|unique:siswa,nis',
+            'nisn' => 'required|unique:siswa,nisn',
             'nama' => 'required',
         ]);
 
         $siswa = new Siswa;
-        $siswa->nis = $request->nis;
+        $siswa->nisn = $request->nisn;
         $siswa->nama = $request->nama;
         $siswa->id_kelas = $id;
         $siswa->created_by = Auth::user()->id;
@@ -94,9 +94,9 @@ class SiswaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($NIS)
+    public function edit($NISN)
     {
-        $siswa = Siswa::where('NIS', $NIS)->first();
+        $siswa = Siswa::where('NISN', $NISN)->first();
 
         if (!$siswa) {
             return redirect()->route('management-siswa')->with('error', 'Siswa tidak ditemukan.');
@@ -113,17 +113,17 @@ class SiswaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $NIS)
+    public function update(Request $request, $NISN)
     {
         // Validasi data yang dikirimkan dari form edit
         $request->validate([
-            'NIS' => 'required',
+            'NISN' => 'required',
             'nama' => 'required',
             'kelas' => 'required',
         ]);
 
-        // Cari siswa berdasarkan NIS
-        $siswa = Siswa::where('NIS', $NIS)->first();
+        // Cari siswa berdasarkan NISN
+        $siswa = Siswa::where('NISN', $NISN)->first();
 
         if (!$siswa) {
             return redirect()->route('management-siswa')->with('error', 'Siswa tidak ditemukan.');
@@ -131,7 +131,7 @@ class SiswaController extends Controller
 
         // Update data siswa
         $siswa->update([
-            'NIS' => $request->input('NIS'),
+            'NISN' => $request->input('NISN'),
             'nama' => $request->input('nama'),
             'id_kelas' => $request->input('kelas'),
             'updated_by' => Auth::user()->id,
@@ -143,12 +143,12 @@ class SiswaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($NIS)
+    public function destroy($NISN)
     {
         try {
             DB::statement('SET FOREIGN_KEY_CHECKS=0');
 
-            $siswa = Siswa::where('NIS', $NIS)->first();
+            $siswa = Siswa::where('NISN', $NISN)->first();
 
             if (!$siswa) {
                 return redirect()->route('management-siswa')->with('error', 'Siswa tidak ditemukan.');
@@ -163,7 +163,7 @@ class SiswaController extends Controller
         }
     }
 
-    
+
 
     // Function Export
     public function exportSiswaByKelas($id_kelas)
@@ -174,30 +174,29 @@ class SiswaController extends Controller
 
 
     //Function Import
-    public function import_excel(Request $request, $id_kelas) 
-	{
-		// validasi
-		$this->validate($request, [
-			'file' => 'required|mimes:csv,xls,xlsx'
-		]);
- 
-		// menangkap file excel
-		$file = $request->file('file');
- 
-		// membuat nama file unik
-		$nama_file = rand().$file->getClientOriginalName();
- 
-		// upload ke folder file_siswa di dalam folder public
-		$file->move('file_siswa',$nama_file);
- 
-		// import data
-		Excel::import(new SiswaImport($id_kelas), public_path('/file_siswa/'.$nama_file));
- 
-		// notifikasi dengan session
-		Session::flash('sukses','Data Siswa Berhasil Diimport!');
- 
-		// alihkan halaman kembali
-		return redirect()->route('data-siswa', $id_kelas);
+    public function import_excel(Request $request, $id_kelas)
+    {
+        // validasi
+        $this->validate($request, [
+            'file' => 'required|mimes:csv,xls,xlsx'
+        ]);
 
-	}
+        // menangkap file excel
+        $file = $request->file('file');
+
+        // membuat nama file unik
+        $nama_file = rand() . $file->getClientOriginalName();
+
+        // upload ke folder file_siswa di dalam folder public
+        $file->move('file_siswa', $nama_file);
+
+        // import data
+        Excel::import(new SiswaImport($id_kelas), public_path('/file_siswa/' . $nama_file));
+
+        // notifikasi dengan session
+        Session::flash('sukses', 'Data Siswa Berhasil Diimport!');
+
+        // alihkan halaman kembali
+        return redirect()->route('data-siswa', $id_kelas);
+    }
 }

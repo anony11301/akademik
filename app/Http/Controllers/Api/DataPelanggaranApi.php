@@ -30,7 +30,7 @@ class DataPelanggaranApi extends Controller
     public function store(Request $request)
     {
         $data_pelanggaran = new DataPelanggaran;
-        $data_pelanggaran->nis = $request->nis;
+        $data_pelanggaran->nisn = $request->nisn;
         $data_pelanggaran->is_pelanggaran = $request->is_pelanggaran;
         $data_pelanggaran->tanggal = $request->tanggal;
         $data_pelanggaran->id_kelas = $request->id_kelas;
@@ -66,7 +66,7 @@ class DataPelanggaranApi extends Controller
     public function update(Request $request, string $id)
     {
         $data_pelanggaran = DataPelanggaran::find($id);
-        $data_pelanggaran->nis = $request->nis;
+        $data_pelanggaran->nisn = $request->nisn;
         $data_pelanggaran->is_pelanggaran = $request->is_pelanggaran;
         $data_pelanggaran->tanggal = $request->tanggal;
         $data_pelanggaran->id_kelas = $request->id_kelas;
