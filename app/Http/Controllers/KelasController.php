@@ -6,6 +6,8 @@ use App\Models\Kelas;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\KelasExport;
+use App\Models\DataPelanggaran;
+use App\Models\Siswa;
 use Illuminate\Support\Facades\Auth;
 
 class KelasController extends Controller
@@ -16,7 +18,7 @@ class KelasController extends Controller
     public function index()
     {
         $kelas = Kelas::all();
-        return view('pages.management.kelas.index',[
+        return view('pages.management.kelas.index', [
             'kelas' => $kelas,
         ]);
     }
@@ -24,14 +26,13 @@ class KelasController extends Controller
     public function search(Request $request)
     {
         if ($request->has('search')) {
-            $kelas = Kelas::where('nama_kelas','LIKE','%'.$request->search.'%')->get();
-        }
-        else {
+            $kelas = Kelas::where('nama_kelas', 'LIKE', '%' . $request->search . '%')->get();
+        } else {
             $kelas = Kelas::all();
         }
-        return view('pages.management.kelas.index',[
+        return view('pages.management.kelas.index', [
             'kelas' => $kelas,
-        ]);   
+        ]);
     }
 
     /**
@@ -107,6 +108,14 @@ class KelasController extends Controller
      */
     public function destroy(string $id)
     {
+        $siswa = Siswa::where('id_kelas', $id)->get();
+        foreach ($siswa as $item) {
+            $item->delete();
+        }
+        $pelanggaran = DataPelanggaran::where('id_kelas', $id)->get();
+        foreach ($pelanggaran as $item) {
+            $item->delete();
+        }
         Kelas::destroy($id);
         return redirect()->route('management-kelas');
     }
@@ -114,6 +123,6 @@ class KelasController extends Controller
     // Function Export
     public function exportExcel()
     {
-        return Excel::download(new KelasExport,'kelas-excel.xlsx');
+        return Excel::download(new KelasExport, 'kelas-excel.xlsx');
     }
 }
