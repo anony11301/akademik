@@ -12,6 +12,9 @@ class Siswa extends Model
 
     protected $table = 'siswa';
     protected $primaryKey = 'NISN';
+    protected $casts = [
+        'NISN' => 'string'
+    ];
 
     protected $fillable = [
         'NISN',

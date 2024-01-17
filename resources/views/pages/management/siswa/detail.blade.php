@@ -100,7 +100,7 @@
                                 <tr>
                                     @if (Auth::user()->id_level == 1)
                                         <td>{{ $no++ }}</td>
-                                        <td style="white-space: nowrap">{{ sprintf('%010s', $item->NISN) }}</td>
+                                        <td style="white-space: nowrap">{{ $item->NISN }}</td>
                                         <td style="white-space: nowrap">{{ $item->nama }}</td>
                                         <td style="white-space: nowrap">{{ $item->poin }}</td>
                                         <td class="w-25">
