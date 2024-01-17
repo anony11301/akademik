@@ -38,10 +38,12 @@ class AbsenApi extends Controller
 
         $absensi->save();
 
+        
+
         return response()->json([
             'status' => true,
             'message' => "Data Created successfully!",
-            'absensi' => $absensi
+            'absensi' => $absensi->latest()->first()
         ]);
     }
 
@@ -50,9 +52,13 @@ class AbsenApi extends Controller
      */
     public function show(string $id)
     {
-        //
+        return Absensi::where('id_kelas', $id)->get();
     }
 
+    public function detail(string $id)
+    {
+        return Absensi::where('NIS', $id)->get();
+    }
     /**
      * Show the form for editing the specified resource.
      */

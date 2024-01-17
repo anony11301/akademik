@@ -38,7 +38,7 @@ class PelanggaranApi extends Controller
         return response()->json([
             'status' => true,
             'message' => "Data Created successfully!",
-            'pelanggaran' => $pelanggaran
+            'pelanggaran' => $pelanggaran->latest()->first()
         ]);
     }
 

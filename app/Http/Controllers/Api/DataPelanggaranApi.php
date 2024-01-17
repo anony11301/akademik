@@ -47,9 +47,9 @@ class DataPelanggaranApi extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $id_pelanggaran)
     {
-        //
+        return DataPelanggaran::where('id_pelanggaran', $id_pelanggaran)->get();
     }
 
     /**
