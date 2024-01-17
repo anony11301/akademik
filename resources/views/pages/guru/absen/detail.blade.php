@@ -54,7 +54,7 @@
                 <thead>
                     <tr>
                         <th scope="col">No</th>
-                        <th scope="col">NIS</th>
+                        <th scope="col">NISN</th>
                         <th scope="col" style="white-space: nowrap">Nama Siswa</th>
                         <th scope="col">Status</th>
                         <th scope="col">Keterangan</th>
@@ -68,7 +68,7 @@
                     @foreach ($absen as $item)
                         <tr>
                             <td>{{ $no++ }}</td>
-                            <td>{{ $item->NIS }}</td>
+                            <td>{{ $item->NISN }}</td>
                             <td style="white-space: nowrap">{{ $item->siswa->nama }}</td>
                             <td>{{ $item->status }}</td>
                             <td>{{ $item->keterangan }}</td>

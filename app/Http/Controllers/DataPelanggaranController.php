@@ -52,7 +52,7 @@ class DataPelanggaranController extends Controller
 
     public function store(Request $request, string $id)
     {
-        $nis = $request->nis;
+        $nisn = $request->nisn;
         $id_pelanggaran = $request->id_pelanggaran;
         $kelas_id = $id;
         $date = Carbon::today();
@@ -60,14 +60,14 @@ class DataPelanggaranController extends Controller
         $pelanggaran = Pelanggaran::find($id_pelanggaran);
         $poin_pelanggaran = $pelanggaran->poin;
 
-        $siswa = Siswa::where('NIS', $nis)->first();
+        $siswa = Siswa::where('NISN', $nisn)->first();
         $poin_siswa = $siswa->poin;
         $poin_siswa += $poin_pelanggaran;
 
         $siswa->update(['poin' => $poin_siswa]);
 
         DataPelanggaran::create([
-            'NIS' => $nis,
+            'NISN' => $nisn,
             'id_pelanggaran' => $id_pelanggaran,
             'id_kelas' => $kelas_id,
             'tanggal' => $date,

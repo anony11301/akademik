@@ -79,13 +79,13 @@
                             <tr>
                                 @if (Auth::user()->id_level == 1)
                                     <th scope="col">#</th>
-                                    <th scope="col" style="white-space: nowrap">NIS</th>
+                                    <th scope="col" style="white-space: nowrap">NISN</th>
                                     <th scope="col" style="white-space: nowrap">Nama Siswa</th>
                                     <th scope="col" style="white-space: nowrap">Poin</th>
                                     <th scope="col">Aksi</th>
                                 @else
                                     <th scope="col">#</th>
-                                    <th scope="col" style="white-space: nowrap">NIS</th>
+                                    <th scope="col" style="white-space: nowrap">NISN</th>
                                     <th scope="col" style="white-space: nowrap">Nama Siswa</th>
                                     <th scope="col" style="white-space: nowrap">Poin</th>
                                 @endif
@@ -100,20 +100,20 @@
                                 <tr>
                                     @if (Auth::user()->id_level == 1)
                                         <td>{{ $no++ }}</td>
-                                        <td style="white-space: nowrap">{{ $item->NIS }}</td>
+                                        <td style="white-space: nowrap">{{ $item->NISN }}</td>
                                         <td style="white-space: nowrap">{{ $item->nama }}</td>
                                         <td style="white-space: nowrap">{{ $item->poin }}</td>
                                         <td class="w-25">
                                             <div class="d-flex">
                                                 <div class="w-50 mx-2 ">
-                                                    <a href="{{ route('edit-siswa', $item->NIS) }}"
+                                                    <a href="{{ route('edit-siswa', $item->NISN) }}"
                                                         class="btn btn-sm btn-warning  w-100"><i
                                                             class="fa-solid fa-pen-to-square"></i></a>
                                                 </div>
                                                 <div class="w-50 mx-2">
                                                     <button type="button" class="btn btn-sm btn-danger w-100"
                                                         data-toggle="modal" data-target="#hapusModal"
-                                                        data-id="{{ $item->NIS }}">
+                                                        data-id="{{ $item->NISN }}">
                                                         <i class="fa-solid fa-trash-can"></i>
                                                     </button>
                                                 </div>
@@ -122,7 +122,7 @@
                                         </td>
                                     @else
                                         <td>{{ $no++ }}</td>
-                                        <td style="white-space: nowrap">{{ $item->NIS }}</td>
+                                        <td style="white-space: nowrap">{{ $item->NISN }}</td>
                                         <td style="white-space: nowrap">{{ $item->nama }}</td>
                                         <td style="white-space: nowrap">{{ $item->poin }}</td>
                                     @endif
@@ -147,7 +147,7 @@
                                                 <button type="button" class="btn btn-secondary"
                                                     data-dismiss="modal">Batal</button>
                                                 <form id="delete-form" method="POST"
-                                                    action="{{ route('delete-siswa', $item->NIS) }}">
+                                                    action="{{ route('delete-siswa', $item->NISN) }}">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger">Hapus</button>

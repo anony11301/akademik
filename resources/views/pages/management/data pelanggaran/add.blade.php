@@ -8,7 +8,7 @@
                     <table class="table ">
                         <thead>
                             <tr>
-                                <th style="width: 200px">NIS</th>
+                                <th style="width: 200px">NISN</th>
                                 <th style="width: 300px; white-space: nowrap">Nama</th>
                                 <th style="width: 300px">Aksi</th>
                             </tr>
@@ -16,14 +16,14 @@
                         <tbody>
                             @foreach ($siswa as $siswa)
                                 <tr>
-                                    <td>{{ $siswa->NIS }}</td>
+                                    <td>{{ $siswa->NISN }}</td>
                                     <td style="white-space: nowrap">{{ $siswa->nama }}</td>
                                     <td><a href="#" class="btn btn-danger" data-toggle="modal"
-                                            data-target="#addData{{ $siswa->NIS }}"><i
+                                            data-target="#addData{{ $siswa->NISN }}"><i
                                                 class="fa-solid fa-triangle-exclamation"></i></a></td>
                                 </tr>
                                 <!-- modal -->
-                                <div class="modal fade" id="addData{{ $siswa->NIS }}" tabindex="-1" role="dialog"
+                                <div class="modal fade" id="addData{{ $siswa->NISN }}" tabindex="-1" role="dialog"
                                     aria-labelledby="konfirmasiModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
@@ -33,7 +33,7 @@
                                                     <div class="">Nama Siswa:</div>
                                                     <div class="mb-2">{{ $siswa->nama }}</div>
                                                     <div class="form-group mt-2">
-                                                        <input type="text" value="{{ $siswa->NIS }}" name="nis"
+                                                        <input type="text" value="{{ $siswa->NISN }}" name="nisn"
                                                             hidden>
                                                         <label for="id_kelas">Jenis Pelanggaran</label>
                                                         <select class="form-control" name="id_pelanggaran">

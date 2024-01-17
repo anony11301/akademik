@@ -20,16 +20,13 @@ class SiswaImport implements ToModel, WithHeadingRow
     public function model(array $row)
     {
         if ($this->startRow <= 1) {
-            return null; 
+            return null;
         }
 
         return new Siswa([
-            'NIS' => $row['nis'],
+            'NISN' => $row['nisn'],
             'nama' => $row['nama'],
             'id_kelas' => $this->id_kelas,
         ]);
     }
 }
-
-
-

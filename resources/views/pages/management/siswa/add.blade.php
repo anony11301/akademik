@@ -6,8 +6,8 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="nis">NIS</label>
-                        <input class="form-control" type="text" name="nis" placeholder="NIS" aria-label="NIS">
+                        <label for="nisn">NISN</label>
+                        <input class="form-control" type="text" name="nisn" placeholder="NISN" aria-label="NISN">
                     </div>
                 </div>
                 <div class="col-md-6">

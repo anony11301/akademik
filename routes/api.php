@@ -50,7 +50,7 @@ Route::post('/create-data-pelanggaran', [DataPelanggaranApi::class, 'store']); /
 Route::post('/create-pelanggaran', [PelanggaranApi::class, 'store']); //Create Pelanggaran
 
 /* ----- PUT ----- */
-Route::put('/update-siswa/{NIS}', [SiswaApi::class, 'update']); //Update Siswa
+Route::put('/update-siswa/{NISN}', [SiswaApi::class, 'update']); //Update Siswa
 Route::put('/update-kelas/{id}', [KelasApi::class, 'update']); //Update Kelas
 Route::put('/update-users/{id}', [UsersApi::class, 'update']); //Users Users
 Route::put('/update-absen/{id}', [AbsenApi::class, 'update']); //Absen Absen
@@ -58,7 +58,7 @@ Route::put('/update-data-pelanggaran/{id}', [DataPelanggaranApi::class, 'update'
 Route::put('/update-pelanggaran/{id}', [PelanggaranApi::class, 'update']); //Pelanggaran Pelanggaran
 
 /* ----- DELETE ----- */
-Route::delete('/delete-siswa/{NIS}', [SiswaApi::class, 'destroy']); //Delete Siswa
+Route::delete('/delete-siswa/{NISN}', [SiswaApi::class, 'destroy']); //Delete Siswa
 Route::delete('/delete-kelas/{id}', [KelasApi::class, 'destroy']); //Delete Kelas
 Route::delete('/delete-users/{id}', [UsersApi::class, 'destroy']); //Delete Users
 Route::delete('/delete-absen/{id}', [AbsenApi::class, 'destroy']); //Delete Absen
