@@ -35,8 +35,11 @@ Route::get('/siswa/{id_kelas}', [SiswaApi::class, 'show']); //Get Siswa By ID Ke
 Route::get('/kelas', [KelasApi::class, 'index']); //Get All Kelas
 Route::get('/users', [UsersApi::class, 'index']); //Get All Users
 Route::get('/absensi', [AbsenApi::class, 'index']); //Get All Absensi
+Route::get('/absensi/{id_kelas}', [AbsenApi::class, 'show']);
+Route::get('/absensi/detail/{NIS}', [AbsenApi::class, 'detail']);
 Route::get('/pelanggaran', [PelanggaranApi::class, 'index']); //Get All Pelanggaran
 Route::get('/data-pelanggaran', [DataPelanggaranApi::class, 'index']); //Get All Data Pelanggaran
+Route::get('/data-pelanggaran/{id_pelanggaran}', [DataPelanggaranApi::class, 'show']);
 
 /* ----- POST ----- */
 Route::post('/create-siswa', [SiswaApi::class, 'store']); //Create Siswa

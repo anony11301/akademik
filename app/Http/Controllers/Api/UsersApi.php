@@ -13,9 +13,15 @@ class UsersApi extends Controller
      */
     public function index()
     {
-        return User::all();
+        $users = User::take(2)->get();
+    
+        return response()->json([
+            'status' => true,
+            'message' => 'Data Retrieved successfully!',
+            'users' => $users
+        ]);
     }
-
+    
     /**
      * Show the form for creating a new resource.
      */

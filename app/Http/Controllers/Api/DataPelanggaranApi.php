@@ -30,8 +30,8 @@ class DataPelanggaranApi extends Controller
     public function store(Request $request)
     {
         $data_pelanggaran = new DataPelanggaran;
-        $data_pelanggaran->nis = $request->nis;
-        $data_pelanggaran->is_pelanggaran = $request->is_pelanggaran;
+        $data_pelanggaran->NIS = $request->NIS;
+        $data_pelanggaran->id_pelanggaran = $request->id_pelanggaran;
         $data_pelanggaran->tanggal = $request->tanggal;
         $data_pelanggaran->id_kelas = $request->id_kelas;
 
@@ -47,9 +47,9 @@ class DataPelanggaranApi extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $id_pelanggaran)
     {
-        //
+        return DataPelanggaran::where('id_pelanggaran', $id_pelanggaran)->get();
     }
 
     /**
