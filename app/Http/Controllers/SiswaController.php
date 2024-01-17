@@ -11,6 +11,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\SiswaExport;
 use App\Imports\SiswaImport;
 use App\Models\Absensi;
+use App\Models\DataPelanggaran;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -145,22 +146,27 @@ class SiswaController extends Controller
      */
     public function destroy($NISN)
     {
-        try {
-            DB::statement('SET FOREIGN_KEY_CHECKS=0');
 
-            $siswa = Siswa::where('NISN', $NISN)->first();
+        $absen = Absensi::where('NISN', $NISN)->get();
+        $pelanggaran = DataPelanggaran::where('NISN', $NISN)->get();
 
-            if (!$siswa) {
-                return redirect()->route('management-siswa')->with('error', 'Siswa tidak ditemukan.');
+        if ($pelanggaran) {
+            foreach ($pelanggaran as $item) {
+                $item->delete();
             }
-
-            $siswa->absen()->delete();
-            $siswa->delete();
-
-            return redirect()->route('management-siswa')->with('success');
-        } finally {
-            DB::statement('SET FOREIGN_KEY_CHECKS=1');
         }
+
+        if ($absen) {
+            foreach ($absen as $item) {
+                $item->delete();
+            }
+        }
+
+
+        Siswa::destroy($NISN);
+        return redirect()->route('management-siswa')->with('success');
+
+        // return dd($NISN);
     }
 
 

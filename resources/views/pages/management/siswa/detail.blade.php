@@ -112,7 +112,7 @@
                                                 </div>
                                                 <div class="w-50 mx-2">
                                                     <button type="button" class="btn btn-sm btn-danger w-100"
-                                                        data-toggle="modal" data-target="#hapusModal"
+                                                        data-toggle="modal" data-target="#hapusModal{{ $item->NISN }}"
                                                         data-id="{{ $item->NISN }}">
                                                         <i class="fa-solid fa-trash-can"></i>
                                                     </button>
@@ -129,7 +129,7 @@
 
                                 </tr>
                                 <!-- Modal -->
-                                <div class="modal fade" id="hapusModal" tabindex="-1" role="dialog"
+                                <div class="modal fade" id="hapusModal{{ $item->NISN }}" tabindex="-1" role="dialog"
                                     aria-labelledby="hapusModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
