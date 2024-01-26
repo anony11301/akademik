@@ -56,16 +56,16 @@ class GuruController extends Controller
         $tanggal = $request->input('tanggal');
         $status = $request->input('status');
         $keterangan = $request->input('keterangan');
-        $nis = $request->input('nis');
+        $nisn = $request->input('nisn');
         $kelas_id = $request->input('kelas_id');
 
         $kondisi = false;
 
-        foreach ($nis as $key => $n) {
+        foreach ($nisn as $key => $n) {
 
             //cek tanggal pada tabel, dan nis pada tabel dimana tanggal yang sama dengan inputan tanggal
-            $cektanggal = Absensi::where('nis', $n)->where('tanggal', $tanggal)->value('tanggal');
-            $ceknis = Absensi::where('nis', $n)->where('tanggal', $tanggal)->value('nis');
+            $cektanggal = Absensi::where('NISN', $n)->where('tanggal', $tanggal)->value('tanggal');
+            $ceknis = Absensi::where('NISN', $n)->where('tanggal', $tanggal)->value('NISN');
 
             // cek data nis dan tanggal sudah ada atau belum
             if (($tanggal == $cektanggal) && ($n == $ceknis)) {
@@ -76,7 +76,7 @@ class GuruController extends Controller
                 $absen->tanggal = $tanggal;
                 $absen->status = $status[$key];
                 $absen->keterangan = $keterangan[$key];
-                $absen->NIS = $n;
+                $absen->NISN = $n;
                 $absen->id_kelas = $kelas_id;
                 $absen->created_by = Auth::user()->id;
                 $absen->save();
@@ -123,12 +123,12 @@ class GuruController extends Controller
         }
 
         $absensi = $siswa->map(function ($item, $key) use ($absen, $kelas_id) {
-            $siswaAbsen = $absen->where('NIS', $item->NIS)->first();
+            $siswaAbsen = $absen->where('NISN', $item->NISN)->first();
             $nama_kelas = Kelas::where('id', $kelas_id)->first();
 
             return [
                 'no' => $key + 1,
-                'NIS' => $item->NIS,
+                'NISN' => $item->NISN,
                 'nama' => $item->nama,
                 'nama_kelas' => $nama_kelas->nama_kelas,
                 'status' => $siswaAbsen ? $siswaAbsen->status : null,

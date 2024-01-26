@@ -16,7 +16,7 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th style="white-space: nowrap">NIS</th>
+                                    <th style="white-space: nowrap">NISN</th>
                                     <th style="white-space: nowrap">Nama</th>
                                     <th style="white-space: nowrap">Status</th>
                                     <th style="white-space: nowrap">Keterangan</th>
@@ -25,7 +25,7 @@
                             <tbody>
                                 @foreach ($siswa as $siswa)
                                     <tr>
-                                        <td style="white-space: nowrap">{{ $siswa->NIS }}</td>
+                                        <td style="white-space: nowrap">{{ $siswa->NISN }}</td>
                                         <td style="white-space: nowrap">{{ $siswa->nama }}</td>
                                         <td style="white-space: nowrap">
                                             <select class="form-control" name="status[]" style="width: 100px">
@@ -37,7 +37,7 @@
                                         </td>
                                         <td style="white-space: nowrap">
                                             <input class="form-control" type="text" name="keterangan[]">
-                                            <input type="hidden" name="nis[]" value="{{ $siswa->NIS }}">
+                                            <input type="hidden" name="nisn[]" value="{{ $siswa->NISN }}">
                                         </td>
                                     </tr>
                                 @endforeach
