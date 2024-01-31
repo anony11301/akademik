@@ -28,10 +28,9 @@ class ManagementController extends Controller
         $totalKehadiran = $absensi->where('status', 'hadir')->count();
         $totalSiswa = $absensi->count();
 
-        if($totalKehadiran == 0){
+        if ($totalKehadiran == 0) {
             $persentaseKehadiran = 0;
-        }
-        else {
+        } else {
             $persentaseKehadiran = ($totalKehadiran / $totalSiswa) * 100;
         }
 
@@ -55,9 +54,27 @@ class ManagementController extends Controller
 
         $tahun = Carbon::now()->year;
 
-        for($i = 1; $i <= 12; $i++ )
-        {
+        for ($i = 1; $i <= 12; $i++) {
             $data[$i - 1] = DataPelanggaran::whereMonth('tanggal', $i)->whereYear('tanggal', $tahun)->count();
+        }
+
+        //data chart untuk kehadiran kelas per bulan
+        $kelas = Kelas::all();
+        $labelkelas = [];
+        $persentasekelas = [];
+
+        foreach ($kelas as $kelas) {
+            $labelsementara = Kelas::where('id', $kelas->id)->pluck('nama_kelas')->first();
+            $datatotal = Absensi::where('id_kelas', $kelas->id)->whereMonth('tanggal', $bulanSekarang)->count();
+            $datapersentase = Absensi::where('id_kelas', $kelas->id)->where('status', 'hadir')->whereMonth('tanggal', $bulanSekarang)->count();
+
+            if ($datatotal != 0) {
+                $persentasesementara = ($datapersentase / $datatotal) * 100;
+            } else {
+                $persentasesementara = 0;
+            }
+            $labelkelas[] = $labelsementara;
+            $persentasekelas[] = $persentasesementara;
         }
 
         return view(
@@ -68,7 +85,9 @@ class ManagementController extends Controller
                 'persentaseKehadiran' => $persentaseKehadiran,
                 'totalPelanggaran' => $totalPelanggaran,
                 'labels' => $labels,
-                'data' => $data
+                'data' => $data,
+                'labelkelas' => $labelkelas,
+                'persentasekelas' => $persentasekelas
             ]
         );
 
