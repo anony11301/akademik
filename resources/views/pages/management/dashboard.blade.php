@@ -80,24 +80,6 @@
             </div>
         </div>
 
-        <div class="row my-5">
-            <div class="col-12">
-                <div class="card h-100 justify-content-center shadow">
-                    <!-- Card Header - Dropdown -->
-                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">
-                            Persentase Kehadiran Kelas Bulan ini
-                        </h6>
-                    </div>
-                    <div class="card-body">
-                        <div class="pt-4 pb-2">
-                            <canvas id="myBarChart" class="w-100 h-100"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </div>
 
     @push('addon-script')
@@ -115,7 +97,7 @@
                 }]
             };
 
-            // Inisialisasi grafik
+            // Inisnialisasi grafik
             var ctx = document.getElementById('myPieChart').getContext('2d');
             var myPieChart = new Chart(ctx, {
                 type: 'pie',
@@ -133,30 +115,6 @@
                         borderWidth: 1
                     }]
                 },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
-
-            var dataBar = {
-                labels: {!! json_encode($labelkelas) !!},
-                datasets: [{
-                    label: 'Jumlah Kehadian (%)',
-                    data: {!! json_encode($persentasekelas) !!},
-                    backgroundColor: "#FFC107",
-                    borderColor: "#FFA000",
-                    borderWidth: 1
-                }]
-            };
-
-            var ctxBar = document.getElementById('myBarChart').getContext('2d');
-            var myBarChart = new Chart(ctxBar, {
-                type: 'bar',
-                data: dataBar,
                 options: {
                     scales: {
                         y: {

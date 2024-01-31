@@ -18,13 +18,22 @@ class GuestController extends Controller
 
         foreach ($kelas as $item) {
             $tanggalSekarang = now()->toDateString();
-
+            
             $count = Absensi::where('tanggal', $tanggalSekarang)
                 ->where('id_kelas', $item->id)
-                ->whereNotIn('status', ['hadir'])
+                ->whereNotIn('status', ['hadir']) 
                 ->count();
 
             $jumlahTidakHadir[$item->id] = $count;
+        }
+        foreach ($kelas as $item) {
+            $tanggalSekarang = now()->toDateString();
+
+            $count = Absensi::where('tanggal', $tanggalSekarang)
+                ->where('id_kelas', $item->id)
+                ->count();
+
+            $jumlahAbsen[$item->id] = $count;
         }
 
         $jumlahSiswa = Siswa::count();
@@ -44,9 +53,10 @@ class GuestController extends Controller
         $totalKehadiran = $absensi->where('status', 'hadir')->count();
         $totalSiswa = $absensi->count();
 
-        if ($totalKehadiran == 0) {
+        if($totalKehadiran == 0){
             $persentaseKehadiran = 0;
-        } else {
+        }
+        else {
             $persentaseKehadiran = ($totalKehadiran / $totalSiswa) * 100;
         }
 
@@ -59,72 +69,54 @@ class GuestController extends Controller
 
         $tahun = Carbon::now()->year;
 
-        for ($i = 1; $i <= 12; $i++) {
+        for($i = 1; $i <= 12; $i++ )
+        {
             $data[$i - 1] = DataPelanggaran::whereMonth('tanggal', $i)->whereYear('tanggal', $tahun)->count();
         }
 
-        $kelassemua = Kelas::all();
-        $labelkelas = [];
-        $persentasekelas = [];
 
-        foreach ($kelassemua as $k) {
-            $labelsementara = Kelas::where('id', $k->id)->pluck('nama_kelas')->first();
-            $datatotal = Absensi::where('id_kelas', $k->id)->whereMonth('tanggal', $bulanSekarang)->count();
-            $datapersentase = Absensi::where('id_kelas', $k->id)->where('status', 'hadir')->whereMonth('tanggal', $bulanSekarang)->count();
-
-            if ($datatotal != 0) {
-                $persentasesementara = ($datapersentase / $datatotal) * 100;
-            } else {
-                $persentasesementara = 0;
-            }
-            $labelkelas[] = $labelsementara;
-            $persentasekelas[] = $persentasesementara;
-        }
-
-
-        return view('pages.guest.index', [
+        return view('pages.guest.index',[
             'kelas' => $kelas,
             'jumlahTidakHadir' => $jumlahTidakHadir,
             'persentaseKehadiran' => $persentaseKehadiran,
             'labels' => $labels,
             'data' => $data,
-            'labelkelas' => $labelkelas,
-            'persentasekelas' => $persentasekelas
+            'jumlahAbsen' => $jumlahAbsen
         ]);
     }
 
     public function show($kelas_id, Request $request)
     {
         $siswa = Siswa::where('id_kelas', $kelas_id)->get();
-
+    
         $statusFilter = $request->input('status_filter');
-
+    
         $query = Absensi::where('id_kelas', $kelas_id);
-
+    
         // Filter berdasarkan tanggal hari ini jika tidak ada rentang tanggal yang diberikan
         if (!$request->date_from && !$request->date_to) {
             $query->whereDate('tanggal', today());
         }
-
+    
         // Filter berdasarkan rentang tanggal jika ada date_from dan date_to
         if ($request->date_from && $request->date_to) {
             $query->whereBetween('tanggal', [$request->date_from, $request->date_to]);
         }
-
+    
         if ($statusFilter === 'tidak-hadir') {
             $query->where('status', '!=', 'hadir');
         } elseif (!empty($statusFilter)) {
             $query->where('status', $statusFilter);
         }
-
+    
         $absen = $query->orderBy('tanggal', 'desc')->get();
 
-        $kehadiran = $absen->where('status', 'hadir')->count();
+        $kehadiran = $absen->where('status','hadir')->count();
         $total_siswa = $absen->count();
-        if ($kehadiran == 0) {
+        if ($kehadiran == 0){
             $persentasi_kehadiran = 0;
         } else {
-            $persentasi_kehadiran = $kehadiran / $total_siswa * 100;
+        $persentasi_kehadiran = $kehadiran / $total_siswa * 100;
         }
 
         $kelas = Kelas::where('id', $kelas_id)->get();

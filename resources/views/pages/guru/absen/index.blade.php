@@ -9,7 +9,11 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col">
                                 <div class="h5 mb-0 font-weight-bold text-warning">{{ $item->nama_kelas }}</div>
-                                <small class="text-muted">Tidak Hadir: {{ $jumlahTidakHadir[$item->id] }}</small>
+                                @if ($jumlahAbsen[$item->id] > 0)
+                                    <small class="text-muted">Tidak Hadir: {{ $jumlahTidakHadir[$item->id] }}</small>
+                                @else
+                                    <small class="text-danger">Tidak Hadir: {{ $jumlahTidakHadir[$item->id] }}</small>
+                                @endif
                             </div>
                             <div class="col-auto">
                                 <div class="dropdown">

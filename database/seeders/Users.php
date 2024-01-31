@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 
@@ -13,6 +14,12 @@ class Users extends Seeder
     public function run(): void
     {
         $users = [
+            [
+                'nama' => 'User',
+                'email' => 'user@example.com',
+                'password' => bcrypt('user123'),
+                'id_level' => '2'
+            ],
             [
                 'nama' => 'Irham Azhari Aulia, S.Kom',
                 'email' => 'irham@smkprestasiprima.sch.id',

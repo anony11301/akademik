@@ -26,6 +26,7 @@ class GuruController extends Controller
     public function select()
     {
         $kelas = Kelas::all();
+        $jumlahAbsen = [];
         $jumlahTidakHadir = [];
 
         foreach ($kelas as $item) {
@@ -38,16 +39,27 @@ class GuruController extends Controller
 
             $jumlahTidakHadir[$item->id] = $count;
         }
+
+        foreach ($kelas as $item) {
+            $tanggalSekarang = now()->toDateString();
+
+            $count = Absensi::where('tanggal', $tanggalSekarang)
+                ->where('id_kelas', $item->id)
+                ->count();
+
+            $jumlahAbsen[$item->id] = $count;
+        }
         return view('pages.guru.absen.index', [
             'kelas' => $kelas,
             'jumlahTidakHadir' => $jumlahTidakHadir,
+            'jumlahAbsen' => $jumlahAbsen
         ]);
     }
 
     //Create Absen
     public function create($kelas_id)
     {
-        $siswa = Siswa::where('id_kelas', $kelas_id)->get();
+        $siswa = Siswa::where('id_kelas', $kelas_id)->orderBy('nama')->get();
         return view('pages.guru.absen.add', compact('siswa', 'kelas_id'))->with(['tanggal' => '']);
     }
 

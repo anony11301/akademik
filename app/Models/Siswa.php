@@ -11,10 +11,13 @@ class Siswa extends Model
     use HasFactory;
 
     protected $table = 'siswa';
-    protected $primaryKey = 'NIS';
+    protected $primaryKey = 'NISN';
+    protected $casts = [
+        'NISN' => 'string',
+        ];
 
     protected $fillable = [
-        'NIS', 
+        'NISN',
         'nama',
         'id_kelas',
         'poin',
@@ -22,13 +25,12 @@ class Siswa extends Model
         'updated_by',
     ];
 
-    protected $hidden = [
+    protected $hidden = [];
 
-    ];
-
-    public static function getAllsiswa($id_kelas) {
+    public static function getAllsiswa($id_kelas)
+    {
         $result = DB::table('siswa')
-            ->select('NIS','nama', 'poin')
+            ->select('NISN', 'nama', 'poin')
             ->get()
             ->toArray();
 
@@ -42,11 +44,11 @@ class Siswa extends Model
 
     public function absen()
     {
-        return $this->hasMany(Absensi::class, 'NIS', 'NIS');
+        return $this->hasMany(Absensi::class, 'NISN', 'NISN');
     }
 
     public function data_pelanggaran()
     {
-        return $this->hasMany(DataPelanggaran::class, 'NIS', 'NIS');
+        return $this->hasMany(DataPelanggaran::class, 'NISN', 'NISN');
     }
 }

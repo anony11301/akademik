@@ -31,7 +31,7 @@
             <div class="container">
                 <div class="row align-items-center justify-content-center">
                     <div class="col-md-7">
-                        <h3>Selamat datang di <strong>Siakad Prestasi Prima</strong></h3>
+                        <h3>Selamat Datang di <strong>Siakad Prestasi Prima</strong></h3>
                         <p class="mb-4">Silahkan Login Terlebih dahulu</p>
                         <form action="{{ route('login-proses') }}" method="post">
                             @csrf
@@ -47,7 +47,7 @@
                             </div>
 
                             <div class="d-flex mb-5 align-items-center">
-                                <span class="ml-auto"><a href="{{ route('absensi') }}" class="forgot-pass">Login Sebagai
+                                <span class="ml-auto"><a href="{{ route('absensi') }}" class="forgot-pass">Login as
                                         Guest</a></span>
                             </div>
 

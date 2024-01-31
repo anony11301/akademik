@@ -51,11 +51,11 @@
                     <input type="hidden" name="kelas_id" value="{{ $kelas_id }}">
 
                 </div>
+
             </div>
-
         </form>
-
-        <div class="modal fade" id="warningModal" tabindex="-1" role="dialog" aria-labelledby="warningModalLabel"
+        
+          <div class="modal fade" id="warningModal" tabindex="-1" role="dialog" aria-labelledby="warningModalLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -80,11 +80,11 @@
                 window.onload = function() {
                     OpenBootstrapPopup();
                 };
-
                 function OpenBootstrapPopup() {
                     $("#warningModal").modal('show');
                 }
             </script>
         @endif
+        
     </div>
 @endsection
