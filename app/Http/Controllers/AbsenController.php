@@ -131,7 +131,7 @@ class AbsenController extends Controller
     public function show($kelas_id, Request $request)
     {
         $absend = Absensi::whereDate('tanggal', today())->get();
-        $siswa = Siswa::where('id_kelas', $id)->orderBy('nama')->get();
+        $siswa = Siswa::where('id_kelas', $kelas_id)->orderBy('nama')->get();
         $absen = Absensi::where('id_kelas', $kelas_id)
             ->when(
                 $request->date_from && $request->date_to,

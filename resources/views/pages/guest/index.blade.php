@@ -8,7 +8,7 @@
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                         <h6 class="m-0 font-weight-bold text-primary">
-                            Persentase Kehadiran Bulan Ini
+                            Persentase Kehadiran SMK Bulan Ini
                         </h6>
                     </div>
                     <div class="card-body">
@@ -40,7 +40,7 @@
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                         <h6 class="m-0 font-weight-bold text-primary">
-                            Persentase Kehadiran Kelas Bulan ini
+                            Persentase Kehadiran Berdasarkan Kelas dan Bulan ini
                         </h6>
                     </div>
                     <div class="card-body">
@@ -51,6 +51,61 @@
                 </div>
             </div>
         </div>
+        
+        <form action="" method="get">
+            <div class="row">
+                <div class="col-md-4 form-group col-12">
+                    <label for="date_from">Dari Tanggal</label>
+                    <input type="date" name="date_from" class="form-control" value="{{ $request->date_from }}">
+                </div>
+                <div class="col-md-4 form-group col-12">
+                    <label for="date_to">Sampai Tanggal</label>
+                    <input type="date" name="date_to" class="form-control" value="{{ $request->date_to }}">
+                </div>
+                <div class="col-md-2 mt-4 p-2 col-12">
+                    <button type="submit" class="btn btn-primary w-100">Cari</button>
+                </div>
+                <div class="col-md-2 mt-4 p-2 col-12">
+                    <a href="{{ route('absensi') }}"
+                        class="btn btn-danger w-100">Reset</a>
+                </div>
+            </div>
+        </form>
+
+        <div class="row mb-5 mt-2">
+            <div class="col-xl-4 col-lg-5">
+                <div class="card h-100 justify-content-center shadow">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">
+                            Persentase Kehadiran SMK per Tanggal
+                        </h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="pt-4 pb-2">
+                            <canvas id="pieChartDate"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-8 col-lg-5">
+                <div class="card h-100 justify-content-center shadow">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">
+                            Persentase Kehadiran Berdasarkan Kelas dan Tanggal
+                        </h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="pt-4 pb-2">
+                            <canvas id="barChartDate" class="w-100 h-100"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="row py-5">
             @foreach ($kelas as $item)
                 <div class="col col-12 col-xl-4 col-md-6 mb-4">
@@ -147,6 +202,56 @@
                     }
                 }
             });
+
+            //chart absen sekolah sesuai date
+            var datadate = {
+                labels: ["Hadir (%)", "Tidak Hadir (%)"],
+                datasets: [{
+                    data: [{!! $persentaseDate !!}, 100 -
+                    {!! $persentaseDate !!}],
+                    backgroundColor: ["#33FF57", "#FF5733"]
+                }]
+            };
+
+            var ctx = document.getElementById('pieChartDate').getContext('2d');
+            var myPieChart = new Chart(ctx, {
+                type: 'pie',
+                data: datadate
+            });
+
+
+            //chart absen per kelas sesuai date
+            var dataBarDate = {
+                labels: {!! json_encode($labelKelasDate) !!},
+                datasets: [{
+                    label: 'Jumlah Kehadian (%)',
+                    data: {!! json_encode($persentaseKelasDate) !!},
+                    backgroundColor: "#FFC107",
+                    borderColor: "#FFA000",
+                    borderWidth: 1
+                }]
+            };
+
+            var ctxBar = document.getElementById('barChartDate').getContext('2d');
+            var myBarChart = new Chart(ctxBar, {
+                type: 'bar',
+                data: dataBarDate,
+                options: {
+                    scales: {
+                        x: {
+                            ticks: {
+                                font: {
+                                    size: 10
+                                }
+                            }
+                        },
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        </script>
         </script>
     @endpush
 @endsection

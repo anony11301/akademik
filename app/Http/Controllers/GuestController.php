@@ -11,7 +11,7 @@ use Illuminate\Support\Carbon;
 
 class GuestController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $kelas = Kelas::all();
         $jumlahTidakHadir = [];
@@ -91,8 +91,67 @@ class GuestController extends Controller
             $persentasekelas[] = $persentasesementara;
         }
 
+        //Data absensi hadir
+        $absensiquery = Absensi::where('status', 'hadir');
+
+        //Kalo ngga ada input, maka default nya hari ini
+        if (!$request->date_from && !$request->date_to) {
+            $absensidate = $absensiquery->whereDate('tanggal', today())->count();
+            $totalabsen = Absensi::whereDate('tanggal', today())->count();
+            $kelas = Kelas::all();
+            $labelKelasDate = [];
+            $persentaseKelasDate = [];
+
+            foreach ($kelas as $item) {
+                $labelsementara2 = Kelas::where('id', $item->id)->pluck('nama_kelas')->first();
+                $datatotal2 = Absensi::where('id_kelas', $item->id)->whereDate('tanggal', today())->count();
+                $datapersentase2 = Absensi::where('id_kelas', $item->id)->where('status', 'hadir')->whereDate('tanggal', today())->count();
+
+                if ($datatotal2 != 0) {
+                    $persentasesementaraDate = ($datapersentase2 / $datatotal2) * 100;
+                } else {
+                    $persentasesementaraDate = 0;
+                }
+                $labelKelasDate[] = $labelsementara2;
+                $persentaseKelasDate[] = $persentasesementaraDate;
+            }
+
+            if ($absensidate != 0) {
+                $persentaseDate = ($absensidate / $totalabsen) * 100;
+            } else {
+                $persentaseDate = 0;
+            }
+            //kalo ada input, maka akan melakukan query sesuai tanggal yang di input
+        } else if ($request->date_from && $request->date_to) {
+            $absensidate = $absensiquery->whereBetween('tanggal', [$request->date_from, $request->date_to])->count();
+            $totalabsen = Absensi::whereBetween('tanggal', [$request->date_from, $request->date_to])->count();
+            $kelas = Kelas::all();
+            $labelKelasDate = [];
+            $persentaseKelasDate = [];
+
+            foreach ($kelas as $item) {
+                $labelsementara2 = Kelas::where('id', $item->id)->pluck('nama_kelas')->first();
+                $datatotal2 = Absensi::where('id_kelas', $item->id)->whereBetween('tanggal', [$request->date_from, $request->date_to])->count();
+                $datapersentase2 = Absensi::where('id_kelas', $item->id)->where('status', 'hadir')->whereBetween('tanggal', [$request->date_from, $request->date_to])->count();
+
+                if ($datatotal2 != 0) {
+                    $persentasesementaraDate = ($datapersentase2 / $datatotal2) * 100;
+                } else {
+                    $persentasesementaraDate = 0;
+                }
+                $labelKelasDate[] = $labelsementara2;
+                $persentaseKelasDate[] = $persentasesementaraDate;
+            }
+
+            if ($absensidate != 0) {
+                $persentaseDate = ($absensidate / $totalabsen) * 100;
+            } else {
+                $persentaseDate = 0;
+            }
+        }
 
         return view('pages.guest.index', [
+            'request' => $request,
             'kelas' => $kelas,
             'jumlahTidakHadir' => $jumlahTidakHadir,
             'persentaseKehadiran' => $persentaseKehadiran,
@@ -100,7 +159,10 @@ class GuestController extends Controller
             'data' => $data,
             'jumlahAbsen' => $jumlahAbsen,
             'labelkelas' => $labelkelas,
-            'persentasekelas' => $persentasekelas
+            'persentasekelas' => $persentasekelas,
+            'persentaseDate' => $persentaseDate,
+            'labelKelasDate' => $labelKelasDate,
+            'persentaseKelasDate' => $persentaseKelasDate
         ]);
     }
 

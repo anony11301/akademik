@@ -11,7 +11,7 @@ use Illuminate\Support\Carbon;
 
 class ManagementController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $jumlahSiswa = Siswa::count();
         $jumlahKelas = Kelas::count();
@@ -65,8 +65,8 @@ class ManagementController extends Controller
 
         foreach ($kelas as $kelas) {
             $labelsementara = Kelas::where('id', $kelas->id)->pluck('nama_kelas')->first();
-            $datatotal = Absensi::where('id_kelas', $kelas->id)->whereMonth('tanggal', $bulanSekarang)->count();
-            $datapersentase = Absensi::where('id_kelas', $kelas->id)->where('status', 'hadir')->whereMonth('tanggal', $bulanSekarang)->count();
+            $datatotal = Absensi::where('id_kelas', $kelas->id)->whereMonth('tanggal', $bulanSekarang)->whereYear('tanggal', $tahunSekarang)->count();
+            $datapersentase = Absensi::where('id_kelas', $kelas->id)->where('status', 'hadir')->whereYear('tanggal', $tahunSekarang)->whereMonth('tanggal', $bulanSekarang)->count();
 
             if ($datatotal != 0) {
                 $persentasesementara = ($datapersentase / $datatotal) * 100;
@@ -77,9 +77,69 @@ class ManagementController extends Controller
             $persentasekelas[] = $persentasesementara;
         }
 
+        //Data absensi hadir
+        $absensiquery = Absensi::where('status', 'hadir');
+
+        //Kalo ngga ada input, maka default nya hari ini
+        if (!$request->date_from && !$request->date_to) {
+            $absensidate = $absensiquery->whereDate('tanggal', today())->count();
+            $totalabsen = Absensi::whereDate('tanggal', today())->count();
+            $kelas = Kelas::all();
+            $labelKelasDate = [];
+            $persentaseKelasDate = [];
+
+            foreach ($kelas as $item) {
+                $labelsementara2 = Kelas::where('id', $item->id)->pluck('nama_kelas')->first();
+                $datatotal2 = Absensi::where('id_kelas', $item->id)->whereDate('tanggal', today())->count();
+                $datapersentase2 = Absensi::where('id_kelas', $item->id)->where('status', 'hadir')->whereDate('tanggal', today())->count();
+
+                if ($datatotal2 != 0) {
+                    $persentasesementaraDate = ($datapersentase2 / $datatotal2) * 100;
+                } else {
+                    $persentasesementaraDate = 0;
+                }
+                $labelKelasDate[] = $labelsementara2;
+                $persentaseKelasDate[] = $persentasesementaraDate;
+            }
+
+            if ($absensidate != 0) {
+                $persentaseDate = ($absensidate / $totalabsen) * 100;
+            } else {
+                $persentaseDate = 0;
+            }
+            //kalo ada input, maka akan melakukan query sesuai tanggal yang di input
+        } else if ($request->date_from && $request->date_to) {
+            $absensidate = $absensiquery->whereBetween('tanggal', [$request->date_from, $request->date_to])->count();
+            $totalabsen = Absensi::whereBetween('tanggal', [$request->date_from, $request->date_to])->count();
+            $kelas = Kelas::all();
+            $labelKelasDate = [];
+            $persentaseKelasDate = [];
+
+            foreach ($kelas as $item) {
+                $labelsementara2 = Kelas::where('id', $item->id)->pluck('nama_kelas')->first();
+                $datatotal2 = Absensi::where('id_kelas', $item->id)->whereBetween('tanggal', [$request->date_from, $request->date_to])->count();
+                $datapersentase2 = Absensi::where('id_kelas', $item->id)->where('status', 'hadir')->whereBetween('tanggal', [$request->date_from, $request->date_to])->count();
+
+                if ($datatotal2 != 0) {
+                    $persentasesementaraDate = ($datapersentase2 / $datatotal2) * 100;
+                } else {
+                    $persentasesementaraDate = 0;
+                }
+                $labelKelasDate[] = $labelsementara2;
+                $persentaseKelasDate[] = $persentasesementaraDate;
+            }
+
+            if ($absensidate != 0) {
+                $persentaseDate = ($absensidate / $totalabsen) * 100;
+            } else {
+                $persentaseDate = 0;
+            }
+        }
+
         return view(
             'pages.management.dashboard',
             [
+                'request' => $request,
                 'jumlahSiswa' => $jumlahSiswa,
                 'jumlahKelas' => $jumlahKelas,
                 'persentaseKehadiran' => $persentaseKehadiran,
@@ -87,10 +147,11 @@ class ManagementController extends Controller
                 'labels' => $labels,
                 'data' => $data,
                 'labelkelas' => $labelkelas,
-                'persentasekelas' => $persentasekelas
+                'persentasekelas' => $persentasekelas,
+                'persentaseDate' => $persentaseDate,
+                'labelKelasDate' => $labelKelasDate,
+                'persentaseKelasDate' => $persentaseKelasDate
             ]
         );
-
-        // return dd($data, $labels)->get();
     }
 }
