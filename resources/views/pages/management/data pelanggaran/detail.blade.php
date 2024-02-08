@@ -36,6 +36,7 @@
                         <th style="white-space: nowrap">Nama</th>
                         <th style="white-space: nowrap">Kelas</th>
                         <th>Pelanggaran</th>
+                        <th>Keterangan</th>
                         <th>Poin</th>
                         <th style="white-space: nowrap">Tanggal</th>
                     </tr>
@@ -50,6 +51,7 @@
                             <td style="white-space: nowrap">{{ $item->siswa->nama }}</td>
                             <td style="white-space: nowrap">{{ $item->kelas->nama_kelas }}</td>
                             <td>{{ $item->pelanggaran->nama_pelanggaran }}</td>
+                            <td>{{ $item->keterangan }}</td>
                             <td>{{ $item->pelanggaran->poin }}</td>
                             <td style="white-space: nowrap">{{ $item->tanggal }}</td>
                         </tr>

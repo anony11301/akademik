@@ -42,6 +42,8 @@
                                                                     {{ $pelanggaranItem->nama_pelanggaran }}</option>
                                                             @endforeach
                                                         </select>
+                                                        <div class="mt-3">Keterangan:</div>
+                                                        <input type="text" name="keterangan" class="form-control my-2">
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">

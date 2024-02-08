@@ -55,6 +55,7 @@ class DataPelanggaranController extends Controller
         $nisn = $request->nisn;
         $id_pelanggaran = $request->id_pelanggaran;
         $kelas_id = $id;
+        $keterangan = $request->keterangan;
         $date = Carbon::today();
 
         $pelanggaran = Pelanggaran::find($id_pelanggaran);
@@ -72,6 +73,7 @@ class DataPelanggaranController extends Controller
             'id_kelas' => $kelas_id,
             'tanggal' => $date,
             'created_by' => Auth::user()->id,
+            'keterangan' => $keterangan
         ]);
 
         return redirect()->route('data-pelanggaran-kelas', $id);
