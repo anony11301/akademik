@@ -163,7 +163,7 @@ class SiswaController extends Controller
 
 
         Siswa::destroy($NISN);
-        return redirect()->route('management-siswa')->with('success');
+        return redirect()->route('management-siswa')->with(['success' => true]);
     }
 
 

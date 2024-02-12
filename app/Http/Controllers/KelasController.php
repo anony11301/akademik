@@ -131,7 +131,7 @@ class KelasController extends Controller
             }
         }
         Kelas::destroy($id);
-        return redirect()->route('management-kelas');
+        return redirect()->route('management-kelas')->with(['berhasil' => true]);
     }
 
     // Function Export

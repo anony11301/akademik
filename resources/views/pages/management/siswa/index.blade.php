@@ -23,3 +23,17 @@
         @endforeach
     </div>
 @endsection
+
+
+@if (session('success'))    
+@push('addon-script')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    Swal.fire({
+        title: "Berhasil",
+        text: "Data telah terhapus!",
+        icon: "success"
+    });
+</script>
+@endpush
+@endif
