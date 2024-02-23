@@ -33,6 +33,16 @@
                     <div class="col-md-7">
                         <h3>Selamat Datang di <strong>Siakad Prestasi Prima</strong></h3>
                         <p class="mb-4">Silahkan Login Terlebih dahulu</p>
+
+                        @if (session('error'))      
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            Email atau Password yang dimasukkan salah
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                        @endif
+
                         <form action="{{ route('login-proses') }}" method="post">
                             @csrf
                             <div class="form-group first">
@@ -52,7 +62,7 @@
                             </div>
 
                             <input type="submit" value="login" class="btn btn-block btn-primary">
-
+                           
                         </form>
                     </div>
                 </div>
