@@ -164,7 +164,10 @@ class GuruController extends Controller
 
     public static function export($id_kelas)
     {
-        $export = new AbsenExport($id_kelas);
+        $dari = request('date_from');
+        $sampai = request('date_to');
+        $filter = request('status_filter');
+        $export = new AbsenExport($id_kelas, $dari, $sampai, $filter);
         return Excel::download($export, 'absen.xlsx');
     }
 }

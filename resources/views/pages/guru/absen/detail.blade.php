@@ -5,8 +5,12 @@
         <div class="s-flex py-4">
             <h1 class="mb-4">Data Absensi Kelas {{ $nama_kelas }}</h1>
             <div class="d-flex flex-row-reveerse">
-                <a href="{{ route('excel-export-absen', $kelas_id) }}" class="btn btn-sm btn-success float-right mr-2">Export
-                    Data</a>
+                <form action="{{ route('excel-export-absen', $kelas_id) }}" method="get">
+                    <input type="hidden" name="date_from" value="{{ $request->date_from }}">
+                    <input type="hidden" name="date_to" value="{{ $request->date_to }}">
+                    <input type="hidden" name="status_filter" value="{{ $request->input('status_filter') }}">
+                    <button type="submit" class="btn btn-sm btn-success float-right mr-2">Export Data</button>
+                        </form>
             </div>
 
         </div>
